@@ -4,6 +4,11 @@ extends CharacterBody2D
 @export var melee_attack_range: int = 100
 @export var attack_damage: int = 10
 
+# for now, these crit values are hardcoded
+# in the future we may add items which correspond to crit values
+@export var crit_rate: float = 0.2
+@export var crit_damage: float = 2
+
 func _physics_process(delta: float) -> void:
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -21,5 +26,9 @@ func _physics_process(delta: float) -> void:
 func attack():
 		for enemy in get_tree().get_nodes_in_group("enemies"):
 			if position.distance_to(enemy.position) <= melee_attack_range:
-				enemy.take_damage(attack_damage)
-	
+				var damage = attack_damage
+				if randf() < crit_rate:
+					damage *= crit_damage
+					print("CRIT!!!!")
+					
+				enemy.take_damage(damage)
