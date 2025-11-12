@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://8uof664rvkaj"]
+
+[ext_resource type="Script" uid="uid://chatx6nq3mnb7" path="res://Assets/Scripts/scene_transition.gd" id="1_a4lpr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwt0f"]
+size = Vector2(86, 86)
+
+[node name="SceneTransition" type="Area2D"]
+script = ExtResource("1_a4lpr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(33, 33)
+shape = SubResource("RectangleShape2D_nwt0f")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Scene
+Transition"
