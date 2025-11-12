@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqv617su7xf5w"]
+
+[ext_resource type="PackedScene" uid="uid://8uof664rvkaj" path="res://Assets/Scenes/scene_transition.tscn" id="1_qqlv3"]
+[ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="2_4dums"]
+[ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="3_5na2p"]
+
+[node name="Room" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_4dums")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1070.0
+offset_bottom = 653.0
+color = Color(0.37254903, 0.2, 0.21568628, 1)
+
+[node name="SceneTransition" parent="." instance=ExtResource("1_qqlv3")]
+position = Vector2(81, 184)
+new_scene = "res://Assets/Scenes/room2_f1.tscn"
+
+[node name="Enemy" parent="." instance=ExtResource("3_5na2p")]
+position = Vector2(502, -318)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_5na2p")]
+position = Vector2(-269, 171)

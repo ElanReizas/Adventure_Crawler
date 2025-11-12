@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dansnoexb25b4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2crjn"]
+radius = 121.69634
+
+[node name="Obstacles" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_2crjn")
+debug_color = Color(0.85364795, 0.334119, 0.4223176, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
