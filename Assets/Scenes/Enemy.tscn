@@ -1,17 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://w7fn2ns1k5r"]
+[gd_scene load_steps=4 format=3 uid="uid://w7fn2ns1k5r"]
 
-[ext_resource type="Script" uid="uid://uh4pr7ok3vj8" path="res://Assets/scripts/enemy.gd" id="1_3pmh0"]
+[ext_resource type="Script" uid="uid://uh4pr7ok3vj8" path="res://Assets/Scripts/enemy.gd" id="1_3pmh0"]
 [ext_resource type="Texture2D" uid="uid://dw23l1ghn604q" path="res://icon.svg" id="1_oyf8h"]
 
-[node name="Enemy" type="Node2D" groups=["enemies"]]
-script = ExtResource("1_3pmh0")
+[sub_resource type="CircleShape2D" id="CircleShape2D_3pmh0"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.55628604, 0.49291265, 1)
-texture = ExtResource("1_oyf8h")
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_3pmh0")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -88.0
 offset_top = -94.0
 offset_right = 90.0
 offset_bottom = -67.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.55628604, 0.49291265, 1)
+texture = ExtResource("1_oyf8h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3pmh0")
