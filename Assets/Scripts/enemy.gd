@@ -2,7 +2,6 @@ extends CharacterBody2D
 class_name Enemy
 @onready var target = $"../Player"
 @export var speed = 200
-#var velocity = Vector2.ZERO
 var max_health: int = 100
 var current_health: int
 #Variable to determine if the player was seen by an enemy to initiate engage targetting
@@ -19,11 +18,11 @@ func take_damage(amount: int) -> void:
 
 	if current_health <= 0:
 		die()
-func _physics_process(delta: float) -> void:
-	if (target):
+func _physics_process(_delta: float) -> void:
+	targetPlayer()
+	if playerSeen:
 		var direction = (target.position-position).normalized()
 		velocity = direction * speed
-		look_at(target.position)
 		move_and_slide()
 #Targeting function
 #initial testing we set playerSeen to true to skip past patrolling phase
