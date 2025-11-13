@@ -6,7 +6,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_3pmh0"]
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
-position = Vector2(600, 399)
 script = ExtResource("1_3pmh0")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
