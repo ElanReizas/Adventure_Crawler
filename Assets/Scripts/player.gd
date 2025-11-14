@@ -91,7 +91,7 @@ func _physics_process(_delta: float) -> void:
 	
 	
 func attack():
-		if is_attacking:
+		if is_attacking || is_dodging:
 			return
 	
 		is_attacking = true
