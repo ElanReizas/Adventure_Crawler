@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc67uojlcm3tj"]
+
+[ext_resource type="Script" uid="uid://dj66gnjp3ed2k" path="res://Assets/Scripts/RangedWeapon.gd" id="1_jhiee"]
+[ext_resource type="PackedScene" uid="uid://tde3nf6gv2ow" path="res://Assets/Scenes/Projectile.tscn" id="2_e2n4c"]
+
+[node name="RangedWeapon" type="Node2D"]
+script = ExtResource("1_jhiee")
+projectile_scene = ExtResource("2_e2n4c")

@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bh15yrhhfkjrr"]
+[gd_scene load_steps=9 format=3 uid="uid://bh15yrhhfkjrr"]
 
 [ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="1_1brkv"]
 [ext_resource type="PackedScene" uid="uid://8uof664rvkaj" path="res://Assets/Scenes/scene_transition.tscn" id="1_myjhu"]
-[ext_resource type="PackedScene" uid="uid://b5u56vgmtof5c" path="res://Assets/Scenes/MeleeWeapon.tscn" id="4_id38q"]
 [ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="4_smgks"]
 [ext_resource type="PackedScene" uid="uid://cc67uojlcm3tj" path="res://Assets/Scenes/RangedWeapon.tscn" id="4_xwfoh"]
 
@@ -22,7 +21,6 @@ size = Vector2(52, 714.5)
 
 [node name="Player" parent="." node_paths=PackedStringArray("equipped_weapon") instance=ExtResource("1_1brkv")]
 position = Vector2(171, 142)
-speed = 800
 equipped_weapon = NodePath("../Weapons/RangedWeapon")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -38,9 +36,6 @@ new_scene = "res://Assets/Scenes/room1_f1.tscn"
 position = Vector2(554, 127)
 
 [node name="Weapons" type="Node2D" parent="."]
-
-[node name="MeleeWeapon" parent="Weapons" instance=ExtResource("4_id38q")]
-position = Vector2(307, 89)
 
 [node name="RangedWeapon" parent="Weapons" instance=ExtResource("4_xwfoh")]
 position = Vector2(334, 150)

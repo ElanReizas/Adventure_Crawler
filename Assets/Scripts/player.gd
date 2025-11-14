@@ -12,7 +12,7 @@ class_name Player
 @export var crit_damage: float = 2
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
+@export var equipped_weapon: Weapon
 
 func _physics_process(_delta: float) -> void:
 	var input_vector = Vector2.ZERO
@@ -25,16 +25,6 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity = input_vector
 	move_and_slide()
-	if Input.is_action_just_pressed("attack"):
-		attack()
-	
-func attack():
-		for enemy in get_tree().get_nodes_in_group("enemies"):
-			if position.distance_to(enemy.position) <= melee_attack_range:
-				var damage = attack_damage
-				if randf() < crit_rate:
-					damage *= crit_damage
-					animation_player.play("crit")
-					print("CRIT!!!!")
-					
-				enemy.take_damage(damage)
+
+	if Input.is_action_just_pressed("attack") and equipped_weapon:
+		equipped_weapon.attack(self)
