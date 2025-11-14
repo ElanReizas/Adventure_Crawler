@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://cm0kltmpyq6hn"]
+
+[ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="1_6cwr4"]
+[ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="2_ffntu"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6cwr4"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ffntu"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jl24q"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_flgkq"]
+
+[node name="patrol_test_room" type="Node2D"]
+
+[node name="room" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.14509805, 0.16862746, 0.20392157, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_6cwr4")]
+position = Vector2(960, 540)
+
+[node name="Enemy" parent="." instance=ExtResource("2_ffntu")]
+position = Vector2(1440, 540)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(960, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+shape = SubResource("WorldBoundaryShape2D_6cwr4")
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 535)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+shape = SubResource("WorldBoundaryShape2D_ffntu")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(1920, 508)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+shape = SubResource("WorldBoundaryShape2D_jl24q")
+
+[node name="Bottom Wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(1005, 1080)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Bottom Wall"]
+shape = SubResource("WorldBoundaryShape2D_flgkq")

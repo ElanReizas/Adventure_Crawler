@@ -19,6 +19,8 @@ new_scene = "res://Assets/Scenes/room2_f1.tscn"
 
 [node name="Enemy" parent="." instance=ExtResource("3_5na2p")]
 position = Vector2(502, -318)
+patrol_zone = Rect2(10, 10, 10, 10)
 
 [node name="Enemy2" parent="." instance=ExtResource("3_5na2p")]
 position = Vector2(-269, 171)
+patrol_zone = Rect2(20, 20, 20, 20)

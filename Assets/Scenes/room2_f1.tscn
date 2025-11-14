@@ -32,6 +32,8 @@ new_scene = "res://Assets/Scenes/room1_f1.tscn"
 
 [node name="Enemy" parent="." instance=ExtResource("4_smgks")]
 position = Vector2(554, 127)
+patrol_zone = Rect2(10, 10, 10, 10)
+chase_time_limit = 15.0
 
 [node name="Boundaries" type="Node2D" parent="."]
 
