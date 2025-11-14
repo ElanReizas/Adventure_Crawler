@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqa6gsdfcf1q4"]
+
+[ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="1_j2wcy"]
+[ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="2_7ppdy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2wcy"]
+size = Vector2(20, 65.111115)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_j2wcy"]
+vertices = PackedVector2Array(25.03125, -354.92188, 1303.8203, -345.0703, 872.21094, -32.6875, 632.84375, 23.960938, 26.367188, 10.3671875, 1285.1719, 715.0625, 861.84375, 610.1797, 6.9765625, 722.9297, 616.71875, 605.8203, 6.0078125, 12.1484375)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(2, 1, 5, 6), PackedInt32Array(6, 5, 7, 8), PackedInt32Array(3, 8, 7, 9, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4, 3, 645, -54, 627, 596, 852, 600, 862, -20, 605.8085, 40.637146, 17, 180, 15, -365, 1314, -355, 1295, 725, -3, 733)])
+
+[node name="PursuitVsWall" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_7ppdy")]
+position = Vector2(352, 178)
+
+[node name="Enemy" parent="." instance=ExtResource("1_j2wcy")]
+position = Vector2(1004, 166)
+
+[node name="Wall -staticbody2d" type="StaticBody2D" parent="."]
+position = Vector2(736, 289)
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall -staticbody2d"]
+position = Vector2(0, 1.6666641)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_j2wcy")
+debug_color = Color(0, 0.6, 0.69803923, 0.91764706)
+
+[node name="ColorRect" type="ColorRect" parent="Wall -staticbody2d"]
+offset_left = -31.333334
+offset_top = -96.0
+offset_right = 30.333353
+offset_bottom = 100.33334
+color = Color(0.32156864, 1, 0.2784314, 1)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(638, -1, 638, 590, 830, 590, 832, -6)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_j2wcy")
+enter_cost = 1.0
