@@ -1,9 +1,11 @@
 extends CharacterBody2D
 class_name Enemy
-@onready var target = $"../Player"
+@onready var target = null
 @export var speed = 200
 var max_health: int = 100
 var current_health: int
+#grab group of player in players
+@onready var players = get_tree().get_nodes_in_group("player")
 #Variable to determine if the player was seen by an enemy to initiate engage targetting
 var playerSeen: bool
 @onready var health_bar: ProgressBar = $HealthBar
@@ -11,7 +13,10 @@ func _ready():
 	current_health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = current_health
-
+	#if theres a player, grab the first one
+	#will add proximity prioritization after multipler is implemented
+	if players.size()>0:
+		target =players[0]
 func take_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)
 	health_bar.value = current_health
