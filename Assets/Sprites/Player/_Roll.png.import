@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1rp6amlixrp8"
-path="res://.godot/imported/ATTACK 1.png-232a1f1a0f4c699e3110a7704a6eb56e.ctex"
+uid="uid://bfccmsvs4r3m1"
+path="res://.godot/imported/_Roll.png-ead7efbfc6613fc926e23ad3b198ec84.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/ATTACK 1.png"
-dest_files=["res://.godot/imported/ATTACK 1.png-232a1f1a0f4c699e3110a7704a6eb56e.ctex"]
+source_file="res://Assets/Sprites/Player/_Roll.png"
+dest_files=["res://.godot/imported/_Roll.png-ead7efbfc6613fc926e23ad3b198ec84.ctex"]
 
 [params]
 

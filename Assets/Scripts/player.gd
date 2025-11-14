@@ -7,6 +7,7 @@ class_name Player
 @export var dodge_time: float = 0.5
 var current_dodge_time: float = 0
 var is_dodging = false
+var is_attacking = false
 
 @export var melee_attack_range: int = 200
 @export var attack_damage: int = 10
@@ -17,6 +18,7 @@ var is_dodging = false
 @export var crit_damage: float = 2
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animated_sprite_2d: AnimatedSprite2D = $Sprite2D
 
 var max_health: int = 100
 @export var current_player_health: int
@@ -37,6 +39,11 @@ func _physics_process(_delta: float) -> void:
 	input_vector = input_vector.normalized()
 	
 	
+	
+	if is_attacking:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 	# first check to see if user wants to dodge
 	if !is_dodging && Input.is_action_just_pressed("dodge"):
 		is_dodging = true
@@ -45,19 +52,31 @@ func _physics_process(_delta: float) -> void:
 		#if user standing still or moving
 		if input_vector == Vector2.ZERO:
 			velocity = Vector2.LEFT * dodge_speed
+			animated_sprite_2d.flip_h = true
 		else:
 			velocity = input_vector * dodge_speed
+			if velocity.x > 0:
+				animated_sprite_2d.flip_h = false
+			else:
+				animated_sprite_2d.flip_h = true
 			
 	#if user is dodging
 	if is_dodging:
 		current_dodge_time += _delta
+		animated_sprite_2d.play("roll")
 
 		if current_dodge_time >= dodge_time:
 			is_dodging = false
 	elif input_vector != Vector2.ZERO:
 		velocity = input_vector * speed
+		animated_sprite_2d.play("walk")
+		if velocity.x > 0:
+			animated_sprite_2d.flip_h = false
+		else:
+			animated_sprite_2d.flip_h = true
 	else:
 		velocity = Vector2.ZERO
+		animated_sprite_2d.play("idle")
 			
 	
 			
@@ -72,7 +91,11 @@ func _physics_process(_delta: float) -> void:
 	
 	
 func attack():
-		$AnimationPlayer.play("attack")
+		if is_attacking:
+			return
+	
+		is_attacking = true
+		animated_sprite_2d.play("attack")
 		for enemy in get_tree().get_nodes_in_group("enemies"):
 			if position.distance_to(enemy.position) <= melee_attack_range:
 				var damage = attack_damage
@@ -82,11 +105,18 @@ func attack():
 					print("CRIT!!!!")
 					
 				enemy.take_damage(damage)
-
-
+		
 func take_damage(amount: int) -> void:
 	current_player_health = max(current_player_health - amount, 0)
 	health_bar.value = current_player_health
 
 func die():
 	queue_free()
+
+
+func _on_sprite_2d_animation_finished() -> void:
+	if animated_sprite_2d.animation == "attack":
+		is_attacking = false
+		animated_sprite_2d.play("idle")
+	elif animated_sprite_2d.animation == "roll":
+		animated_sprite_2d.play("idle")
