@@ -6,9 +6,6 @@ class_name Player
 @export var dodge_speed: int = 800
 @export var dodge_time: float = 0.5
 var current_dodge_time: float = 0
-@export var dodge_duplicate_time: float = 0.05
-var current_dodge_duplicate_time: float = 0
-@export var duplicate_life_time: float = 0.3
 var is_dodging = false
 
 @export var melee_attack_range: int = 200
@@ -21,9 +18,18 @@ var is_dodging = false
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+var max_health: int = 100
+@export var current_player_health: int
+@onready var health_bar: ProgressBar = $HealthBar
+
+
 func _ready():
+	current_player_health = max_health
+	health_bar.max_value = max_health
+	health_bar.value = current_player_health
 	#added player to group of players to be referenced by external scripts
 	add_to_group("player")
+
 func _physics_process(_delta: float) -> void:
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -66,6 +72,7 @@ func _physics_process(_delta: float) -> void:
 	
 	
 func attack():
+		$AnimationPlayer.play("attack")
 		for enemy in get_tree().get_nodes_in_group("enemies"):
 			if position.distance_to(enemy.position) <= melee_attack_range:
 				var damage = attack_damage
@@ -75,3 +82,11 @@ func attack():
 					print("CRIT!!!!")
 					
 				enemy.take_damage(damage)
+
+
+func take_damage(amount: int) -> void:
+	current_player_health = max(current_player_health - amount, 0)
+	health_bar.value = current_player_health
+
+func die():
+	queue_free()
