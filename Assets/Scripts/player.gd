@@ -30,18 +30,21 @@ func _physics_process(_delta: float) -> void:
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	input_vector = input_vector.normalized()
 	
+	
+	# first check to see if user wants to dodge
 	if !is_dodging && Input.is_action_just_pressed("dodge"):
 		is_dodging = true
 		current_dodge_time = 0
 		
+		#if user standing still or moving
 		if input_vector == Vector2.ZERO:
 			velocity = Vector2.LEFT * dodge_speed
 		else:
 			velocity = input_vector * dodge_speed
+			
+	#if user is dodging
 	if is_dodging:
 		current_dodge_time += _delta
-
-		velocity = velocity.lerp(Vector2.ZERO, 0.1)
 
 		if current_dodge_time >= dodge_time:
 			is_dodging = false
