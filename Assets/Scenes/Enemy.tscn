@@ -20,4 +20,16 @@ modulate = Color(1, 0.55628604, 0.49291265, 1)
 texture = ExtResource("1_oyf8h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(7, 7)
 shape = SubResource("CircleShape2D_3pmh0")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
