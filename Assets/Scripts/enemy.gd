@@ -31,8 +31,9 @@ func _physics_process(_delta: float) -> void:
 		var nav_point_direction = to_local($NavigationAgent2D.get_next_path_position()).normalized()
 		velocity = nav_point_direction * speed
 		move_and_slide()
+#This function adjust the path after a certain amount of time to stay updated on where the player is
 func _on_timer_timeout() -> void:
-	if $NavigationAgent2D.target_position != target.position:
+	if $NavigationAgent2D.target_position != target.position && playerSeen:
 		$NavigationAgent2D.set_target_position(target.position)
 	$Timer.start()
 #Targeting function
