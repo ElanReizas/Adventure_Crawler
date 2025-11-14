@@ -13,7 +13,9 @@ class_name Player
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-
+func _ready():
+	#added player to group of players to be referenced by external scripts
+	add_to_group("player")
 func _physics_process(_delta: float) -> void:
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
