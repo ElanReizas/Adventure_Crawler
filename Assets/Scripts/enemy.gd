@@ -17,7 +17,7 @@ func _ready():
 	#will add proximity prioritization after multipler is implemented
 	if players.size()>0:
 		target =players[0]
-		$NavigationAgent2D.target_position = target.position
+		$NavigationAgent2D.set_target_position(target.position)
 func take_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)
 	health_bar.value = current_health
@@ -32,9 +32,9 @@ func _physics_process(_delta: float) -> void:
 		velocity = nav_point_direction * speed
 		move_and_slide()
 func _on_timer_timeout() -> void:
-	if $NavigationAgent2D.target_Position != target.position:
-		$NavigationAgent2D.target_Position = target.position
-	$PathfindingUpdateTimer.start()
+	if $NavigationAgent2D.target_position != target.position:
+		$NavigationAgent2D.set_target_position(target.position)
+	$Timer.start()
 #Targeting function
 #initial testing we set playerSeen to true to skip past patrolling phase
 #this is made for melee enemies
