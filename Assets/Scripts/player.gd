@@ -23,6 +23,7 @@ var is_attacking = false
 var max_health: int = 100
 @export var current_player_health: int
 @onready var health_bar: ProgressBar = $HealthBar
+@export var equipped_weapon: Weapon
 
 
 func _ready():
@@ -120,3 +121,6 @@ func _on_sprite_2d_animation_finished() -> void:
 		animated_sprite_2d.play("idle")
 	elif animated_sprite_2d.animation == "roll":
 		animated_sprite_2d.play("idle")
+
+	if Input.is_action_just_pressed("attack") and equipped_weapon:
+		equipped_weapon.attack(self)

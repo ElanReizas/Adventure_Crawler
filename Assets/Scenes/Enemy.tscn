@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dw23l1ghn604q" path="res://icon.svg" id="1_oyf8h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3pmh0"]
+radius = 6.7203617
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_3pmh0")
@@ -20,4 +21,17 @@ modulate = Color(1, 0.55628604, 0.49291265, 1)
 texture = ExtResource("1_oyf8h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(7, 7)
 shape = SubResource("CircleShape2D_3pmh0")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+path_max_distance = 50.0
+path_postprocessing = 1
+simplify_path = true
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+autostart = true
