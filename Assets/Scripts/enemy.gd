@@ -28,7 +28,6 @@ func _ready():
 		nav.set_target_position(target.position)
 	else:
 		playerSeen = false
-		#$NavigationAgent2D.set_target_position(target.position)
 func take_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)
 	health_bar.value = current_health
@@ -38,11 +37,11 @@ func take_damage(amount: int) -> void:
 func _physics_process(_delta: float) -> void:
 	if (acquire_target()):
 		current_distance = global_position.distance_to(target.global_position)
-		if not (equipped_weapon is RangedWeapon):
+		if (equipped_weapon is MeleeWeapon):
 			#Establishes a path to the goal that the enemy will follow
 			var nav_point_direction = to_local(nav.get_next_path_position()).normalized()
 			velocity = nav_point_direction * speed
-		else:
+		if (equipped_weapon is RangedWeapon):
 			#using a safe distance we can tell the agent whether its good to continue moving or not
 			if (current_distance > follow_distance_max):
 				#close in on player
@@ -53,9 +52,10 @@ func _physics_process(_delta: float) -> void:
 					var away_direction = (global_position - target.global_position).normalized()
 					velocity = away_direction*speed
 			if (follow_distance_min < current_distance && current_distance < follow_distance_max):
+				#Comfort zone, we don't need to move anywhere
 				velocity = Vector2.ZERO
 	move_and_slide()
-			#Comfort zone, we don't need to move anywhere
+			
 			
 
 
