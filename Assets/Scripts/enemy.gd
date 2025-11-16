@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Enemy
 @onready var target = null
+var player_in_sight: bool = false
 @export var speed: float = 200.0
 var max_health: int = 100
 var current_health: int
@@ -38,22 +39,11 @@ func _physics_process(_delta: float) -> void:
 	if (acquire_target()):
 		current_distance = global_position.distance_to(target.global_position)
 		if (equipped_weapon is MeleeWeapon):
+			meleeMovement()
 			#Establishes a path to the goal that the enemy will follow
-			var nav_point_direction = to_local(nav.get_next_path_position()).normalized()
-			velocity = nav_point_direction * speed
-		if (equipped_weapon is RangedWeapon):
-			#using a safe distance we can tell the agent whether its good to continue moving or not
-			if (current_distance > follow_distance_max):
-				#close in on player
-				var nav_point_direction = to_local(nav.get_next_path_position()).normalized()
-				velocity = nav_point_direction * speed
-			else: if (current_distance<follow_distance_min):
-					#player too close, move away from player
-					var away_direction = (global_position - target.global_position).normalized()
-					velocity = away_direction*speed
-			if (follow_distance_min < current_distance && current_distance < follow_distance_max):
-				#Comfort zone, we don't need to move anywhere
-				velocity = Vector2.ZERO
+		elif (equipped_weapon is RangedWeapon):
+			SightCheck()
+			rangedMovement()
 	move_and_slide()
 			
 			
@@ -64,10 +54,7 @@ func _on_timer_timeout() -> void:
 	if nav.target_position != target.position && playerSeen:
 		nav.set_target_position(target.position)
 	timer.start()
-#Targeting function
-#initial testing we set playerSeen to true to skip past patrolling phase
-#this is made for melee enemies
-#LOS to be further implemented
+
 func acquire_target() -> bool:
 	players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
@@ -77,10 +64,51 @@ func acquire_target() -> bool:
 	else:
 			target = null
 			return false
-			
+
 func targetPlayer(): 
 	playerSeen=true
 	
 
 func die():
 	queue_free()
+
+
+func SightCheck():
+	var space_state = get_world_2d().direct_space_state
+
+	# Raycast setup: start at enemy, end at player
+	var query := PhysicsRayQueryParameters2D.new()
+	query.from = global_position
+	query.to = target.global_position
+
+	# Avoid colliding with the enemy itself
+	query.exclude = [self]
+
+	# Perform the raycast
+	var result = space_state.intersect_ray(query)
+
+	# If no collision was found, LOS is blocked or no objects in between
+	if result.is_empty():
+		player_in_sight = false
+		return
+
+	# TRUE only if the ray hits the player directly
+	player_in_sight = (result.collider == target)
+	
+func meleeMovement():
+		var nav_point_direction = to_local(nav.get_next_path_position()).normalized()
+		velocity = nav_point_direction * speed
+	
+func rangedMovement():
+	#using a safe distance we can tell the agent whether its good to continue moving or not
+	if (current_distance > follow_distance_max || not player_in_sight):
+		#close in on player
+		var nav_point_direction = to_local(nav.get_next_path_position()).normalized()
+		velocity = nav_point_direction * speed
+	elif (current_distance<follow_distance_min):
+			#player too close, move away from player
+			var away_direction = (global_position - target.global_position).normalized()
+			velocity = away_direction*speed
+	elif (follow_distance_min < current_distance && current_distance < follow_distance_max):
+		#Comfort zone, we don't need to move anywhere
+		velocity = Vector2.ZERO
