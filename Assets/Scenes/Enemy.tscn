@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://w7fn2ns1k5r"]
+[gd_scene load_steps=5 format=3 uid="uid://w7fn2ns1k5r"]
 
 [ext_resource type="Script" uid="uid://uh4pr7ok3vj8" path="res://Assets/Scripts/enemy.gd" id="1_3pmh0"]
 [ext_resource type="Texture2D" uid="uid://dw23l1ghn604q" path="res://icon.svg" id="1_oyf8h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3pmh0"]
 radius = 6.7203617
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_td1d5"]
+radius = 144.05554
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_3pmh0")
@@ -32,6 +35,16 @@ path_postprocessing = 1
 simplify_path = true
 debug_enabled = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="NavigationTimer" type="Timer" parent="."]
 process_callback = 0
 autostart = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+show_behind_parent = true
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_td1d5")

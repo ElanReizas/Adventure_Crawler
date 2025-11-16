@@ -13,8 +13,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-4, 3, 645, -54, 627, 5
 
 [node name="PursuitVsWall" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("2_7ppdy")]
+[node name="Player" parent="." node_paths=PackedStringArray("equipped_weapon") instance=ExtResource("2_7ppdy")]
 position = Vector2(352, 178)
+equipped_weapon = NodePath("")
 
 [node name="Enemy" parent="." instance=ExtResource("1_j2wcy")]
 position = Vector2(1004, 166)
