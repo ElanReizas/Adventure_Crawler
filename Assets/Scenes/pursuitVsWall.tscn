@@ -79,8 +79,12 @@ tile_set = ExtResource("1_7ppdy")
 position = Vector2(595, 157)
 weapon_type = 1
 
-[node name="Enemy" parent="." instance=ExtResource("1_j2wcy")]
+[node name="Enemy" parent="." node_paths=PackedStringArray("nav_region") instance=ExtResource("1_j2wcy")]
 position = Vector2(778, 137)
+detection_radius = 150.0
+attack_radius = 50.0
+nav_region = NodePath("../NavigationRegion2D")
+weapon_type = 1
 
 [node name="Wall -staticbody2d" type="StaticBody2D" parent="."]
 position = Vector2(736, 289)

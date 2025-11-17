@@ -11,7 +11,9 @@ func attack(attacker):
 		return
 
 	for target in get_targets(attacker):
-		if attacker.global_position.distance_to(target.global_position) <= attack_range:
+
+		# USE ENEMY'S attack_radius instead of attack_range
+		if attacker.global_position.distance_to(target.global_position) <= attacker.attack_radius:
 			target.take_damage(calculate_damage(attacker))
 			if attacker.is_in_group("enemies"):
 				cooldown = attack_cooldown

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bh15yrhhfkjrr"]
+[gd_scene load_steps=12 format=3 uid="uid://bh15yrhhfkjrr"]
 
 [ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="1_1brkv"]
 [ext_resource type="PackedScene" uid="uid://8uof664rvkaj" path="res://Assets/Scenes/scene_transition.tscn" id="1_myjhu"]
 [ext_resource type="PackedScene" uid="uid://b5u56vgmtof5c" path="res://Assets/Scenes/MeleeWeapon.tscn" id="4_id38q"]
 [ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="4_smgks"]
 [ext_resource type="PackedScene" uid="uid://cc67uojlcm3tj" path="res://Assets/Scenes/RangedWeapon.tscn" id="4_xwfoh"]
+[ext_resource type="Script" uid="uid://bbul2wt7ysmmr" path="res://Assets/Scripts/PatrolZone.gd" id="6_id38q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovi17"]
 size = Vector2(25, 701)
@@ -18,12 +19,15 @@ size = Vector2(1345.5, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_id38q"]
 size = Vector2(52, 714.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ddkwl"]
+size = Vector2(490, 675.5)
+
 [node name="Room1Floor2" type="Node2D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("equipped_weapon") instance=ExtResource("1_1brkv")]
+[node name="Player" parent="." instance=ExtResource("1_1brkv")]
 position = Vector2(171, 142)
 speed = 800
-equipped_weapon = NodePath("../Weapons/RangedWeapon")
+weapon_type = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1328.0
@@ -34,8 +38,9 @@ color = Color(0.33958673, 0.40593436, 0.7483299, 1)
 position = Vector2(1004, 31)
 new_scene = "res://Assets/Scenes/room1_f1.tscn"
 
-[node name="Enemy" parent="." instance=ExtResource("4_smgks")]
+[node name="Enemy" parent="." node_paths=PackedStringArray("patrol_zone") instance=ExtResource("4_smgks")]
 position = Vector2(554, 127)
+patrol_zone = NodePath("../PatrolZone")
 
 [node name="Weapons" type="Node2D" parent="."]
 
@@ -70,3 +75,11 @@ shape = SubResource("RectangleShape2D_xwfoh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/StaticBody2D4"]
 position = Vector2(1354, 345.75)
 shape = SubResource("RectangleShape2D_id38q")
+
+[node name="PatrolZone" type="Area2D" parent="."]
+script = ExtResource("6_id38q")
+metadata/_custom_type_script = "uid://bbul2wt7ysmmr"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PatrolZone"]
+position = Vector2(738, 341.25)
+shape = SubResource("RectangleShape2D_ddkwl")
