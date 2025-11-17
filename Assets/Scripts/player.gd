@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 class_name Player
 
-@export var speed: int = 400
-@export var melee_attack_range: int = 200
+@export var speed: int = 300
+@export var melee_attack_range: int = 100
 @export var attack_damage: int = 10
 
 @export var crit_rate: float = 0.2

@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Enemy
 @onready var target = null
 var player_in_sight: bool = false
-@export var speed: float = 200.0
+@export var speed: float = 100.0
 var max_health: int = 100
 var current_health: int
 #grab group of player in players
@@ -17,7 +17,7 @@ const WEAPON_PATHS := {
 	WeaponType.MELEE:  "res://Assets/Scenes/MeleeWeapon.tscn",
 	WeaponType.RANGED: "res://Assets/Scenes/RangedWeapon.tscn"
 }
-@export var follow_distance_min:= 550 #how far to stay away from player
+@export var follow_distance_min:= 100 #how far to stay away from player
 @export var follow_distance_max:= 700
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var nav: NavigationAgent2D = $NavigationAgent2D

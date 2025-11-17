@@ -1,7 +1,7 @@
 extends Weapon
 class_name MeleeWeapon
 
-@export var attack_range: int = 200
+@export var attack_range: int = 100
 @export var attack_cooldown: float = 0.4
 
 
