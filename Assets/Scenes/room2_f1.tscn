@@ -38,9 +38,8 @@ color = Color(0.33958673, 0.40593436, 0.7483299, 1)
 position = Vector2(1004, 31)
 new_scene = "res://Assets/Scenes/room1_f1.tscn"
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("patrol_zone") instance=ExtResource("4_smgks")]
+[node name="Enemy" parent="." instance=ExtResource("4_smgks")]
 position = Vector2(554, 127)
-patrol_zone = NodePath("../PatrolZone")
 
 [node name="Weapons" type="Node2D" parent="."]
 

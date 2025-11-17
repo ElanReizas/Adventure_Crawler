@@ -1,9 +1,7 @@
 extends Weapon
 class_name MeleeWeapon
 
-@export var attack_range: int = 100
 @export var attack_cooldown: float = 0.4
-
 
 func attack(attacker):
 	enemy_cooldown(attacker, attacker.get_process_delta_time())
@@ -11,8 +9,6 @@ func attack(attacker):
 		return
 
 	for target in get_targets(attacker):
-
-		# USE ENEMY'S attack_radius instead of attack_range
 		if attacker.global_position.distance_to(target.global_position) <= attacker.attack_radius:
 			target.take_damage(calculate_damage(attacker))
 			if attacker.is_in_group("enemies"):

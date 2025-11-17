@@ -11,9 +11,12 @@ func attack(attacker):
 	if cooldown > 0:
 		return
 
-	# Enforce attack radius for ranged as well
+	# Ranged enemies cannot fire unless inside attack radius AND LOS is clear
 	if attacker.is_in_group("enemies"):
 		if attacker.global_position.distance_to(attacker.target.global_position) > attacker.attack_radius:
+			return
+		attacker.SightCheck()
+		if not attacker.player_in_sight:
 			return
 
 	var direction: Vector2 = Vector2.ZERO
@@ -21,14 +24,12 @@ func attack(attacker):
 	if attacker.is_in_group("player"):
 		var mouse_pos = attacker.get_global_mouse_position()
 		direction = (mouse_pos - attacker.global_position).normalized()
-
 	else:
 		var targets = get_targets(attacker)
 		if targets.is_empty():
 			return
 		var target = targets[0]
 		direction = (target.global_position - attacker.global_position).normalized()
-
 
 	var projectile = projectile_scene.instantiate()
 	projectile.global_position = attacker.global_position + direction * spawn_offset

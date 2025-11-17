@@ -8,12 +8,12 @@ var pursuit_timer: float = 0.0
 var patrol_target: Vector2 = Vector2.ZERO
 
 
-@export var detection_radius: float = 250.0   # when enemy notices player
-@export var attack_radius: float = 150.0      # when enemy can attack player
+@export var detection_radius: float = 250.0   # when enemy notices player (For RANGED AND MELEE)
+@export var attack_radius: float = 150.0      # when enemy can attack player (ONLY FOR MELEE)
 @export var max_pursuit_time: float = 10.0    # give up after X seconds
 
-#Enemy walakable area
-@export var nav_region: NavigationRegion2D    # assign in the insepctor editor
+# Enemy walkable area
+@export var nav_region: NavigationRegion2D    # assign in the editor
 
 
 @onready var target = null
@@ -21,20 +21,27 @@ var player_in_sight: bool = false
 @export var speed: float = 100.0
 var max_health: int = 100
 var current_health: int
+
 #grab group of player in players
 @onready var players = get_tree().get_nodes_in_group("player")
+
 #Variable to determine if the player was seen by an enemy to initiate engage targetting
 var playerSeen = false
+
 #Enemy combat style
 enum WeaponType { MELEE, RANGED }
 @export var weapon_type: WeaponType = WeaponType.MELEE
+
 var equipped_weapon: Weapon
+
 const WEAPON_PATHS := {
 	WeaponType.MELEE:  "res://Assets/Scenes/MeleeWeapon.tscn",
 	WeaponType.RANGED: "res://Assets/Scenes/RangedWeapon.tscn"
 }
-@export var follow_distance_min:= 100 #how far to stay away from player
+
+@export var follow_distance_min:= 100
 @export var follow_distance_max:= 700
+
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 @onready var timer: Timer = $Timer
@@ -52,8 +59,6 @@ func _ready():
 	health_bar.max_value = max_health
 	health_bar.value = current_health
 
-	#if theres a player, grab the first one
-	#will add proximity prioritization after multipler is implemented
 	if players.size() > 0:
 		target = players[0]
 	else:
@@ -61,11 +66,20 @@ func _ready():
 
 	equip_weapon(WEAPON_PATHS[weapon_type])
 
-	# Initial patrol target from navmesh
+	# Ranged enemies: attack radius = detection radius
+	update_ranged_attack_radius()
+
+	# Initial patrol point
 	patrol_target = get_random_patrol_point()
 	nav.set_target_position(patrol_target)
 
 	timer.start()
+
+
+#For ranged enemies the attack radius and the detection radius are the same
+func update_ranged_attack_radius():
+	if weapon_type == WeaponType.RANGED:
+		attack_radius = detection_radius
 
 
 
@@ -74,6 +88,7 @@ func equip_weapon(path: String) -> void:
 	var weapon_instance: Weapon = scene.instantiate()
 	add_child(weapon_instance)
 	equipped_weapon = weapon_instance
+
 
 
 func take_damage(amount: int) -> void:
@@ -90,13 +105,13 @@ func die():
 
 func _physics_process(delta: float) -> void:
 	acquire_target()
-	queue_redraw()  # draws debug radii
+	queue_redraw()  # draws debug circles
 
+	# Enter pursuit ONLY if LOS is clear AND inside detection radius
 	if can_detect_player() and state != State.PURSUIT:
 		state = State.PURSUIT
 		pursuit_timer = 0.0
 
-	#Enemy now is set to 3 differnet states
 	match state:
 		State.PATROL:
 			patrol_behavior()
@@ -108,7 +123,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-
+#This function adjust the path after a certain amount of time to stay updated on where the player is
 func _on_timer_timeout() -> void:
 	if state == State.PURSUIT and target:
 		nav.set_target_position(target.global_position)
@@ -125,17 +140,21 @@ func acquire_target() -> bool:
 	return false
 
 
-func targetPlayer():
-	playerSeen = true
-
-
 
 func can_detect_player() -> bool:
 	if target == null:
 		return false
 
-	# detection radius: circle around enemy
-	return global_position.distance_to(target.global_position) <= detection_radius
+	# too far? can't detect
+	if global_position.distance_to(target.global_position) > detection_radius:
+		return false
+
+	# LOS required (no detecting through walls)
+	SightCheck()
+	if not player_in_sight:
+		return false
+
+	return true
 
 
 
@@ -159,7 +178,7 @@ func pursuit_behavior(delta: float):
 
 	nav.set_target_position(target.global_position)
 
-	# Only attack if inside attack radius
+	# Only attack within attack radius
 	if global_position.distance_to(target.global_position) <= attack_radius:
 		equipped_weapon.attack(self)
 
@@ -169,6 +188,7 @@ func pursuit_behavior(delta: float):
 		SightCheck()
 		rangedMovement()
 
+	# if chase lasted too long → give up
 	if pursuit_timer > max_pursuit_time:
 		state = State.RETURN
 		patrol_target = get_random_patrol_point()
@@ -220,33 +240,46 @@ func get_random_patrol_point() -> Vector2:
 
 func SightCheck():
 	var space_state = get_world_2d().direct_space_state
+	
+	# Raycast setup: start at enemy, end at player
 	var query := PhysicsRayQueryParameters2D.new()
 	query.from = global_position
 	query.to = target.global_position
+	
+	# Avoid colliding with the enemy itself
 	query.exclude = [self]
+
+	# Perform the raycast
 	var result = space_state.intersect_ray(query)
+	
+	# TRUE only if the ray hits the player directly
 	player_in_sight = not result.is_empty() and result.collider == target
 
 
 func meleeMovement():
-	var nav_point_direction = to_local(nav.get_next_path_position()).normalized()
-	velocity = nav_point_direction * speed
+	var dir = to_local(nav.get_next_path_position()).normalized()
+	velocity = dir * speed
 
 
 func rangedMovement():
+	
+	#using a safe distance we can tell the agent whether its good to continue moving or not
 	if (current_distance > follow_distance_max or not player_in_sight):
-		var nav_point_direction = to_local(nav.get_next_path_position()).normalized()
-		velocity = nav_point_direction * speed
+		#close in on player
+		var dir = to_local(nav.get_next_path_position()).normalized()
+		velocity = dir * speed
 	elif (current_distance < follow_distance_min):
-		var away_direction = (global_position - target.global_position).normalized()
-		velocity = away_direction * speed
-	else:
+		#player too close, move away from player
+		var away = (global_position - target.global_position).normalized()
+		velocity = away * speed
+	elif (follow_distance_min < current_distance && current_distance < follow_distance_max):
+		#Comfort zone, we don't need to move anywhere
 		velocity = Vector2.ZERO
 
 
 
 func _draw():
-	var color = Color(1,1,0,0.25)  # patrol/detection circle
+	var color = Color(1,1,0,0.25)  # detection ring
 	if state == State.PURSUIT:
 		color = Color(1,0,0,0.35)
 	elif state == State.RETURN:
@@ -255,5 +288,5 @@ func _draw():
 	# detection radius
 	draw_circle(Vector2.ZERO, detection_radius, color)
 
-	# attack radius (white)
+	# attack radius
 	draw_circle(Vector2.ZERO, attack_radius, Color(1,1,1,0.25))
