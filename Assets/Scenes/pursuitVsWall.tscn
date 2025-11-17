@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqa6gsdfcf1q4"]
+[gd_scene load_steps=5 format=3 uid="uid://cajlyrcs82iw2"]
 
 [ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="1_j2wcy"]
 [ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="2_7ppdy"]
-[ext_resource type="PackedScene" path="res://Assets/Scenes/RangedWeapon.tscn" id="3_gtdvp"]
-[ext_resource type="PackedScene" path="res://Assets/Scenes/MeleeWeapon.tscn" id="4_7puh5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2wcy"]
 size = Vector2(20, 65.111115)
@@ -18,10 +16,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-4, 3, 645, -54, 627, 5
 [node name="Player" parent="." instance=ExtResource("2_7ppdy")]
 position = Vector2(352, 178)
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("equipped_weapon") instance=ExtResource("1_j2wcy")]
+[node name="Enemy" parent="." instance=ExtResource("1_j2wcy")]
 position = Vector2(1004, 166)
 speed = null
-equipped_weapon = NodePath("../RangedWeapon")
 follow_distance_min = null
 follow_distance_max = null
 
@@ -48,7 +45,3 @@ vertices = PackedVector2Array(638, -1, 638, 590, 830, 590, 832, -6)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_j2wcy")
 enter_cost = 1.0
-
-[node name="RangedWeapon" parent="." instance=ExtResource("3_gtdvp")]
-
-[node name="MeleeWeapon" parent="." instance=ExtResource("4_7puh5")]

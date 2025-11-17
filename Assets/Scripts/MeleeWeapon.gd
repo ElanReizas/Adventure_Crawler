@@ -2,9 +2,16 @@ extends Weapon
 class_name MeleeWeapon
 
 @export var attack_range: int = 200
+@export var attack_cooldown: float = 0.4
 
-func attack(player):
-	for enemy in player.get_tree().get_nodes_in_group("enemies"):
-		if player.position.distance_to(enemy.position) <= attack_range:
-			var final_damage = calculate_damage(player)
-			enemy.take_damage(final_damage)
+
+func attack(attacker):
+	enemy_cooldown(attacker, attacker.get_process_delta_time())
+	if cooldown > 0:
+		return
+
+	for target in get_targets(attacker):
+		if attacker.global_position.distance_to(target.global_position) <= attack_range:
+			target.take_damage(calculate_damage(attacker))
+			if attacker.is_in_group("enemies"):
+				cooldown = attack_cooldown

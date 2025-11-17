@@ -10,7 +10,13 @@ var current_health: int
 #Variable to determine if the player was seen by an enemy to initiate engage targetting
 var playerSeen = false
 #Enemy combat style
-@export var equipped_weapon: Weapon
+enum WeaponType { MELEE, RANGED }
+@export var weapon_type: WeaponType = WeaponType.MELEE
+var equipped_weapon: Weapon
+const WEAPON_PATHS := {
+	WeaponType.MELEE:  "res://Assets/Scenes/MeleeWeapon.tscn",
+	WeaponType.RANGED: "res://Assets/Scenes/RangedWeapon.tscn"
+}
 @export var follow_distance_min:= 550 #how far to stay away from player
 @export var follow_distance_max:= 700
 @onready var health_bar: ProgressBar = $HealthBar
@@ -18,6 +24,7 @@ var playerSeen = false
 @onready var timer: Timer = $Timer
 @onready var current_distance
 func _ready():
+	add_to_group("enemies")
 	timer.timeout.connect(_on_timer_timeout)
 	current_health = max_health
 	health_bar.max_value = max_health
@@ -29,6 +36,15 @@ func _ready():
 		nav.set_target_position(target.position)
 	else:
 		playerSeen = false
+	equip_weapon(WEAPON_PATHS[weapon_type])
+
+
+func equip_weapon(path: String) -> void:
+	var scene: PackedScene = load(path)
+	var weapon_instance: Weapon = scene.instantiate()
+	add_child(weapon_instance)
+	equipped_weapon = weapon_instance
+
 func take_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)
 	health_bar.value = current_health
@@ -44,6 +60,7 @@ func _physics_process(_delta: float) -> void:
 		elif (equipped_weapon is RangedWeapon):
 			SightCheck()
 			rangedMovement()
+		equipped_weapon.attack(self)
 	move_and_slide()
 			
 			

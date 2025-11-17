@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_3pmh0"]
 radius = 6.7203617
 
-[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+[node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_3pmh0")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
