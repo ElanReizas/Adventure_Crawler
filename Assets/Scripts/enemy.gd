@@ -39,7 +39,7 @@ const WEAPON_PATHS := {
 	WeaponType.RANGED: "res://Assets/Scenes/RangedWeapon.tscn"
 }
 
-@export var follow_distance_min:= 100
+@export var follow_distance_min:= 125
 @export var follow_distance_max:= 700
 
 @onready var health_bar: ProgressBar = $HealthBar
