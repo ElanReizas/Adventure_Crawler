@@ -25,6 +25,8 @@ const WEAPON_PATHS := {
 
 @onready var health_bar: ProgressBar = $HealthBar
 
+var knockback_velocity: Vector2 = Vector2.ZERO
+var knockback_decay: float = 800.0
 
 func _ready():
 	add_to_group("player")
@@ -33,16 +35,20 @@ func _ready():
 	health_bar.value = current_health
 	equip_weapon(WEAPON_PATHS[weapon_type])
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	input_vector = input_vector.normalized()
 	
-	if input_vector:
-		velocity = input_vector * speed
-	else:
-		velocity = input_vector
+	#player movement can only come from input
+	#knockback velocity is added on top so the player can be pushed even when not moving
+	var move_velocity = input_vector * speed
+	velocity = move_velocity + knockback_velocity
+	#knockback velocity shrinks to 0 so that it doesnt permanently add onto player velocity
+	if knockback_velocity.length() > 0:
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
+
 	move_and_slide()
 
 	if Input.is_action_just_pressed("attack") and equipped_weapon:
@@ -68,3 +74,6 @@ func take_damage(amount: int):
 func die():
 	print("Player died!")
 	get_tree().reload_current_scene()
+	
+func apply_knockback(direction: Vector2, force: float):
+	knockback_velocity = direction.normalized() * force

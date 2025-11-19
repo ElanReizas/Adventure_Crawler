@@ -23,6 +23,9 @@ const WEAPON_PATHS := {
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 @onready var timer: Timer = $Timer
 @onready var current_distance
+var knockback_cooldown: float = 0.0
+var knockback_interval: float = 0.4
+
 func _ready():
 	add_to_group("enemies")
 	timer.timeout.connect(_on_timer_timeout)
@@ -51,7 +54,8 @@ func take_damage(amount: int) -> void:
 
 	if current_health <= 0:
 		die()
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	knockback_cooldown = max(knockback_cooldown - delta, 0)
 	if (acquire_target()):
 		current_distance = global_position.distance_to(target.global_position)
 		if (equipped_weapon is MeleeWeapon):
@@ -60,10 +64,16 @@ func _physics_process(_delta: float) -> void:
 		elif (equipped_weapon is RangedWeapon):
 			SightCheck()
 			rangedMovement()
-		equipped_weapon.attack(self)
-	move_and_slide()
-			
-			
+			equipped_weapon.attack(self)
+	var collision := move_and_collide(velocity * delta)
+
+	if collision and knockback_cooldown == 0:
+		var collided_body: Node = collision.get_collider()
+		if collided_body == target:
+			var direction: Vector2 = (target.global_position - global_position).normalized()
+			target.apply_knockback(direction, 300)
+			target.take_damage(4)
+			knockback_cooldown = knockback_interval
 
 
 #This function adjust the path after a certain amount of time to stay updated on where the player is
