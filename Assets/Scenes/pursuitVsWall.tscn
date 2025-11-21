@@ -24,7 +24,6 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(452, 112, 645, 111, 646, 327, 742, 327, 737, 133, 458, 133, 458, 68, 923, 68, 926, 463, 454, 463)])
 
 [node name="PursuitVsWall" type="Node2D"]
-modulate = Color(0.9861887, 0.89271134, 0.8306893, 1)
 
 [node name="Lighting" type="Node2D" parent="."]
 position = Vector2(530, 4)
