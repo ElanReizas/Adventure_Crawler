@@ -13,7 +13,7 @@ class_name Player
 var current_health: int
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
+@onready var ray_cast_2d: RayCast2D = $RayCast2D
 
 enum WeaponType { MELEE, RANGED }
 @export var weapon_type: WeaponType = WeaponType.MELEE
@@ -48,6 +48,10 @@ func _physics_process(delta: float) -> void:
 	#knockback velocity shrinks to 0 so that it doesnt permanently add onto player velocity
 	if knockback_velocity.length() > 0:
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
+		
+	if input_vector.length() > 0:
+		var direction =  input_vector.normalized()
+		ray_cast_2d.target_position = direction * 32
 
 	move_and_slide()
 
@@ -77,3 +81,9 @@ func die():
 	
 func apply_knockback(direction: Vector2, force: float):
 	knockback_velocity = direction.normalized() * force
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("interaction"):
+		var object: Object = ray_cast_2d.get_collider()
+		if object and object.has_method("interaction"):
+			object.interaction()

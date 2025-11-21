@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://byehs2x7fycp8"]
+
+[ext_resource type="Script" uid="uid://c1x2no865krlu" path="res://Assets/Scenes/object_interaction.gd" id="1_23gjt"]
+
+[node name="ObjectInteraction" type="StaticBody2D"]
+script = ExtResource("1_23gjt")
