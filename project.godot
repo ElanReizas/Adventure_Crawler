@@ -18,6 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+SoundEffects="*res://Assets/Scenes/SoundEffects.tscn"
+
+[dialogue_manager]
+
+runtime/balloon_path="res://Assets/DialogueFiles/balloon.tscn"
 
 [display]
 
