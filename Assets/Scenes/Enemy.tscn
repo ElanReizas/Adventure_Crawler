@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://w7fn2ns1k5r"]
+[gd_scene load_steps=5 format=3 uid="uid://w7fn2ns1k5r"]
 
 [ext_resource type="Script" uid="uid://uh4pr7ok3vj8" path="res://Assets/Scripts/enemy.gd" id="1_3pmh0"]
 [ext_resource type="Texture2D" uid="uid://ob6ausws373r" path="res://Assets/Images/enemy.png" id="2_3pmh0"]
+[ext_resource type="Resource" uid="uid://dw10r8i6nx47h" path="res://Assets/DialogueFiles/testing.dialogue" id="2_td1d5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3pmh0"]
 radius = 1.4356965
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_3pmh0")
+dialogue_file = ExtResource("2_td1d5")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -33.0
