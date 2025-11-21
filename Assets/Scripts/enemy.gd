@@ -2,14 +2,19 @@ extends CharacterBody2D
 class_name Enemy
 
 
+#The enemy thinks using 3 states:
+#
+#PATROL = wandering around the navmesh
+#PURSUIT = chasing the player once detected
+#RETURN = going back to patrol after giving up
 enum State { PATROL, PURSUIT, RETURN }
 var state: State = State.PATROL
-var pursuit_timer: float = 0.0
-var patrol_target: Vector2 = Vector2.ZERO
+var pursuit_timer: float = 0.0 # how long enemy has been chasing
+var patrol_target: Vector2 = Vector2.ZERO #next patrol point
 
 
 @export var detection_radius: float = 250.0   # when enemy notices player (For RANGED AND MELEE)
-@export var attack_radius: float = 150.0      # when enemy can attack player (ONLY FOR MELEE)
+@export var attack_radius: float = 150.0      # when enemy can attack player (ONLY FOR MELEE) (detection radius must be bigger than attack radius for melee)
 @export var max_pursuit_time: float = 10.0    # give up after X seconds
 
 # Enemy walkable area
@@ -39,31 +44,37 @@ const WEAPON_PATHS := {
 	WeaponType.RANGED: "res://Assets/Scenes/RangedWeapon.tscn"
 }
 
+# Ranged enemies maintain distance; melee enemies close in
 @export var follow_distance_min:= 100
 @export var follow_distance_max:= 700
 
+#refs to scene nodes
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 @onready var timer: Timer = $Timer
 @onready var current_distance
 
 
-
+#initilaize helath, first patrol point, eqips weapnon, starts timer for navigation updating
 func _ready():
 	randomize()
 	add_to_group("enemies")
 
+	#timer keeps nav path updated while chasing
 	timer.timeout.connect(_on_timer_timeout)
 
+	#health setup
 	current_health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = current_health
 
+	#initial player reference (updates every frame)
 	if players.size() > 0:
 		target = players[0]
 	else:
 		playerSeen = false
-
+	
+	#equip weapon
 	equip_weapon(WEAPON_PATHS[weapon_type])
 
 	# Ranged enemies: attack radius = detection radius
@@ -82,7 +93,7 @@ func update_ranged_attack_radius():
 		attack_radius = detection_radius
 
 
-
+#loads weapon as child of the enemy node
 func equip_weapon(path: String) -> void:
 	var scene: PackedScene = load(path)
 	var weapon_instance: Weapon = scene.instantiate()
@@ -90,7 +101,7 @@ func equip_weapon(path: String) -> void:
 	equipped_weapon = weapon_instance
 
 
-
+#updates helath bar and kills enemy when at 0 HP
 func take_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)
 	health_bar.value = current_health
@@ -102,7 +113,7 @@ func die():
 	queue_free()
 
 
-
+#Every frame we handle switching states, performing the states behavior, and updating enemy movement
 func _physics_process(delta: float) -> void:
 	acquire_target()
 	queue_redraw()  # draws debug circles
@@ -120,6 +131,7 @@ func _physics_process(delta: float) -> void:
 		State.RETURN:
 			return_behavior()
 
+	#(MOVE AND SLIDE NEEDS TO BE UPDATED TO MOVE AND COLLIDE LOGIC)
 	move_and_slide()
 
 
@@ -130,7 +142,7 @@ func _on_timer_timeout() -> void:
 	timer.start()
 
 
-
+#Acquire player reference each frame
 func acquire_target() -> bool:
 	players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
@@ -140,12 +152,12 @@ func acquire_target() -> bool:
 	return false
 
 
-
+#detects player only if player exists + player is within detection radius + player id within LOS
 func can_detect_player() -> bool:
 	if target == null:
 		return false
 
-	# too far? can't detect
+	# too far = can't detect
 	if global_position.distance_to(target.global_position) > detection_radius:
 		return false
 
@@ -157,7 +169,7 @@ func can_detect_player() -> bool:
 	return true
 
 
-
+#Moves toward patrol_target unitl close enough then piskc new random point inside the navmesh
 func patrol_behavior():
 	var dir = to_local(nav.get_next_path_position()).normalized()
 	velocity = dir * speed
@@ -167,7 +179,7 @@ func patrol_behavior():
 		nav.set_target_position(patrol_target)
 
 
-
+#While chasing update timer + update nav pathing + choose attack behavior based on weapon type + give up after max pursuit time
 func pursuit_behavior(delta: float):
 	if target == null:
 		state = State.RETURN
@@ -188,14 +200,14 @@ func pursuit_behavior(delta: float):
 		SightCheck()
 		rangedMovement()
 
-	# if chase lasted too long → give up
+	# give up bruv
 	if pursuit_timer > max_pursuit_time:
 		state = State.RETURN
 		patrol_target = get_random_patrol_point()
 		nav.set_target_position(patrol_target)
 
 
-
+#move back to patrol point then we switch to patrol state
 func return_behavior():
 	var dir = to_local(nav.get_next_path_position()).normalized()
 	velocity = dir * speed
@@ -206,7 +218,10 @@ func return_behavior():
 		nav.set_target_position(patrol_target)
 
 
-
+# We generate a random patrol point using barycentric coordinates. 
+# By choosing two random values (r1, r2) and applying sqrt(r1), we remove the natural clustering
+# that occurs in triangles and produce a uniform point distribution. This ensures enemies patrol
+# the entire navigation region evenly, with no bias toward corners or edges.
 func get_random_patrol_point() -> Vector2:
 	if nav_region == null or nav_region.navigation_polygon == null:
 		return global_position
@@ -216,28 +231,33 @@ func get_random_patrol_point() -> Vector2:
 	if polys.is_empty():
 		return global_position
 
+	#Choose a random traingle (polygon) in the navmesh
 	var poly = polys[randi() % polys.size()]
 	if poly.size() < 3:
 		return nav_region.global_position
 
 	var verts: PackedVector2Array = navpoly.vertices
 
+	#The traingle vertices
 	var a = verts[poly[0]]
 	var b = verts[poly[1]]
 	var c = verts[poly[2]]
 
+	#two radnom numbers for barycentric generation
 	var r1 = randf()
 	var r2 = randf()
 	var sqrt_r1 = sqrt(r1)
 
+	#Barycentric inside-traingle random point
 	var local = a * (1.0 - sqrt_r1) \
 		+ b * (sqrt_r1 * (1.0 - r2)) \
 		+ c * (sqrt_r1 * r2)
 
+	#convert from local navmesh coords to world spce coords
 	return nav_region.to_global(local)
 
 
-
+#LOS check
 func SightCheck():
 	var space_state = get_world_2d().direct_space_state
 	
@@ -256,11 +276,12 @@ func SightCheck():
 	player_in_sight = not result.is_empty() and result.collider == target
 
 
+#always run directly at player
 func meleeMovement():
 	var dir = to_local(nav.get_next_path_position()).normalized()
 	velocity = dir * speed
 
-
+#move closer if too far or LOS is broken. Back up if player is too close. Stay still if within comfortable distance
 func rangedMovement():
 	
 	#using a safe distance we can tell the agent whether its good to continue moving or not
@@ -277,7 +298,7 @@ func rangedMovement():
 		velocity = Vector2.ZERO
 
 
-
+#debug drawing for testing
 func _draw():
 	var color = Color(1,1,0,0.25)  # detection ring
 	if state == State.PURSUIT:
