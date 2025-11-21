@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp7t6wmdxmm2w"]
+[gd_scene load_steps=2 format=3 uid="uid://drum2so61txqm"]
 
 [ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="1_pdpxg"]
 
@@ -9,6 +9,8 @@
 [node name="Player" parent="." instance=ExtResource("1_pdpxg")]
 
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="Interactions" type="Node2D" parent="."]
 
 [node name="NavigationItems" type="Node2D" parent="."]
 

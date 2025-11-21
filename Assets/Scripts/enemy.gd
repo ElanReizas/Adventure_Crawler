@@ -99,7 +99,8 @@ func targetPlayer():
 	
 
 func die():
-	DialogueManager.show_dialogue_balloon(dialogue_file, dialogue_title, [self])
+	if dialogue_file:
+		DialogueManager.show_dialogue_balloon(dialogue_file, dialogue_title, [self])
 	queue_free()
 
 

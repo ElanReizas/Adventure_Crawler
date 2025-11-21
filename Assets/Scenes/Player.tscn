@@ -99,3 +99,6 @@ offset_top = -32.0
 offset_right = 36.0
 offset_bottom = -17.0
 theme_override_font_sizes/font_size = 16
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 32)
