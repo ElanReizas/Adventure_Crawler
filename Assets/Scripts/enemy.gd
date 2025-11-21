@@ -26,6 +26,8 @@ const WEAPON_PATHS := {
 var knockback_cooldown: float = 0.0
 var knockback_interval: float = 0.4
 
+@export var dialogue_file: DialogueResource
+@export var dialogue_title: String = "start"
 func _ready():
 	add_to_group("enemies")
 	timer.timeout.connect(_on_timer_timeout)
@@ -97,6 +99,7 @@ func targetPlayer():
 	
 
 func die():
+	DialogueManager.show_dialogue_balloon(dialogue_file, dialogue_title, [self])
 	queue_free()
 
 
