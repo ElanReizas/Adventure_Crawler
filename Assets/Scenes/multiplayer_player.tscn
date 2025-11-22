@@ -1,0 +1,144 @@
+[gd_scene load_steps=11 format=3 uid="uid://d4iop28fh42tr"]
+
+[ext_resource type="Texture2D" uid="uid://bf3arkmdj4im4" path="res://Assets/Images/player.png" id="1_gc5b2"]
+[ext_resource type="Script" uid="uid://b87yarjbtl26v" path="res://Assets/Scripts/multiplayer/multiplayer_controller.gd" id="1_kgvho"]
+[ext_resource type="Script" uid="uid://dww8c25jhvblu" path="res://Assets/Scripts/multiplayer/multiplayer_input.gd" id="2_c8864"]
+[ext_resource type="Texture2D" uid="uid://28xo63rydadm" path="res://Assets/Images/big_worm.png" id="4_aapfv"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_c8864"]
+properties/0/path = NodePath(".:player_id")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kgvho"]
+properties/0/path = NodePath("InputSynchronizer:attack_pressed")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("InputSynchronizer:interact_pressed")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("InputSynchronizer:aim_direction")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("InputSynchronizer:input_vector")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kgvho"]
+radius = 9.848858
+
+[sub_resource type="Animation" id="Animation_aee6e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-46, -111)]
+}
+
+[sub_resource type="Animation" id="Animation_b2ifw"]
+resource_name = "crit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-46, -69), Vector2(-46, -131)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aee6e"]
+_data = {
+&"RESET": SubResource("Animation_aee6e"),
+&"crit": SubResource("Animation_b2ifw")
+}
+
+[node name="MultiplayerPlayer" type="CharacterBody2D"]
+script = ExtResource("1_kgvho")
+
+[node name="PlayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_c8864")
+
+[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
+unique_name_in_owner = true
+replication_config = SubResource("SceneReplicationConfig_kgvho")
+script = ExtResource("2_c8864")
+
+[node name="Sprite2D_Player1" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_gc5b2")
+
+[node name="Sprite2D_Player2" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_aapfv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kgvho")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -46.0
+offset_top = -111.0
+offset_right = 49.0
+offset_bottom = -66.0
+theme_override_font_sizes/font_size = 32
+text = "ATTACK"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_aee6e")
+}
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -31.0
+offset_top = -32.0
+offset_right = 36.0
+offset_bottom = -17.0
+theme_override_font_sizes/font_size = 16
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 32)
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
