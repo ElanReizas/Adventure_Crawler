@@ -1,15 +1,17 @@
-[gd_scene load_steps=21 format=4 uid="uid://diw6i3cwqa1ic"]
+[gd_scene load_steps=23 format=4 uid="uid://diw6i3cwqa1ic"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_7ortk"]
 [ext_resource type="TileSet" uid="uid://bmuk58cqek4vi" path="res://Assets/map.tres" id="2_dciiy"]
-[ext_resource type="Script" uid="uid://dpqm4uhhgm5ap" path="res://Assets/Scripts/item_stack.gd" id="2_fm1ei"]
 [ext_resource type="Texture2D" uid="uid://c8m811g1t2kma" path="res://Assets/Images/shop.png" id="3_s5gg0"]
 [ext_resource type="PackedScene" uid="uid://byehs2x7fycp8" path="res://Assets/Scenes/object_interaction.tscn" id="4_fm1ei"]
 [ext_resource type="Resource" uid="uid://dw10r8i6nx47h" path="res://Assets/DialogueFiles/testing.dialogue" id="5_0dywe"]
 [ext_resource type="Script" uid="uid://c1x2no865krlu" path="res://Assets/Scripts/object_interaction.gd" id="6_0dywe"]
 [ext_resource type="Texture2D" uid="uid://dy1oatgq0p6af" path="res://Assets/Images/gumball_machine.png" id="6_v0t5h"]
 [ext_resource type="Texture2D" uid="uid://dv0tu0q764flb" path="res://Assets/Images/sword.png" id="7_ydhgn"]
-[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="8_dciiy"]
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="8_v0t5h"]
+[ext_resource type="Resource" uid="uid://u5t54ipho87d" path="res://Assets/items/rat.tres" id="9_v0t5h"]
+[ext_resource type="Resource" uid="uid://doht6s1i12boj" path="res://Assets/items/gumball.tres" id="10_ydhgn"]
+[ext_resource type="Resource" uid="uid://1atwugovtayb" path="res://Assets/items/ratGun.tres" id="11_g7qtd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgaav"]
 texture = ExtResource("3_s5gg0")
@@ -95,7 +97,6 @@ _data = {
 }
 
 [node name="InheritedFloor" instance=ExtResource("1_7ortk")]
-script = ExtResource("2_fm1ei")
 
 [node name="TileMapLayer" parent="." index="0"]
 tile_map_data = PackedByteArray("AAABAAAAAAAFAAgAAAACAAAAAAAFAAgAAAADAAAAAAAFAAgAAAAEAAAAAAAGAAgAAAAEAAEAAAAGAAgAAAADAAEAAAAFAAgAAAADAAIAAAAFAAgAAAACAAIAAAAFAAgAAAABAAIAAAAFAAgAAAABAP//AAABAAcAAAACAP//AAAFAAgAAAACAAEAAAAFAAkAAAABAAEAAAAFAAcAAAAEAAIAAAAGAAkAAAAEAP//AAAGAAgAAAADAP//AAAFAAgAAAD8////AAACAAgAAAD8/wAAAAACAAgAAAD8/wEAAAACAAgAAAD8/wIAAAACAAkAAAD9/wMAAAADAAoAAAD+/wMAAAAEAAoAAAD//wMAAAAEAAoAAAAAAAMAAAAEAAoAAAABAAMAAAAEAAoAAAACAAMAAAAEAAoAAAADAAMAAAAFAAoAAAAEAAMAAAAGAAoAAAAFAAMAAAAAAAcAAAAFAAIAAAAAAAcAAAAFAAEAAAAAAAcAAAAFAAAAAAAAAAcAAAAFAP//AAAAAAYAAAD7/wAAAAAAAAcAAAD7/wEAAAAAAAcAAAD7/wIAAAAAAAcAAAD8/wMAAAACAAoAAAD7/wMAAAAAAAcAAAD7////AAAAAAcAAAD7//7/AAAAAAcAAAD8//7/AAACAAcAAAAFAP7/AAAAAAcAAAAEAP7/AAAGAAcAAAADAP7/AAAFAAgAAAACAP7/AAAFAAgAAAABAP7/AAAFAAgAAAD7//3/AAAAAAcAAAD8//3/AAACAAYAAAABAP3/AAAEAAYAAAAEAP3/AAAGAAYAAAAFAP3/AAAAAAcAAAADAP3/AAAFAAYAAAACAP3/AAAEAAYAAAD6//3/AAAAAAcAAAD6//7/AAAAAAcAAAD6////AAAAAAcAAAD6/wAAAAAAAAcAAAD6/wEAAAAAAAcAAAD6/wIAAAAAAAcAAAD6/wMAAAABAAYAAAD5/wMAAAAAAAcAAAD5/wIAAAAAAAcAAAD5/wEAAAAAAAcAAAD5/wAAAAABAAYAAAD5////AAAAAAcAAAD5//7/AAAAAAcAAAD5//3/AAAAAAcAAAAGAP3/AAAAAAcAAAAGAP7/AAAAAAcAAAAGAP//AAAAAAcAAAAGAAAAAAAAAAcAAAAGAAEAAAAAAAcAAAAGAAIAAAAAAAcAAAAGAAMAAAAAAAcAAAAHAAMAAAAAAAcAAAAHAAIAAAAAAAcAAAAHAAEAAAAAAAcAAAAHAAAAAAAAAAcAAAAHAP//AAAAAAcAAAAHAP7/AAAAAAcAAAAHAP3/AAAAAAcAAAD5/wQAAAAAAAcAAAD6/wQAAAAAAAcAAAD7/wQAAAAAAAcAAAD8/wQAAAAAAAcAAAD9/wQAAAAAAAcAAAD+/wQAAAAAAAcAAAAFAAQAAAAAAAcAAAAGAAQAAAAAAAcAAAAHAAQAAAAAAAcAAAAEAAQAAAAAAAcAAAADAAQAAAAAAAcAAAACAAQAAAAAAAcAAAABAAQAAAAAAAcAAAAAAAQAAAAAAAcAAAD//wQAAAAAAAcAAAD9//3/AAADAAYAAAD9//7/AAAFAAgAAAD9////AAAFAAgAAAD9/wAAAAAFAAgAAAD9/wEAAAAFAAgAAAD9/wIAAAAFAAgAAAD+//3/AAAEAAYAAAD+//7/AAAFAAgAAAD+////AAADAAcAAAD+/wAAAAAEAAcAAAD+/wEAAAADAAkAAAD+/wIAAAAFAAgAAAD///3/AAAEAAYAAAD///7/AAAFAAgAAAD/////AAABAAcAAAD//wAAAAAFAAgAAAD//wEAAAABAAcAAAD//wIAAAAFAAgAAAAAAAEAAAAFAAgAAAAAAAIAAAAFAAgAAAAAAAAAAAAFAAgAAAAAAP//AAAFAAcAAAAAAP7/AAAFAAgAAAAAAP3/AAAEAAYAAAD5//z/AAAAAAcAAAD6//z/AAAAAAcAAAD7//z/AAAAAAcAAAD8//z/AAAAAAcAAAD9//z/AAAAAAcAAAD+//z/AAAAAAcAAAD///z/AAAAAAcAAAAAAPz/AAAAAAcAAAABAPz/AAAAAAcAAAACAPz/AAAAAAcAAAADAPz/AAAAAAcAAAAEAPz/AAAAAAcAAAAFAPz/AAAAAAcAAAAGAPz/AAAAAAcAAAAHAPz/AAAAAAcAAAAIAPz/AAAAAAcAAAAIAP3/AAAAAAcAAAAIAP7/AAAAAAcAAAAIAP//AAAAAAcAAAAIAAAAAAAAAAcAAAAIAAEAAAAAAAcAAAAIAAIAAAAAAAcAAAAIAAMAAAAAAAcAAAAIAAQAAAAAAAcAAAAIAAUAAAAAAAcAAAAHAAUAAAAAAAcAAAAGAAUAAAAAAAcAAAAFAAUAAAAAAAcAAAAEAAUAAAAAAAcAAAADAAUAAAAAAAcAAAACAAUAAAAAAAcAAAABAAUAAAAAAAcAAAAAAAUAAAAAAAcAAAD//wUAAAAAAAcAAAD+/wUAAAAAAAcAAAD9/wUAAAAAAAcAAAD8/wUAAAAAAAcAAAD7/wUAAAAAAAcAAAD6/wUAAAAAAAcAAAD5/wUAAAAAAAcAAAD4/wUAAAAAAAcAAAD4/wQAAAAAAAcAAAD4/wMAAAAAAAcAAAD4/wIAAAAAAAcAAAD4/wEAAAAAAAcAAAD4/wAAAAAAAAcAAAD4////AAAAAAcAAAD4//7/AAAAAAcAAAD4//3/AAAAAAcAAAD4//z/AAAAAAcAAAA=")
@@ -119,6 +120,7 @@ position = Vector2(-208, -72)
 [node name="gumball" parent="Interactions" index="0" instance=ExtResource("4_fm1ei")]
 position = Vector2(-175, 70)
 script = ExtResource("6_0dywe")
+coins = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/gumball" index="0"]
 texture = ExtResource("6_v0t5h")
@@ -129,6 +131,7 @@ shape = SubResource("RectangleShape2D_p5a0g")
 
 [node name="Guntro" parent="Interactions" index="1" instance=ExtResource("4_fm1ei")]
 script = ExtResource("6_0dywe")
+coins = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Guntro" index="0"]
 position = Vector2(-117, -55)
@@ -136,6 +139,7 @@ shape = SubResource("RectangleShape2D_myf4l")
 
 [node name="notBMO" parent="Interactions" index="2" instance=ExtResource("4_fm1ei")]
 script = ExtResource("6_0dywe")
+coins = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/notBMO" index="0"]
 position = Vector2(130, 114)
@@ -144,9 +148,7 @@ shape = SubResource("RectangleShape2D_8kdgp")
 [node name="ItemSlot2" parent="Interactions" index="3" instance=ExtResource("4_fm1ei")]
 dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "sword"
-itemPrice = null
-coins = null
-items = null
+items = Array[ExtResource("8_v0t5h")]([ExtResource("9_v0t5h"), ExtResource("10_ydhgn"), ExtResource("11_g7qtd")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot2" index="0"]
 position = Vector2(115, -5)
@@ -175,9 +177,7 @@ horizontal_alignment = 1
 constant_linear_velocity = Vector2(130, -5)
 dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "sword"
-itemPrice = null
-coins = null
-items = null
+items = Array[ExtResource("8_v0t5h")]([ExtResource("9_v0t5h"), ExtResource("10_ydhgn"), ExtResource("11_g7qtd")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot3" index="0"]
 position = Vector2(115, -5)
@@ -201,6 +201,3 @@ offset_bottom = 22.0
 scale = Vector2(0.55, 0.55)
 text = "10 Gold"
 horizontal_alignment = 1
-
-[node name="itemResource" type="ResourcePreloader" parent="." index="7"]
-script = ExtResource("8_dciiy")

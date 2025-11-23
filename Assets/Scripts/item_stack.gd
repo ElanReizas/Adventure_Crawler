@@ -1,18 +1,22 @@
 class_name ItemStack
-extends Node2D
+extends Resource
 
 
 # Called when the node enters the scene tree for the first time.
 signal item_changed(item: Item)
 static var max_count := 100
-var item: Item:
+var _item: Item:
 	set(val):
-		item = val
+		_item = val
 		item_changed.emit(val)
-var count : int
+	get:
+		return _item
+
+var count: int = 0
+
 
 func _init(item: Item, count: int = 0):
-	self.item = item
+	_item = item
 	self.count = count
 
 #func is_empty() -> bool:
