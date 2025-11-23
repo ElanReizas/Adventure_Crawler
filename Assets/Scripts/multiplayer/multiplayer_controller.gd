@@ -9,7 +9,6 @@ class_name MultiplayerPlayer
 		%InputSynchronizer.set_multiplayer_authority(id)
 
 func _ready():
-	
 	if player_id == 1:
 		weapon_type = WeaponType.RANGED
 	else:
@@ -21,9 +20,6 @@ func _ready():
 
 
 func _physics_process(delta: float) -> void:
-	if not multiplayer.is_server():
-		return
-
 	# we read the input from multiplayer_input instead
 	var input_vector: Vector2 = %InputSynchronizer.input_vector
 	move_from_input(input_vector, delta)

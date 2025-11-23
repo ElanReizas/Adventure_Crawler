@@ -4,7 +4,7 @@ class_name Enemy
 var player_in_sight: bool = false
 @export var speed: float = 100.0
 var max_health: int = 100
-var current_health: int
+@export var current_health: int
 #grab group of player in players
 @onready var players = get_tree().get_nodes_in_group("player")
 #Variable to determine if the player was seen by an enemy to initiate engage targetting
