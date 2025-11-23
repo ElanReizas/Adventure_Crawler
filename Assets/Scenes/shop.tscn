@@ -1,15 +1,15 @@
 [gd_scene load_steps=17 format=4 uid="uid://diw6i3cwqa1ic"]
 
-[ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_viryw"]
-[ext_resource type="TileSet" uid="uid://bmuk58cqek4vi" path="res://Assets/map.tres" id="2_e7rdd"]
-[ext_resource type="Texture2D" uid="uid://c8m811g1t2kma" path="res://Assets/Images/shop.png" id="3_blqjs"]
-[ext_resource type="Texture2D" uid="uid://dv0tu0q764flb" path="res://Assets/Images/sword.png" id="4_fgaav"]
-[ext_resource type="PackedScene" uid="uid://byehs2x7fycp8" path="res://Assets/Scenes/object_interaction.tscn" id="5_6lah5"]
-[ext_resource type="Texture2D" uid="uid://dy1oatgq0p6af" path="res://Assets/Images/gumball_machine.png" id="6_8kdgp"]
-[ext_resource type="Resource" uid="uid://dw10r8i6nx47h" path="res://Assets/DialogueFiles/testing.dialogue" id="6_gmb2m"]
+[ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_7ortk"]
+[ext_resource type="TileSet" uid="uid://bmuk58cqek4vi" path="res://Assets/map.tres" id="2_dciiy"]
+[ext_resource type="Texture2D" uid="uid://c8m811g1t2kma" path="res://Assets/Images/shop.png" id="3_s5gg0"]
+[ext_resource type="PackedScene" uid="uid://byehs2x7fycp8" path="res://Assets/Scenes/object_interaction.tscn" id="4_fm1ei"]
+[ext_resource type="Resource" uid="uid://dw10r8i6nx47h" path="res://Assets/DialogueFiles/testing.dialogue" id="5_0dywe"]
+[ext_resource type="Texture2D" uid="uid://dy1oatgq0p6af" path="res://Assets/Images/gumball_machine.png" id="6_v0t5h"]
+[ext_resource type="Texture2D" uid="uid://dv0tu0q764flb" path="res://Assets/Images/sword.png" id="7_ydhgn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgaav"]
-texture = ExtResource("3_blqjs")
+texture = ExtResource("3_s5gg0")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:1/0 = 0
@@ -25,6 +25,21 @@ sources/0 = SubResource("TileSetAtlasSource_fgaav")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5a0g"]
 size = Vector2(33, 60)
+
+[sub_resource type="Animation" id="Animation_myf4l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sword/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17, -69)]
+}
 
 [sub_resource type="Animation" id="Animation_8kdgp"]
 resource_name = "hover"
@@ -43,21 +58,6 @@ tracks/0/keys = {
 "values": [Vector2(17, -73), Vector2(17, -69), Vector2(17, -73)]
 }
 
-[sub_resource type="Animation" id="Animation_myf4l"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sword/Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(17, -69)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_myf4l"]
 _data = {
 &"RESET": SubResource("Animation_myf4l"),
@@ -65,7 +65,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_myf4l"]
-size = Vector2(17.5, 31)
+size = Vector2(26, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8kdgp"]
 size = Vector2(23, 25)
@@ -73,58 +73,63 @@ size = Vector2(23, 25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmb2m"]
 size = Vector2(41, 53)
 
-[node name="InheritedFloor" instance=ExtResource("1_viryw")]
+[node name="InheritedFloor" instance=ExtResource("1_7ortk")]
 
 [node name="TileMapLayer" parent="." index="0"]
-tile_map_data = PackedByteArray("AAABAAAAAAAFAAgAAAACAAAAAAABAAcAAAADAAAAAAAGAAgAAAAEAAAAAAAAAAcAAAAEAAEAAAAAAAcAAAADAAEAAAAGAAgAAAADAAIAAAAGAAoAAAACAAIAAAAFAAoAAAABAAIAAAAEAAoAAAABAP//AAABAAcAAAACAP//AAABAAcAAAACAAEAAAAFAAkAAAABAAEAAAAFAAcAAAAEAAIAAAAAAAcAAAAEAP//AAAAAAcAAAADAP//AAAGAAcAAAD8////AAAAAAcAAAD8/wAAAAAAAAcAAAD8/wEAAAAAAAcAAAD8/wIAAAAAAAcAAAD9/wMAAAAAAAYAAAD+/wMAAAAAAAcAAAD//wMAAAAAAAcAAAAAAAMAAAAAAAcAAAABAAMAAAAAAAcAAAACAAMAAAAAAAcAAAADAAMAAAAAAAcAAAAEAAMAAAAAAAcAAAAFAAMAAAAAAAcAAAAFAAIAAAAAAAcAAAAFAAEAAAAAAAcAAAAFAAAAAAAAAAcAAAAFAP//AAAAAAYAAAD7/wAAAAAAAAcAAAD7/wEAAAAAAAcAAAD7/wIAAAAAAAcAAAD8/wMAAAAAAAcAAAD7/wMAAAAAAAcAAAD7////AAAAAAcAAAD7//7/AAAAAAcAAAD8//7/AAAAAAcAAAAFAP7/AAAAAAcAAAAEAP7/AAAAAAcAAAADAP7/AAAGAAYAAAACAP7/AAAFAAYAAAABAP7/AAAEAAYAAAD7//3/AAAAAAcAAAD8//3/AAAAAAcAAAABAP3/AAAAAAcAAAAEAP3/AAAAAAcAAAAFAP3/AAAAAAcAAAADAP3/AAAAAAcAAAACAP3/AAAAAAcAAAD6//3/AAAAAAcAAAD6//7/AAAAAAcAAAD6////AAAAAAcAAAD6/wAAAAAAAAcAAAD6/wEAAAAAAAcAAAD6/wIAAAAAAAcAAAD6/wMAAAABAAYAAAD5/wMAAAAAAAcAAAD5/wIAAAAAAAcAAAD5/wEAAAAAAAcAAAD5/wAAAAABAAYAAAD5////AAAAAAcAAAD5//7/AAAAAAcAAAD5//3/AAAAAAcAAAAGAP3/AAAAAAcAAAAGAP7/AAAAAAcAAAAGAP//AAAAAAcAAAAGAAAAAAAAAAcAAAAGAAEAAAAAAAcAAAAGAAIAAAAAAAcAAAAGAAMAAAAAAAcAAAAHAAMAAAAAAAcAAAAHAAIAAAAAAAcAAAAHAAEAAAAAAAcAAAAHAAAAAAAAAAcAAAAHAP//AAAAAAcAAAAHAP7/AAAAAAcAAAAHAP3/AAAAAAcAAAD5/wQAAAAAAAcAAAD6/wQAAAAAAAcAAAD7/wQAAAAAAAcAAAD8/wQAAAAAAAcAAAD9/wQAAAAAAAcAAAD+/wQAAAAAAAcAAAAFAAQAAAAAAAcAAAAGAAQAAAAAAAcAAAAHAAQAAAAAAAcAAAAEAAQAAAAAAAcAAAADAAQAAAAAAAcAAAACAAQAAAAAAAcAAAABAAQAAAAAAAcAAAAAAAQAAAAAAAcAAAD//wQAAAAAAAcAAAD9//3/AAAAAAcAAAD9//7/AAACAAYAAAD9////AAADAAYAAAD9/wAAAAACAAcAAAD9/wEAAAACAAkAAAD9/wIAAAACAAoAAAD+//3/AAAAAAcAAAD+//7/AAADAAYAAAD+////AAADAAcAAAD+/wAAAAAEAAcAAAD+/wEAAAADAAkAAAD+/wIAAAADAAoAAAD///3/AAAAAAcAAAD///7/AAAEAAYAAAD/////AAABAAcAAAD//wAAAAAFAAgAAAD//wEAAAABAAcAAAD//wIAAAAEAAoAAAAAAAEAAAAFAAgAAAAAAAIAAAAEAAoAAAAAAAAAAAAFAAgAAAAAAP//AAAFAAcAAAAAAP7/AAAEAAYAAAAAAP3/AAAAAAcAAAA=")
-tile_set = ExtResource("2_e7rdd")
+tile_map_data = PackedByteArray("AAABAAAAAAAFAAgAAAACAAAAAAAFAAgAAAADAAAAAAAFAAgAAAAEAAAAAAAGAAgAAAAEAAEAAAAGAAgAAAADAAEAAAAFAAgAAAADAAIAAAAFAAgAAAACAAIAAAAFAAgAAAABAAIAAAAFAAgAAAABAP//AAABAAcAAAACAP//AAAFAAgAAAACAAEAAAAFAAkAAAABAAEAAAAFAAcAAAAEAAIAAAAGAAkAAAAEAP//AAAGAAgAAAADAP//AAAFAAgAAAD8////AAACAAgAAAD8/wAAAAACAAgAAAD8/wEAAAACAAgAAAD8/wIAAAACAAkAAAD9/wMAAAADAAoAAAD+/wMAAAAEAAoAAAD//wMAAAAEAAoAAAAAAAMAAAAEAAoAAAABAAMAAAAEAAoAAAACAAMAAAAEAAoAAAADAAMAAAAFAAoAAAAEAAMAAAAGAAoAAAAFAAMAAAAAAAcAAAAFAAIAAAAAAAcAAAAFAAEAAAAAAAcAAAAFAAAAAAAAAAcAAAAFAP//AAAAAAYAAAD7/wAAAAAAAAcAAAD7/wEAAAAAAAcAAAD7/wIAAAAAAAcAAAD8/wMAAAACAAoAAAD7/wMAAAAAAAcAAAD7////AAAAAAcAAAD7//7/AAAAAAcAAAD8//7/AAACAAcAAAAFAP7/AAAAAAcAAAAEAP7/AAAGAAcAAAADAP7/AAAFAAgAAAACAP7/AAAFAAgAAAABAP7/AAAFAAgAAAD7//3/AAAAAAcAAAD8//3/AAACAAYAAAABAP3/AAAEAAYAAAAEAP3/AAAGAAYAAAAFAP3/AAAAAAcAAAADAP3/AAAFAAYAAAACAP3/AAAEAAYAAAD6//3/AAAAAAcAAAD6//7/AAAAAAcAAAD6////AAAAAAcAAAD6/wAAAAAAAAcAAAD6/wEAAAAAAAcAAAD6/wIAAAAAAAcAAAD6/wMAAAABAAYAAAD5/wMAAAAAAAcAAAD5/wIAAAAAAAcAAAD5/wEAAAAAAAcAAAD5/wAAAAABAAYAAAD5////AAAAAAcAAAD5//7/AAAAAAcAAAD5//3/AAAAAAcAAAAGAP3/AAAAAAcAAAAGAP7/AAAAAAcAAAAGAP//AAAAAAcAAAAGAAAAAAAAAAcAAAAGAAEAAAAAAAcAAAAGAAIAAAAAAAcAAAAGAAMAAAAAAAcAAAAHAAMAAAAAAAcAAAAHAAIAAAAAAAcAAAAHAAEAAAAAAAcAAAAHAAAAAAAAAAcAAAAHAP//AAAAAAcAAAAHAP7/AAAAAAcAAAAHAP3/AAAAAAcAAAD5/wQAAAAAAAcAAAD6/wQAAAAAAAcAAAD7/wQAAAAAAAcAAAD8/wQAAAAAAAcAAAD9/wQAAAAAAAcAAAD+/wQAAAAAAAcAAAAFAAQAAAAAAAcAAAAGAAQAAAAAAAcAAAAHAAQAAAAAAAcAAAAEAAQAAAAAAAcAAAADAAQAAAAAAAcAAAACAAQAAAAAAAcAAAABAAQAAAAAAAcAAAAAAAQAAAAAAAcAAAD//wQAAAAAAAcAAAD9//3/AAADAAYAAAD9//7/AAAFAAgAAAD9////AAAFAAgAAAD9/wAAAAAFAAgAAAD9/wEAAAAFAAgAAAD9/wIAAAAFAAgAAAD+//3/AAAEAAYAAAD+//7/AAAFAAgAAAD+////AAADAAcAAAD+/wAAAAAEAAcAAAD+/wEAAAADAAkAAAD+/wIAAAAFAAgAAAD///3/AAAEAAYAAAD///7/AAAFAAgAAAD/////AAABAAcAAAD//wAAAAAFAAgAAAD//wEAAAABAAcAAAD//wIAAAAFAAgAAAAAAAEAAAAFAAgAAAAAAAIAAAAFAAgAAAAAAAAAAAAFAAgAAAAAAP//AAAFAAcAAAAAAP7/AAAFAAgAAAAAAP3/AAAEAAYAAAD5//z/AAAAAAcAAAD6//z/AAAAAAcAAAD7//z/AAAAAAcAAAD8//z/AAAAAAcAAAD9//z/AAAAAAcAAAD+//z/AAAAAAcAAAD///z/AAAAAAcAAAAAAPz/AAAAAAcAAAABAPz/AAAAAAcAAAACAPz/AAAAAAcAAAADAPz/AAAAAAcAAAAEAPz/AAAAAAcAAAAFAPz/AAAAAAcAAAAGAPz/AAAAAAcAAAAHAPz/AAAAAAcAAAAIAPz/AAAAAAcAAAAIAP3/AAAAAAcAAAAIAP7/AAAAAAcAAAAIAP//AAAAAAcAAAAIAAAAAAAAAAcAAAAIAAEAAAAAAAcAAAAIAAIAAAAAAAcAAAAIAAMAAAAAAAcAAAAIAAQAAAAAAAcAAAAIAAUAAAAAAAcAAAAHAAUAAAAAAAcAAAAGAAUAAAAAAAcAAAAFAAUAAAAAAAcAAAAEAAUAAAAAAAcAAAADAAUAAAAAAAcAAAACAAUAAAAAAAcAAAABAAUAAAAAAAcAAAAAAAUAAAAAAAcAAAD//wUAAAAAAAcAAAD+/wUAAAAAAAcAAAD9/wUAAAAAAAcAAAD8/wUAAAAAAAcAAAD7/wUAAAAAAAcAAAD6/wUAAAAAAAcAAAD5/wUAAAAAAAcAAAD4/wUAAAAAAAcAAAD4/wQAAAAAAAcAAAD4/wMAAAAAAAcAAAD4/wIAAAAAAAcAAAD4/wEAAAAAAAcAAAD4/wAAAAAAAAcAAAD4////AAAAAAcAAAD4//7/AAAAAAcAAAD4//3/AAAAAAcAAAD4//z/AAAAAAcAAAA=")
+tile_set = ExtResource("2_dciiy")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." index="1"]
-tile_map_data = PackedByteArray("AAD+//7/AAAAAAAAAAAAAP7/AAAAAAAAAAACAP7/AAAAAAAAAAD9/wAAAAAAAAIAAAADAAAAAAADAAIAAAD8//7/AAABAAEAAAD8////AAABAAIAAAD9//7/AAACAAEAAAD9////AAACAAIAAAA=")
+position = Vector2(2.0000076, 3)
+scale = Vector2(0.70174795, 0.62922573)
+tile_map_data = PackedByteArray("AAAEAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAACAAAAAAAAAAAAAAD6/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD///v/AAABAAEAAAD///z/AAABAAIAAAAAAPv/AAACAAEAAAAAAPz/AAACAAIAAAAFAAUAAAAAAAIAABD6//z/AAADAAIAABA=")
 tile_set = SubResource("TileSet_6lah5")
 
-[node name="ObjectInteraction" parent="Interactions" index="0" instance=ExtResource("5_6lah5")]
+[node name="Player" parent="." index="2"]
+position = Vector2(-208, -72)
+
+[node name="gumball" parent="Interactions" index="0" instance=ExtResource("4_fm1ei")]
 position = Vector2(-132, 33)
-dialogue_file = ExtResource("6_gmb2m")
+dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "gumball"
 
-[node name="Sprite2D" type="Sprite2D" parent="Interactions/ObjectInteraction" index="0"]
-texture = ExtResource("6_8kdgp")
+[node name="Sprite2D" type="Sprite2D" parent="Interactions/gumball" index="0"]
+texture = ExtResource("6_v0t5h")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/ObjectInteraction" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/gumball" index="1"]
 position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_p5a0g")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Interactions/ObjectInteraction" index="2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interactions/gumball" index="2"]
 libraries = {
 &"": SubResource("AnimationLibrary_myf4l")
 }
 autoplay = "hover"
 
-[node name="Cat" parent="Interactions" index="1" instance=ExtResource("5_6lah5")]
-dialogue_file = ExtResource("6_gmb2m")
+[node name="Cat" parent="Interactions" index="1" instance=ExtResource("4_fm1ei")]
+dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "meow"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Cat" index="0"]
-position = Vector2(114.25, 13.5)
+position = Vector2(-124, -70)
 shape = SubResource("RectangleShape2D_myf4l")
 
-[node name="notBMO" parent="Interactions" index="2" instance=ExtResource("5_6lah5")]
-dialogue_file = ExtResource("6_gmb2m")
+[node name="notBMO" parent="Interactions" index="2" instance=ExtResource("4_fm1ei")]
+dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "notBMO"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/notBMO" index="0"]
-position = Vector2(-78, 15)
+position = Vector2(126, 114)
 shape = SubResource("RectangleShape2D_8kdgp")
 
-[node name="Sword" parent="Interactions" index="3" instance=ExtResource("5_6lah5")]
-dialogue_file = ExtResource("6_gmb2m")
+[node name="Sword" parent="Interactions" index="3" instance=ExtResource("4_fm1ei")]
+dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "sword"
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/Sword" index="0"]
 position = Vector2(17, -69)
-texture = ExtResource("4_fgaav")
+texture = ExtResource("7_ydhgn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Sword" index="1"]
-position = Vector2(16.5, -61.5)
+position = Vector2(103, -5)
 shape = SubResource("RectangleShape2D_gmb2m")
