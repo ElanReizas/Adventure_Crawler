@@ -124,11 +124,11 @@ texture = ExtResource("6_v0t5h")
 position = Vector2(1.75, -2)
 shape = SubResource("RectangleShape2D_p5a0g")
 
-[node name="Cat" parent="Interactions" index="1" instance=ExtResource("4_fm1ei")]
+[node name="Guntro" parent="Interactions" index="1" instance=ExtResource("4_fm1ei")]
 dialogue_file = ExtResource("5_0dywe")
-dialogue_title = "meow"
+dialogue_title = "Guntro"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Cat" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Guntro" index="0"]
 position = Vector2(-117, -55)
 shape = SubResource("RectangleShape2D_myf4l")
 

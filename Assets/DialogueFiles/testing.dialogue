@@ -16,8 +16,12 @@ This is a Shiny Sword: [speed=1.5]This items gives the player +5 Damage and +10%
 I'm not BMO, I swear!!
 => END 
 
-~ meow
-meow
+~ Guntro
+I really REALLY think you should give me some gold! Can you please spare some change for a fine fellow such as myself?
+- Yes
+	Thank you!!!
+- No
+	Awww no food for my gunthlings tonight :(
 => END 
 
 ~ gumball
