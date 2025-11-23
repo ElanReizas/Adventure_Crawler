@@ -24,7 +24,16 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_fgaav")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5a0g"]
-size = Vector2(33, 60)
+size = Vector2(42.5, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_myf4l"]
+size = Vector2(26, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8kdgp"]
+size = Vector2(23, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmb2m"]
+size = Vector2(41, 53)
 
 [sub_resource type="Animation" id="Animation_myf4l"]
 length = 0.001
@@ -64,15 +73,6 @@ _data = {
 &"hover": SubResource("Animation_8kdgp")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_myf4l"]
-size = Vector2(26, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8kdgp"]
-size = Vector2(23, 25)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmb2m"]
-size = Vector2(41, 53)
-
 [node name="InheritedFloor" instance=ExtResource("1_7ortk")]
 
 [node name="TileMapLayer" parent="." index="0"]
@@ -89,7 +89,7 @@ tile_set = SubResource("TileSet_6lah5")
 position = Vector2(-208, -72)
 
 [node name="gumball" parent="Interactions" index="0" instance=ExtResource("4_fm1ei")]
-position = Vector2(-132, 33)
+position = Vector2(-175, 70)
 dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "gumball"
 
@@ -97,14 +97,8 @@ dialogue_title = "gumball"
 texture = ExtResource("6_v0t5h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/gumball" index="1"]
-position = Vector2(0.5, -1)
+position = Vector2(1.75, -2)
 shape = SubResource("RectangleShape2D_p5a0g")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Interactions/gumball" index="2"]
-libraries = {
-&"": SubResource("AnimationLibrary_myf4l")
-}
-autoplay = "hover"
 
 [node name="Cat" parent="Interactions" index="1" instance=ExtResource("4_fm1ei")]
 dialogue_file = ExtResource("5_0dywe")
@@ -133,3 +127,9 @@ texture = ExtResource("7_ydhgn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Sword" index="1"]
 position = Vector2(103, -5)
 shape = SubResource("RectangleShape2D_gmb2m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interactions/Sword" index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_myf4l")
+}
+autoplay = "hover"
