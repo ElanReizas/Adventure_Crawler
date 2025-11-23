@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://doht6s1i12boj"]
+
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="1_xjc4d"]
+[ext_resource type="Texture2D" uid="uid://dy1oatgq0p6af" path="res://Assets/Images/gumball_machine.png" id="2_6wytc"]
+
+[resource]
+script = ExtResource("1_xjc4d")
+itemID = "3"
+itemName = "Gumball Machine"
+Description = "Gives you 100% crit chance"
+rarity = "Epic"
+sprite = ExtResource("2_6wytc")
+metadata/_custom_type_script = "uid://b1agcmofkq6ab"
