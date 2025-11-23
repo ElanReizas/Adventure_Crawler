@@ -21,7 +21,8 @@ func get_targets(attacker: Node) -> Array:
 	else:
 		return attacker.get_tree().get_nodes_in_group("player")
 
-func attack(attacker: Node):
+#theres a direction parameter here, but by default its 0 so melee ignores it
+func attack(attacker: Node, direction: Vector2 = Vector2.ZERO):
 	pass
 
 func enemy_cooldown(attacker: Node, delta: float) -> void:

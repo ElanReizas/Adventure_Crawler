@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://ddb71d02kbkwq"]
+[gd_scene load_steps=8 format=4 uid="uid://ddb71d02kbkwq"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_608f5"]
 [ext_resource type="TileSet" uid="uid://bmuk58cqek4vi" path="res://Assets/map.tres" id="2_mnmml"]
 [ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="3_227lh"]
-[ext_resource type="PackedScene" uid="uid://8uof664rvkaj" path="res://Assets/Scenes/scene_transition.tscn" id="4_mnmml"]
 
 [sub_resource type="Gradient" id="Gradient_7ppdy"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -100,9 +99,6 @@ color = Color(0.72051126, 0.8730382, 0.9209301, 1)
 [node name="Enemy" parent="Enemies" index="0" instance=ExtResource("3_227lh")]
 position = Vector2(778, 137)
 
-[node name="Enemy2" parent="Enemies" index="1" instance=ExtResource("3_227lh")]
-position = Vector2(733, 381)
-
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationItems/NavigationObstacles" index="0"]
 vertices = PackedVector2Array(640, 85, 638, 291, 741, 291, 741, 85)
 
@@ -110,7 +106,3 @@ vertices = PackedVector2Array(640, 85, 638, 291, 741, 291, 741, 85)
 position = Vector2(-5, -44)
 navigation_polygon = SubResource("NavigationPolygon_pkla3")
 enter_cost = 1.0
-
-[node name="SceneTransition" parent="." index="9" instance=ExtResource("4_mnmml")]
-position = Vector2(351, 272)
-new_scene = "res://shop.tscn"

@@ -5,7 +5,7 @@ class_name MeleeWeapon
 @export var attack_cooldown: float = 0.4
 
 
-func attack(attacker):
+func attack(attacker, direction: Vector2 = Vector2.ZERO):
 	enemy_cooldown(attacker, attacker.get_process_delta_time())
 	if cooldown > 0:
 		return
@@ -15,3 +15,4 @@ func attack(attacker):
 			target.take_damage(calculate_damage(attacker))
 			if attacker.is_in_group("enemies"):
 				cooldown = attack_cooldown
+	print("melee attack")
