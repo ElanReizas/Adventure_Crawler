@@ -52,6 +52,14 @@ func _add_player_to_game(id: int):
 	
 	_players_spawn_node.add_child(player_to_add, true)
 	
+	#offset the position of the second player. player 1 always has ID 1
+	var all_players = _players_spawn_node.get_children()
+	if id == 1:
+		return
+	var player_1 = _players_spawn_node.get_node("1")
+	if player_1:
+		player_to_add.global_position = player_1.global_position + Vector2(32, 0)
+		
 func _del_player(id: int):
 	print("Player %s left the game!" % id)
 	if not _players_spawn_node.has_node(str(id)):

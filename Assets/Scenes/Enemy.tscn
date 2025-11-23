@@ -19,6 +19,7 @@ properties/2/replication_mode = 1
 radius = 1.4356965
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_mask = 5
 script = ExtResource("1_3pmh0")
 dialogue_file = ExtResource("2_td1d5")
 
