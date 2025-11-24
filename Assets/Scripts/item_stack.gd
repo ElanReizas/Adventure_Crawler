@@ -18,9 +18,3 @@ var count: int = 0
 func _init(item: Item, count: int = 0):
 	_item = item
 	self.count = count
-
-#func is_empty() -> bool:
-	#return item == Items.Empty
-	
-#func _to_string() -> String:
-#	return ItemStack
