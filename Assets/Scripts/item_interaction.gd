@@ -7,13 +7,18 @@ var shop_inventory: Array[ItemStack]= []
 @onready var sprite_node := $Sprite2D
 @onready var textBox := $Label
 @export var current_item: Item = null
-const RARITY_WEIGHTS:= {
+var SAVE_PATH := "user://userData/save.json"
+const RARITY_WEIGHTS: Dictionary[String, int] = {
 	"Common": 60,
 	"Uncommon": 25,
 	"Epic": 15
 }
 
+
 func _ready():
+	load_shop_state()
+	generate_shop(3)
+
 	current_item = pick_random_item()
 	#Change sprite into selected item
 	if current_item:
@@ -33,10 +38,18 @@ func interaction():
 	if dialogue_file:
 		DialogueManager.show_dialogue_balloon(dialogue_file, dialogue_title, [self])
 
-func purchase(player):
-	#purchase relies on stat implementation
-	if not current_item:
-		return
+func buy_item(player, slot_index: int):
+	var slot = shop_inventory[slot_index]
+
+	if slot == null:
+		return # already empty
+
+	# Handle currency checks here
+	# player_gold -= slot.item.cost
+
+	shop_inventory[slot_index] = null  # permanently empty
+	save_shop_state()
+
 
 	# Check gold
 	if player.coins < itemPrice:
@@ -48,24 +61,62 @@ func purchase(player):
 	# Add the item to player’s inventory (you will implement add_item)
 	#player.inventory.add_item(current_item)
 
-
-	
+#weighted random selection of an item
 func pick_random_item() -> Item:
-	var pool := []
+	var pool: Array = []
 
 	for item in items:
-		if RARITY_WEIGHTS.has(item.rarity):
-			var weight = RARITY_WEIGHTS[item.rarity]
+		var weight: int = RARITY_WEIGHTS.get(item.rarity, 0)
+		if weight > 0:
+			pool.resize(pool.size() + weight)
 			for i in range(weight):
-				pool.append(item)
+				pool[pool.size() - i - 1] = item
 
 	if pool.is_empty():
 		return null
 
-	return pool[randi() % pool.size()]
+	return pool.pick_random()
+#persistant shop generation
+#selected a random weighted item
 func generate_shop(num_items: int = 3):
-	shop_inventory.clear()
+	# If the shop already exists, DO NOT regenerate
+	if shop_inventory.size() > 0:
+		return
+
 	for i in range(num_items):
 		var item := pick_random_item()
 		if item:
 			shop_inventory.append(ItemStack.new(item, 1))
+		else:
+			shop_inventory.append(null) # empty slot
+#persistance support
+#Save the current shop
+func save_shop_state():
+	var data = []
+	for slot in shop_inventory:
+		if slot == null:
+			data.append(null)
+		else:
+			data.append(slot.item.id) # save item ID only
+
+	FileAccess.open(SAVE_PATH, FileAccess.WRITE).store_var(data)
+#load shop
+func load_shop_state():
+	if not FileAccess.file_exists(SAVE_PATH):
+		return
+
+	var data = FileAccess.open(SAVE_PATH, FileAccess.READ).get_var()
+
+	shop_inventory.clear()
+	for id in data:
+		if id == null:
+			shop_inventory.append(null)
+		else:
+			var item = find_item_by_id(id)
+			shop_inventory.append(ItemStack.new(item, 1))
+#helper to find item list
+func find_item_by_id(id: String) -> Item:
+	for item in items:
+		if item.id == id:
+			return item
+	return null
