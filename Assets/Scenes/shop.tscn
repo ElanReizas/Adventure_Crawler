@@ -30,16 +30,31 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_fgaav")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5a0g"]
-size = Vector2(42.5, 66)
+size = Vector2(48, 70)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_myf4l"]
 size = Vector2(26, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8kdgp"]
-size = Vector2(29.5, 39.5)
+size = Vector2(42, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmb2m"]
 size = Vector2(24, 62.25)
+
+[sub_resource type="Animation" id="Animation_ydhgn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(65, -4.2115383)]
+}
 
 [sub_resource type="Animation" id="Animation_v0t5h"]
 resource_name = "hoverItem1"
@@ -92,21 +107,6 @@ tracks/0/keys = {
 "values": [Vector2(165, -5), Vector2(165, -10), Vector2(165, -5)]
 }
 
-[sub_resource type="Animation" id="Animation_ydhgn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(65, -4.2115383)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_myf4l"]
 _data = {
 &"RESET": SubResource("Animation_ydhgn"),
@@ -139,17 +139,21 @@ position = Vector2(-208, -72)
 [node name="gumball" parent="Interactions" index="0" instance=ExtResource("4_fm1ei")]
 position = Vector2(-175, 70)
 script = ExtResource("6_0dywe")
+dialogue_file = ExtResource("5_0dywe")
+dialogue_title = "gumball"
 coins = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/gumball" index="0"]
 texture = ExtResource("6_v0t5h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/gumball" index="1"]
-position = Vector2(1.75, -2)
+position = Vector2(1, 5)
 shape = SubResource("RectangleShape2D_p5a0g")
 
 [node name="Guntro" parent="Interactions" index="1" instance=ExtResource("4_fm1ei")]
 script = ExtResource("6_0dywe")
+dialogue_file = ExtResource("5_0dywe")
+dialogue_title = "Guntro"
 coins = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Guntro" index="0"]
@@ -158,10 +162,12 @@ shape = SubResource("RectangleShape2D_myf4l")
 
 [node name="notBMO" parent="Interactions" index="2" instance=ExtResource("4_fm1ei")]
 script = ExtResource("6_0dywe")
+dialogue_file = ExtResource("5_0dywe")
+dialogue_title = "notBMO"
 coins = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/notBMO" index="0"]
-position = Vector2(130, 114)
+position = Vector2(129, 113)
 shape = SubResource("RectangleShape2D_8kdgp")
 
 [node name="ItemSlot1" parent="Interactions" index="3" instance=ExtResource("7_dciiy")]
