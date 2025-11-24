@@ -5,6 +5,7 @@ var shop_inventory: Array[ItemStack]= []
 @export var itemPrice: int = 10
 @export var items: Array[Item]
 @onready var sprite_node := $Sprite2D
+@onready var textBox := $Label
 @onready var current_item: Item = null
 const RARITY_WEIGHTS:= {
 	"Common": 60,
@@ -16,6 +17,13 @@ func _ready():
 	current_item = pick_random_item()
 	if current_item:
 		sprite_node.texture = current_item.sprite
+	if current_item.rarity == "Common":
+		textBox.set_text("10 gold")
+	elif current_item.rarity == "Uncommon":
+		textBox.set_text("15 gold")
+	elif current_item.rarity == "Epic":
+		textBox.set_text("20 gold")
+	
 func interaction():
 	if dialogue_file:
 		DialogueManager.show_dialogue_balloon(dialogue_file, dialogue_title, [self])

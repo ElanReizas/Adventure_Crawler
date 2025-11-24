@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://diw6i3cwqa1ic"]
+[gd_scene load_steps=24 format=4 uid="uid://diw6i3cwqa1ic"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_7ortk"]
 [ext_resource type="TileSet" uid="uid://bmuk58cqek4vi" path="res://Assets/map.tres" id="2_dciiy"]
@@ -49,10 +49,10 @@ tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.0666667, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Vector2(115, -5), Vector2(115, -10), Vector2(115, -5)]
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_8kdgp"]
@@ -89,9 +89,27 @@ tracks/0/keys = {
 "values": [Vector2(162, -5), Vector2(162, -10), Vector2(162, -4)]
 }
 
+[sub_resource type="Animation" id="Animation_v0t5h"]
+resource_name = "hoverItem1"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.033333335, 0.93333334, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(65, -5), Vector2(65, -10), Vector2(65, -4)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_myf4l"]
 _data = {
 &"RESET": SubResource("Animation_myf4l"),
+&"hoverItem1": SubResource("Animation_v0t5h"),
 &"hoverItem2": SubResource("Animation_8kdgp"),
 &"hoverItem3": SubResource("Animation_7ortk")
 }
@@ -173,14 +191,42 @@ scale = Vector2(0.55, 0.55)
 text = "10 Gold"
 horizontal_alignment = 1
 
-[node name="ItemSlot3" parent="Interactions" index="4" instance=ExtResource("4_fm1ei")]
+[node name="ItemSlot1" parent="Interactions" index="4" instance=ExtResource("4_fm1ei")]
+dialogue_file = ExtResource("5_0dywe")
+dialogue_title = "sword"
+items = Array[ExtResource("8_v0t5h")]([ExtResource("9_v0t5h"), ExtResource("10_ydhgn"), ExtResource("11_g7qtd")])
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot1" index="0"]
+position = Vector2(65, -5.172414)
+texture = ExtResource("7_ydhgn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/ItemSlot1" index="1"]
+position = Vector2(65, -5)
+shape = SubResource("RectangleShape2D_gmb2m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interactions/ItemSlot1" index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_myf4l")
+}
+autoplay = "hoverItem1"
+
+[node name="Label" type="Label" parent="Interactions/ItemSlot1" index="3"]
+offset_left = 52.0
+offset_top = 10.999999
+offset_right = 94.0
+offset_bottom = 22.0
+scale = Vector2(0.55, 0.55)
+text = "10 Gold"
+horizontal_alignment = 1
+
+[node name="ItemSlot3" parent="Interactions" index="5" instance=ExtResource("4_fm1ei")]
 constant_linear_velocity = Vector2(130, -5)
 dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "sword"
 items = Array[ExtResource("8_v0t5h")]([ExtResource("9_v0t5h"), ExtResource("10_ydhgn"), ExtResource("11_g7qtd")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot3" index="0"]
-position = Vector2(115, -5)
+position = Vector2(162, -5)
 texture = ExtResource("7_ydhgn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/ItemSlot3" index="1"]
@@ -193,7 +239,7 @@ libraries = {
 }
 autoplay = "hoverItem3"
 
-[node name="Label2" type="Label" parent="Interactions/ItemSlot3" index="3"]
+[node name="Label" type="Label" parent="Interactions/ItemSlot3" index="3"]
 offset_left = 151.0
 offset_top = 11.0
 offset_right = 193.0
