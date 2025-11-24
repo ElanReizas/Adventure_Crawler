@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://u5t54ipho87d"]
+
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="1_gcakg"]
+[ext_resource type="Texture2D" uid="uid://ob6ausws373r" path="res://Assets/Images/enemy.png" id="2_xb3jv"]
+
+[resource]
+script = ExtResource("1_gcakg")
+itemID = "1"
+itemName = "Normal Rat"
+description = "Gives you 50 movement speed"
+rarity = "Common"
+sprite = ExtResource("2_xb3jv")
+slotPiece = "Weapon"
+stat_changes = Dictionary[String, int]({
+"Speed": 50
+})
+metadata/_custom_type_script = "uid://b1agcmofkq6ab"
