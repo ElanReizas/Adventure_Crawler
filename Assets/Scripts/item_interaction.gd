@@ -15,8 +15,10 @@ const RARITY_WEIGHTS:= {
 
 func _ready():
 	current_item = pick_random_item()
+	#Change sprite into selected item
 	if current_item:
 		sprite_node.texture = current_item.sprite
+	#Set Price
 	if current_item.rarity == "Common":
 		textBox.set_text("10 gold")
 		itemPrice = 10
@@ -32,6 +34,7 @@ func interaction():
 		DialogueManager.show_dialogue_balloon(dialogue_file, dialogue_title, [self])
 
 func purchase(player):
+	#purchase relies on stat implementation
 	if not current_item:
 		return
 
@@ -43,11 +46,8 @@ func purchase(player):
 	player.coins -= itemPrice
 
 	# Add the item to player’s inventory (you will implement add_item)
-	player.inventory.add_item(current_item)
+	#player.inventory.add_item(current_item)
 
-	# Optionally regenerate the shop item
-	current_item = pick_random_item()
-	sprite_node.texture = current_item.sprite
 
 	
 func pick_random_item() -> Item:
