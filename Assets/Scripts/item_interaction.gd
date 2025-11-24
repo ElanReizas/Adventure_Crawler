@@ -17,7 +17,7 @@ const RARITY_WEIGHTS: Dictionary[String, int] = {
 
 func _ready():
 	load_shop_state()
-	generate_shop(3)
+	generate_shop(shop_inventory.size())
 
 	current_item = pick_random_item()
 	#Change sprite into selected item
