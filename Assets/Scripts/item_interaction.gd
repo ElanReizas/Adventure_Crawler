@@ -6,7 +6,7 @@ var shop_inventory: Array[ItemStack]= []
 @export var items: Array[Item]
 @onready var sprite_node := $Sprite2D
 @onready var textBox := $Label
-@onready var current_item: Item = null
+@export var current_item: Item = null
 const RARITY_WEIGHTS:= {
 	"Common": 60,
 	"Uncommon": 25,
@@ -19,10 +19,13 @@ func _ready():
 		sprite_node.texture = current_item.sprite
 	if current_item.rarity == "Common":
 		textBox.set_text("10 gold")
+		itemPrice = 10
 	elif current_item.rarity == "Uncommon":
 		textBox.set_text("15 gold")
+		itemPrice = 15
 	elif current_item.rarity == "Epic":
 		textBox.set_text("20 gold")
+		itemPrice = 20
 	
 func interaction():
 	if dialogue_file:

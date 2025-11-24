@@ -7,7 +7,11 @@
 script = ExtResource("1_xjc4d")
 itemID = "3"
 itemName = "Gumball Machine"
-Description = "Gives you 100% crit chance"
+description = "Gives you the wise words of benson"
 rarity = "Epic"
 sprite = ExtResource("2_6wytc")
+slotPiece = "Weapon"
+stat_changes = Dictionary[String, int]({
+"Attack": 20
+})
 metadata/_custom_type_script = "uid://b1agcmofkq6ab"
