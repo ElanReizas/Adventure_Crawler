@@ -12,6 +12,8 @@ class_name BasePlayer
 @export var max_health: int = 100
 var current_health: int
 
+@export var inventory: Inventory
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 
