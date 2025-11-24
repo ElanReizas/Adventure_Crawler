@@ -4,7 +4,7 @@ class_name Enemy
 var player_in_sight: bool = false
 @export var speed: float = 100.0
 var max_health: int = 100
-var current_health: int
+@export var current_health: int
 #grab group of player in players
 @onready var players = get_tree().get_nodes_in_group("player")
 #Variable to determine if the player was seen by an enemy to initiate engage targetting
@@ -66,9 +66,9 @@ func _physics_process(delta: float) -> void:
 		elif (equipped_weapon is RangedWeapon):
 			SightCheck()
 			rangedMovement()
-			equipped_weapon.attack(self)
+			var aim_direction = (target.global_position - global_position).normalized()
+			equipped_weapon.attack(self, aim_direction)
 	var collision := move_and_collide(velocity * delta)
-
 	if collision and knockback_cooldown == 0:
 		var collided_body: Node = collision.get_collider()
 		if collided_body == target:
@@ -86,13 +86,19 @@ func _on_timer_timeout() -> void:
 
 func acquire_target() -> bool:
 	players = get_tree().get_nodes_in_group("player")
-	if players.size() > 0:
-		target = players[0]
-		nav.set_target_position(target.position)
-		return true
-	else:
-			target = null
-			return false
+	if players.is_empty():
+		target = null
+		return false
+	var nearest_player = null
+	var nearest_distance = INF
+	for player in players:
+		var distance = global_position.distance_to(player.global_position)
+		if distance < nearest_distance:
+			nearest_distance = distance
+			nearest_player = player
+	target = nearest_player
+	nav.set_target_position(target.global_position)
+	return true
 
 func targetPlayer(): 
 	playerSeen=true

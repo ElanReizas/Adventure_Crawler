@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SoundEffects="*res://Assets/Scenes/SoundEffects.tscn"
+MultiplayerManager="*res://Assets/Scripts/multiplayer/multiplayer_manager.gd"
 
 [dialogue_manager]
 
