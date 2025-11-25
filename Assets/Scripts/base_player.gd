@@ -28,12 +28,95 @@ const WEAPON_PATHS := {
 var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_decay: float = 800.0
 
+enum PlayerState { IDLE, MOVE, DODGE, ATTACK }
+var state: PlayerState = PlayerState.IDLE
+@export var dodge_speed: float = 800.0
+@export var dodge_time: float = 0.4
+@export var current_dodge_time: float = 0.0
+
+var input_vector := Vector2.ZERO
+var attack_direction := Vector2.ZERO
+
 func init_player():
 	add_to_group("player")
 	current_health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = current_health
 	equip_weapon(WEAPON_PATHS[weapon_type])
+
+# Take Input Passed from Player
+func set_input_vector(v: Vector2) -> void:
+	input_vector = v
+
+func _physics_process(delta: float) -> void:
+	handle_state(delta)
+	move_and_slide()
+	
+	
+# Handle Player State (e.g dodge, attack, etc.)
+# This allows for future implementation of different movement states like Stunned, Frozen, Asleep, etc.
+func handle_state(delta: float) -> void:
+	match state:
+		
+		PlayerState.IDLE:
+			if Input.is_action_just_pressed("attack"):
+				start_attack()
+			elif Input.is_action_just_pressed("dodge"):
+				start_dodge()
+			elif input_vector != Vector2.ZERO:
+				state = PlayerState.MOVE
+			
+			velocity = Vector2.ZERO
+		
+		PlayerState.MOVE:
+			if Input.is_action_just_pressed("attack"):
+				start_attack()
+			elif Input.is_action_just_pressed("dodge"):
+				start_dodge()
+			elif input_vector == Vector2.ZERO:
+				state = PlayerState.IDLE
+
+			velocity = input_vector * speed
+		PlayerState.DODGE:
+			current_dodge_time += delta
+
+			if current_dodge_time >= dodge_time:
+				state = PlayerState.IDLE
+				velocity = Vector2.ZERO
+
+
+		PlayerState.ATTACK:
+			velocity = Vector2.ZERO
+
+			if not animation_player.is_playing():
+				state = PlayerState.IDLE
+		
+			
+
+# Start of All Movement State Functions
+
+#Attack
+func start_attack():
+	state = PlayerState.ATTACK
+	
+	if equipped_weapon:
+		equipped_weapon.attack(self, attack_direction)
+	
+	animation_player.play("attack")
+
+#Dodge
+func start_dodge():
+	state = PlayerState.DODGE
+	current_dodge_time = 0.0
+	
+	if input_vector == Vector2.ZERO:
+		velocity = Vector2.LEFT * dodge_speed
+	else:
+		velocity = input_vector * dodge_speed
+	
+	animation_player.play("roll")
+
+# End of All Movement State Functions
 
 func move_from_input(input_vector: Vector2, delta: float):
 	#player movement can only come from input
