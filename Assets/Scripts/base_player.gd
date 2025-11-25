@@ -74,3 +74,54 @@ func die():
 	
 func apply_knockback(direction: Vector2, force: float):
 	knockback_velocity = direction.normalized() * force
+	
+	
+func get_player_class() -> String:
+	# Determines which class this player is based on weapon_type.
+	if weapon_type == WeaponType.MELEE:
+		return "melee"
+	else:
+		return "ranged"
+
+
+func can_equip(item: Item) -> bool:
+	var my_class := get_player_class()
+
+	# Only allow items meant for this class or items that work for everyone.
+	return item.allowed_class == "any" or item.allowed_class == my_class
+	
+	
+func get_slot_from_item(item: Item) -> Inventory.Slot:
+	# Converts item.slotPiece (a string) into the matching Inventory.Slot enum.
+	# This connects item data → inventory system.
+	match item.slotPiece:
+		"weapon":
+			return Inventory.Slot.WEAPON
+		"helmet":
+			return Inventory.Slot.HELMET
+		"chestplate":
+			return Inventory.Slot.CHESTPLATE
+		"leggings":
+			return Inventory.Slot.LEGGINGS
+		"boots":
+			return Inventory.Slot.BOOTS
+		"ring":
+			return Inventory.Slot.RING
+		"necklace":
+			return Inventory.Slot.NECKLACE
+		_:
+			push_error("Unknown slotPiece '%s' on item '%s'" % [item.slotPiece, item.itemName])
+			return Inventory.Slot.WEAPON	# safe fallback
+
+
+func attempt_equip_item(item: Item) -> Dictionary:
+	# Delegate to the inventory system to evaluate equip rules.
+	var result: Dictionary = inventory.evaluate_equip(self, item)
+
+	# Add player-facing information.
+	# Nothing here modifies the inventory
+	result["player_class"] = get_player_class()
+	result["item_allowed_class"] = item.allowed_class
+
+	# Return everything so UI or gameplay can decide what to do.
+	return result
