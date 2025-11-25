@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AdventureCrawler"
-run/main_scene="uid://cqv617su7xf5w"
+run/main_scene="uid://cajlyrcs82iw2"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
