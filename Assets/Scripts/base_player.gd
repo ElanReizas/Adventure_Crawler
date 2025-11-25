@@ -30,12 +30,14 @@ var knockback_decay: float = 800.0
 
 enum PlayerState { IDLE, MOVE, DODGE, ATTACK }
 var state: PlayerState = PlayerState.IDLE
-@export var dodge_speed: float = 800.0
+@export var dodge_speed: float = 600.0
 @export var dodge_time: float = 0.4
 @export var current_dodge_time: float = 0.0
+var is_invulnerable = false
 
 var input_vector := Vector2.ZERO
 var attack_direction := Vector2.ZERO
+var dodge_direction = Vector2.ZERO
 
 func init_player():
 	add_to_group("player")
@@ -79,8 +81,11 @@ func handle_state(delta: float) -> void:
 			velocity = input_vector * speed
 		PlayerState.DODGE:
 			current_dodge_time += delta
+			
+			velocity = dodge_direction * dodge_speed
 
 			if current_dodge_time >= dodge_time:
+				is_invulnerable = false
 				state = PlayerState.IDLE
 				velocity = Vector2.ZERO
 
@@ -108,11 +113,12 @@ func start_attack():
 func start_dodge():
 	state = PlayerState.DODGE
 	current_dodge_time = 0.0
+	is_invulnerable = true
 	
 	if input_vector == Vector2.ZERO:
-		velocity = Vector2.LEFT * dodge_speed
+		dodge_direction = Vector2.LEFT
 	else:
-		velocity = input_vector * dodge_speed
+		dodge_direction = input_vector.normalized()
 	
 	animation_player.play("roll")
 
@@ -143,6 +149,8 @@ func equip_weapon(path: String) -> void:
 
 
 func take_damage(amount: int):
+	if state == PlayerState.DODGE or is_invulnerable:
+		return
 	current_health = max(current_health - amount, 0)
 	health_bar.value = current_health
 
