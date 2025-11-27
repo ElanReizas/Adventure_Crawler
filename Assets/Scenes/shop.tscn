@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dy1oatgq0p6af" path="res://Assets/Images/gumball_machine.png" id="6_v0t5h"]
 [ext_resource type="PackedScene" uid="uid://vu4wsol6hs0c" path="res://Assets/Scenes/item_interaction.tscn" id="7_dciiy"]
 [ext_resource type="Texture2D" uid="uid://dv0tu0q764flb" path="res://Assets/Images/sword.png" id="7_ydhgn"]
-[ext_resource type="Script" path="res://Assets/Scripts/item.gd" id="8_v0t5h"]
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="8_v0t5h"]
 [ext_resource type="Resource" uid="uid://u5t54ipho87d" path="res://Assets/items/rat.tres" id="9_v0t5h"]
 [ext_resource type="Resource" uid="uid://doht6s1i12boj" path="res://Assets/items/gumball.tres" id="10_ydhgn"]
 [ext_resource type="Resource" uid="uid://1atwugovtayb" path="res://Assets/items/ratGun.tres" id="11_g7qtd"]
@@ -246,3 +246,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_myf4l")
 }
 autoplay = "hoverItem3"
+
+[node name="MultiplayerHUD" parent="CanvasLayer" index="0"]
+offset_left = 1.0
+offset_right = 1.0

@@ -6,14 +6,26 @@ extends Resource
 @export var description: String
 @export var rarity: String
 @export var sprite: Texture2D
-@export var slotPiece: String
 
 
-#who can equip item:
-#   "any"    -> both classes can equip
-#   "melee"  -> only sword/melee characters
-#   "ranged" -> only bow/ranged characters
-@export var allowed_class: String = "any"
+enum SlotPiece {
+	WEAPON,
+	HELMET,
+	CHESTPLATE,
+	LEGGINGS,
+	BOOTS,
+	RING,
+	NECKLACE
+}
+
+enum AllowedClass {
+	ANY,      # both classes
+	MELEE,    # melee-only
+	RANGED    # ranged-only
+}
+
+@export var slotPiece: SlotPiece = SlotPiece.WEAPON
+@export var allowed_class: AllowedClass = AllowedClass.ANY
 
 
 #hashmap to contain a list of the items stat changes String Key statname, value statamount
