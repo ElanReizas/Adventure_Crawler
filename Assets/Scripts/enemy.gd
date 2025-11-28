@@ -26,6 +26,10 @@ const WEAPON_PATHS := {
 var knockback_cooldown: float = 0.0
 var knockback_interval: float = 0.4
 
+@export var drop_chance: float = 1.0   # 30% chance to drop an item
+@export var possible_drops: Array[Item] = []
+@export var drop_radius: float = 60.0
+
 @export var dialogue_file: DialogueResource
 @export var dialogue_title: String = "start"
 func _ready():
@@ -102,12 +106,44 @@ func acquire_target() -> bool:
 
 func targetPlayer(): 
 	playerSeen=true
-	
+
 
 func die():
+	
+	drop_loot()
+	
 	if dialogue_file:
 		DialogueManager.show_dialogue_balloon(dialogue_file, dialogue_title, [self])
 	queue_free()
+
+
+func drop_loot():
+	# If no items assigned, nothing can drop
+	if possible_drops.is_empty():
+		return
+
+	# Roll random chance
+	if randf() > drop_chance:
+		return
+
+	# Pick random item from this enemy's drop table
+	var item: Item = possible_drops.pick_random()
+
+	# Spawn the item drop
+	var drop_scene := preload("res://Assets/Scenes/ItemDrop.tscn")
+	var drop := drop_scene.instantiate()
+
+	drop.item = item
+
+	# Spread items around the enemy using radius
+	var offset := Vector2(
+		randf_range(-drop_radius, drop_radius),
+		randf_range(-drop_radius, drop_radius)
+	)
+
+	drop.global_position = global_position + offset
+	get_tree().get_current_scene().add_child(drop)
+
 
 
 func SightCheck():

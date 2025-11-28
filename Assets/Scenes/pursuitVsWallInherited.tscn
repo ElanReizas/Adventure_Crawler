@@ -77,7 +77,6 @@ tile_set = ExtResource("2_mnmml")
 
 [node name="Player" parent="." index="4"]
 position = Vector2(556, 171)
-weapon_type = 1
 
 [node name="Wall" type="StaticBody2D" parent="." index="5"]
 position = Vector2(736, 289)
