@@ -1,10 +1,9 @@
 extends Resource
 class_name Inventory
 
-# Fixed equipment slot list.
 enum Slot { WEAPON, HELMET, CHESTPLATE, LEGGINGS, BOOTS, RING, NECKLACE }
 
-# Dictionary storing items by slot.
+# Dictionary storing items by slot
 @export var slots := {
 	Slot.WEAPON: null,
 	Slot.HELMET: null,
@@ -15,34 +14,95 @@ enum Slot { WEAPON, HELMET, CHESTPLATE, LEGGINGS, BOOTS, RING, NECKLACE }
 	Slot.NECKLACE: null
 }
 
+
 func get_item(slot: Slot) -> Item:
-	# Returns whatever item is currently in this slot (or null).
 	return slots[slot]
 
 
 func set_item(slot: Slot, item: Item) -> void:
-	# overwrites the slot with the given item.
-	# Higher-level gameplay will call this AFTER confirming swaps.
 	slots[slot] = item
-	
-func evaluate_equip(player: Node, item: Item) -> Dictionary:
 
-	# Determine which Inventory.Slot this item goes into.
-	var slot: Slot = player.get_slot_from_item(item)
 
-	# Check class restrictions (BasePlayer.can_equip)
-	var class_ok: bool = player.can_equip(item)
+func can_equip(player: BasePlayer, item: Item) -> bool:
+	match item.allowed_class:
+		Item.AllowedClass.ANY:
+			return true
+		Item.AllowedClass.MELEE:
+			return player.weapon_type == BasePlayer.WeaponType.MELEE
+		Item.AllowedClass.RANGED:
+			return player.weapon_type == BasePlayer.WeaponType.RANGED
+	return false
 
-	# Check if the slot is empty
-	var existing_item: Item = slots[slot] if slots.has(slot) else null
+
+func evaluate_equip(player: BasePlayer, item: Item) -> Dictionary:
 	
-	# true if slot has no item
-	var is_empty: bool = (existing_item == null)
-	
-	#Return info as dictionary
+	var slot: Slot = item.slot                           
+	var class_ok: bool = can_equip(player, item)
+	var existing: Item = slots[slot]
+	var empty: bool = (existing == null)
+
 	return {
 		"slot": slot,
 		"can_equip": class_ok,
-		"slot_empty": is_empty,
-		"existing_item": existing_item
+		"slot_empty": empty,
+		"existing_item": existing
 	}
+
+
+func attempt_pickup(player: BasePlayer, item: Item) -> void:
+	var result := evaluate_equip(player, item)
+
+	var slot: Slot = result["slot"]
+	var slot_index: int = int(slot)
+
+	# keys() returns Array, so keep it untyped and cast when we read from it
+	var all_slot_names: Array = Slot.keys()
+	var slot_name: String = String(all_slot_names[slot_index])
+
+	if not result["can_equip"]:
+		# Class restriction failed – drop it back on the ground
+		player.spawn_item_drop(item)
+		return
+
+	if result["slot_empty"]:
+		set_item(slot, item)
+		print("Equipped:", item.itemName, "into slot:", slot_index, "\"" + slot_name + "\"")
+		return
+
+	var existing: Item = result["existing_item"]
+
+	print("Swap needed in slot:", slot_name)
+	print("Current:", existing.itemName)
+	print("New:", item.itemName)
+
+	# For now, auto-reject swap and drop the new item
+	player.spawn_item_drop(item)
+
+
+func drop_item_from_slot(player: BasePlayer, slot: Slot) -> void:
+	var item := get_item(slot)
+	if item == null:
+		return
+
+	set_item(slot, null)
+	player.spawn_item_drop(item)
+
+
+func drop_entire_inventory(player: BasePlayer) -> void:
+	var radius := 60.0
+	var angle_step := TAU / float(Slot.keys().size())
+	var index := 0
+
+	for slot in Slot.values():
+		var item := get_item(slot)
+		if item == null:
+			continue
+
+		set_item(slot, null)
+
+		var angle := angle_step * index
+		var offset := Vector2(cos(angle), sin(angle)) * radius
+
+		# Use deferred spawn to avoid physics "flushing queries"
+		player.call_deferred("spawn_item_drop_at", item, player.global_position + offset)
+		index += 1

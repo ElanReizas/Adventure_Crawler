@@ -7,16 +7,7 @@ extends Resource
 @export var rarity: String
 @export var sprite: Texture2D
 
-
-enum SlotPiece {
-	WEAPON,
-	HELMET,
-	CHESTPLATE,
-	LEGGINGS,
-	BOOTS,
-	RING,
-	NECKLACE
-}
+@export var slot: Inventory.Slot = Inventory.Slot.WEAPON
 
 enum AllowedClass {
 	ANY,      # both classes
@@ -24,11 +15,9 @@ enum AllowedClass {
 	RANGED    # ranged-only
 }
 
-@export var slotPiece: SlotPiece = SlotPiece.WEAPON
 @export var allowed_class: AllowedClass = AllowedClass.ANY
 
-
-#hashmap to contain a list of the items stat changes String Key statname, value statamount
+# Stat modifiers applied later by stats.gd
 @export var stat_changes: Dictionary[String, float]
 
 func _to_string() -> String:
