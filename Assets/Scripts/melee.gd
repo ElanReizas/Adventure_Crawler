@@ -16,4 +16,10 @@ func _process(delta):
 	if (owner.direction.length() < 138):
 	#continuously aim pivot at player from boss
 		owner.get_node("Pivot").look_at(owner.player.global_position)
+		
+func melee():
+	var hitbox = owner.get_node("Pivot/slashHitbox")
+	for body in hitbox.get_overlapping_bodies():
+		if body.is_in_group("player"):
+			body.take_damage(8)
 	
