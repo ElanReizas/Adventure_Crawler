@@ -5,6 +5,7 @@ func enter():
 	super.enter()
 	animation_player.play("SlashAttack")
 
+
 func transition():
 	#if too far, stop melee go back to follow
 	if owner.direction.length() > 138:
@@ -23,4 +24,3 @@ func melee():
 	for body in hitbox.get_overlapping_bodies():
 		if body.is_in_group("player"):
 			body.take_damage(8)
-	
