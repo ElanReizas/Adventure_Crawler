@@ -3,27 +3,25 @@ extends CharacterBody2D
 @onready var sprite = $Sprite2D
 @onready var health_bar = $UI/ProgressBar
 var direction : Vector2
-const MAX_HEALTH  = 2000
-#Change healthbar
-var _current_health: int = MAX_HEALTH
-var current_health:
-	set(value):
-		_current_health = value
-		health_bar.value = value
-		if value <= 0:
-			health_bar.visible = false
-			find_child("FiniteStateMachine").change_state("Death")
-	get:
-		return _current_health
+var max_health: int  = 200
+var current_health: int = max_health
 func take_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)
+	health_bar.value = current_health
+	if current_health <= 0:
+		health_bar.visible = false
+		find_child("FiniteStateMachine").change_state("Death")
 	
 func _ready():
+	health_bar.max_value = max_health
+	health_bar.value = max_health
 	set_physics_process(false)
 	#hard coding the slash animation to the empty one
 	$Pivot/slash.frame = 7
 
 func _process(_delta):
+	#add to enemy group so they can recieve damage by player weapons
+	add_to_group("enemies")
 	#updating direction with player position
 	direction = player.position - position
 	#Flipping to player direction
