@@ -3,6 +3,8 @@ class_name Player
 
 
 func _ready():
+	GameManager.register_player(self)
+	GameManager.load_player_state(self)
 	init_player()
 
 

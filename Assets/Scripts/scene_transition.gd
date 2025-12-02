@@ -7,4 +7,5 @@ func _ready():
 	
 func _on_body_entered(body):
 	if body is Player:
+		GameManager.save_player_state()
 		get_tree().change_scene_to_file.call_deferred(new_scene)

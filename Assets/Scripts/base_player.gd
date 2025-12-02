@@ -35,12 +35,10 @@ var knockback_decay: float = 800.0
 
 func init_player():
 	add_to_group("player")
-
 	# Ensure each player has their own Inventory resource
 	if inventory == null:
 		inventory = Inventory.new()
-
-	current_health = max_health
+	
 	health_bar.max_value = max_health
 	health_bar.value = current_health
 
@@ -97,7 +95,7 @@ func die():
 func apply_knockback(direction: Vector2, force: float):
 	knockback_velocity = direction.normalized() * force
 
-
+#TODO: Rethink this 
 func _process(_delta):
 	if last_item_in_range and not is_instance_valid(last_item_in_range):
 		last_item_in_range = null

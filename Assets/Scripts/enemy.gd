@@ -32,8 +32,17 @@ var knockback_interval: float = 0.4
 
 @export var dialogue_file: DialogueResource
 @export var dialogue_title: String = "start"
+
+@onready var enemy_id: String = ""
+
 func _ready():
+	enemy_id = get_path()
+	if GameManager.is_enemy_dead(enemy_id):
+		print("i died already:", enemy_id)
+		queue_free()
+		return
 	add_to_group("enemies")
+	
 	timer.timeout.connect(_on_timer_timeout)
 	current_health = max_health
 	health_bar.max_value = max_health
@@ -109,7 +118,7 @@ func targetPlayer():
 
 
 func die():
-	
+	GameManager.mark_enemy_dead(enemy_id)
 	drop_loot()
 	
 	if dialogue_file:
