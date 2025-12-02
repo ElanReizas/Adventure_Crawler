@@ -1,5 +1,5 @@
 extends State
-
+class_name Melee
 
 func enter():
 	super.enter()
@@ -13,7 +13,8 @@ func transition():
 		get_parent().change_state("Follow")
 		
 func _process(delta):
-	if (owner.direction.length() < 138):
+	if (owner.direction.length() < 138 && 
+	owner.get_node("FiniteStateMachine").current_state is Melee):
 	#continuously aim pivot at player from boss
 		owner.get_node("Pivot").look_at(owner.player.global_position)
 		
