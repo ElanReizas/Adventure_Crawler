@@ -25,4 +25,4 @@ func laserbeam():
 	var hitbox = owner.get_node("Pivot/laserHitbox")
 	for body in hitbox.get_overlapping_bodies():
 		if body.is_in_group("player"):
-			body.take_damage(30)
+			body.take_damage(40)

@@ -7,6 +7,7 @@ var player_entered: bool = false:
 		collision.set_deferred("disabled", value)
 		progress_bar.set_deferred("visible", value)
 func transition():
+	animation_player.play("RESET")
 	if player_entered:
 		get_parent().change_state("Follow")
 
