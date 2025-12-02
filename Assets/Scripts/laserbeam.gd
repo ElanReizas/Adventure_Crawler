@@ -21,3 +21,8 @@ func transition():
 	if can_transition:
 		can_transition = false
 		get_parent().change_state("Dash")
+func laserbeam():
+	var hitbox = owner.get_node("Pivot/laserHitbox")
+	for body in hitbox.get_overlapping_bodies():
+		if body.is_in_group("player"):
+			body.take_damage(30)
