@@ -98,6 +98,7 @@ color = Color(0.72051126, 0.8730382, 0.9209301, 1)
 
 [node name="Enemy" parent="Enemies" index="0" instance=ExtResource("3_227lh")]
 position = Vector2(778, 137)
+weapon_type = 1
 
 [node name="Enemy2" parent="Enemies" index="1" instance=ExtResource("3_227lh")]
 position = Vector2(733, 381)

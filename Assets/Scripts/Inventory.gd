@@ -54,29 +54,34 @@ func attempt_pickup(player: BasePlayer, item: Item) -> void:
 
 	var slot: Slot = result["slot"]
 	var slot_index: int = int(slot)
-
+	
 	# keys() returns Array, so keep it untyped and cast when we read from it
 	var all_slot_names: Array = Slot.keys()
 	var slot_name: String = String(all_slot_names[slot_index])
 
+	# Check class restriction
 	if not result["can_equip"]:
 		# Class restriction failed – drop it back on the ground
 		player.spawn_item_drop(item)
 		return
-
+	
+	# Check if slot is empty
 	if result["slot_empty"]:
 		set_item(slot, item)
 		print("Equipped:", item.itemName, "into slot:", slot_index, "\"" + slot_name + "\"")
 		return
 
+	# Otherwise swap items
 	var existing: Item = result["existing_item"]
 
-	print("Swap needed in slot:", slot_name)
-	print("Current:", existing.itemName)
-	print("New:", item.itemName)
+	print("Swapping in slot: ", slot_name)
+	print("Dropped: ", existing.itemName)
+	print("Equipped: ", item.itemName)
 
-	# For now, auto-reject swap and drop the new item
-	player.spawn_item_drop(item)
+	# drop old item
+	player.spawn_item_drop(existing)
+	# Equip new item
+	set_item(slot,item)
 
 
 func drop_item_from_slot(player: BasePlayer, slot: Slot) -> void:
