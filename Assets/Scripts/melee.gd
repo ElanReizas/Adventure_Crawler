@@ -13,6 +13,7 @@ func transition():
 		get_parent().change_state("Follow")
 		
 func _process(delta):
+	if (owner.direction.length() < 65):
 	#continuously aim pivot at player from boss
-	owner.get_node("Pivot").look_at(owner.player.global_position)
+		owner.get_node("Pivot").look_at(owner.player.global_position)
 	

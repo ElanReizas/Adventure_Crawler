@@ -12,6 +12,49 @@
 [ext_resource type="Script" uid="uid://dwpn1egemkvjs" path="res://Assets/Scripts/laserbeam.gd" id="9_cda3r"]
 [ext_resource type="Script" uid="uid://c603negc5iapy" path="res://Assets/Scripts/dash.gd" id="10_7gqpm"]
 
+[sub_resource type="Animation" id="Animation_7gqpm"]
+resource_name = "FiringMaLaser"
+length = 1.8750125
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/laser:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5, 1.625, 1.8750125),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/slash:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FiniteStateMachine/LaserBeam")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.75),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"set_target"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_te6i6"]
 resource_name = "Idle"
 step = 0.125
@@ -126,35 +169,6 @@ tracks/0/keys = {
 "values": [7, 1, 2, 3, 4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_7gqpm"]
-resource_name = "FiringMaLaser"
-length = 1.8750125
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/laser:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5, 1.625, 1.8750125),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/slash:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [7]
-}
-
 [sub_resource type="Animation" id="Animation_d3515"]
 resource_name = "lasercharge"
 length = 1.8750125
@@ -202,11 +216,10 @@ texture = ExtResource("1_k161g")
 position = Vector2(0, -5)
 
 [node name="laser" type="Sprite2D" parent="Pivot"]
-position = Vector2(207.00002, 15.999999)
-scale = Vector2(2.1, 0.98)
+position = Vector2(298.00003, 76)
+scale = Vector2(2.5200002, 4.0800004)
 texture = ExtResource("2_jv22h")
 vframes = 15
-frame = 8
 
 [node name="slash" type="Sprite2D" parent="Pivot"]
 position = Vector2(53, 0)
