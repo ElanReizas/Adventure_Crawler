@@ -58,3 +58,31 @@ func mark_enemy_dead(enemy_id: String):
 
 func is_enemy_dead(enemy_id: String) -> bool:
 	return dead_enemies.has(enemy_id)
+
+const SAVE_PATH := "user://savegame.json"
+
+# these functions can be called at any point you want to save or load from a save file. (ie, on exiting)
+func save_to_file():
+	var save_dict = {
+		"player_data": player_data,
+		"dead_enemies": dead_enemies,
+	}
+
+	var json_text = JSON.stringify(save_dict, "\t")
+
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	file.store_string(json_text)
+
+	print("Game saved to:", SAVE_PATH)
+
+
+func load_from_file():
+	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	var json_text = file.get_as_text()
+
+	var result = JSON.parse_string(json_text)
+
+	# pull JSON fields from file into GameManager
+	# TODO: use ID to rebuild the inventories entries since JSON only stores simple data types
+	player_data = result["player_data"]
+	dead_enemies = result["dead_enemies"]
