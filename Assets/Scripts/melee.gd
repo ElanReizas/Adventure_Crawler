@@ -3,9 +3,6 @@ extends State
 
 func enter():
 	super.enter()
-	# STOP ALL MOVEMENT
-	owner.set_physics_process(false)
-	owner.velocity = Vector2.ZERO
 	animation_player.play("SlashAttack")
 
 func transition():
