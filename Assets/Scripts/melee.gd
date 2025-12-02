@@ -3,7 +3,6 @@ extends State
 
 func enter():
 	super.enter()
-	
 	# STOP ALL MOVEMENT
 	owner.set_physics_process(false)
 	owner.velocity = Vector2.ZERO
@@ -15,3 +14,8 @@ func transition():
 		#Stop slash animation
 		animation_player.play("RESET")
 		get_parent().change_state("Follow")
+		
+func _process(delta):
+	#continuously aim pivot at player from boss
+	owner.get_node("Pivot").look_at(owner.player.global_position)
+	

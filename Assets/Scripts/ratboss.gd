@@ -11,10 +11,7 @@ func _ready():
 func _process(_delta):
 	#updating direction with player position
 	direction = player.position - position
-	#flipping direction towards player
-	#Change visual affects angle
-	$Pivot.look_at(player.global_position)
-
+	#Flipping to player direction
 	if direction.x <0:
 		sprite.flip_h = true
 	else:
