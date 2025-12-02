@@ -7,6 +7,7 @@ func enter():
 	super.enter()
 	await play_animation("lasercharge")
 	await play_animation("FiringMaLaser")
+	can_transition = true
 	
 func play_animation(anim_name):
 	animation_player.play(anim_name)
