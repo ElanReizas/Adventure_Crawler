@@ -11,6 +11,7 @@ func enter():
 
 func transition():
 	#if too far, stop melee go back to follow
-	if owner.direction.length() > 55:
+	if owner.direction.length() > 65:
+		#Stop slash animation
 		animation_player.play("RESET")
 		get_parent().change_state("Follow")

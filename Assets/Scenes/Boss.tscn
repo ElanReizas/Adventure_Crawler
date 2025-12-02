@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dnpkxy2iw080w"]
+[gd_scene load_steps=19 format=3 uid="uid://dnpkxy2iw080w"]
 
 [ext_resource type="Texture2D" uid="uid://dw23l1ghn604q" path="res://icon.svg" id="1_k161g"]
 [ext_resource type="Script" uid="uid://nxlxfh2oeti0" path="res://Assets/Scripts/ratboss.gd" id="1_te6i6"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cdv1d413y647y" path="res://Assets/Scripts/idle.gd" id="5_jv22h"]
 [ext_resource type="Script" uid="uid://31nshanclpgs" path="res://Assets/Scripts/follow.gd" id="7_5kty5"]
 [ext_resource type="Script" uid="uid://b7mf4otyu0d5j" path="res://Assets/Scripts/melee.gd" id="8_5kty5"]
+[ext_resource type="Script" uid="uid://c603negc5iapy" path="res://Assets/Scripts/dash.gd" id="10_7gqpm"]
 
 [sub_resource type="Animation" id="Animation_7gqpm"]
 resource_name = "FiringMaLaserRaaa"
@@ -167,7 +168,7 @@ radius = 44.0
 height = 118.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3qlo8"]
-radius = 125.0
+radius = 250.0
 
 [node name="RatBoss" type="CharacterBody2D"]
 collision_layer = 2
@@ -272,7 +273,7 @@ script = ExtResource("8_5kty5")
 script = ExtResource("5_5kty5")
 
 [node name="Dash" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("5_5kty5")
+script = ExtResource("10_7gqpm")
 
 [node name="Death" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("5_5kty5")

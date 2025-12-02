@@ -10,6 +10,9 @@ func exit():
 func transition():
 	var distance = owner.direction.length()
 	
-	if distance < 60:
+	if distance < 65:
 		#if target is close enough do this
 		get_parent().change_state("Melee")
+		#if player is too far dash to them
+	elif distance > 150:
+		get_parent().change_state("Dash")
