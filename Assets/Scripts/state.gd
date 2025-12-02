@@ -9,7 +9,7 @@ func _ready():
 func enter():
 	set_physics_process(true)
 func exit():
-	set_physics_process(true)
+	set_physics_process(false)
 func transition():
 	pass
 func _physics_process(_delta):

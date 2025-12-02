@@ -8,5 +8,5 @@
 [node name="RatBoss" parent="." instance=ExtResource("1_nj2bo")]
 position = Vector2(348, 168)
 
-[node name="Player" parent="RatBoss" instance=ExtResource("2_ngy7y")]
-position = Vector2(-305, 155)
+[node name="Player" parent="." instance=ExtResource("2_ngy7y")]
+position = Vector2(43, 323)
