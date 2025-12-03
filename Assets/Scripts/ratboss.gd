@@ -2,6 +2,9 @@ extends CharacterBody2D
 @onready var player = get_parent().find_child("Player")
 @onready var sprite = $Sprite2D
 @onready var health_bar = $UI/ProgressBar
+@onready var players = get_tree().get_nodes_in_group("player")
+@onready var target = null
+@onready var nav: NavigationAgent2D = $NavigationAgent2D
 var direction : Vector2
 var max_health: int  = 200
 var current_health: int = max_health
@@ -22,8 +25,9 @@ func _ready():
 func _process(_delta):
 	#add to enemy group so they can recieve damage by player weapons
 	add_to_group("enemies")
-	#updating direction with player position
-	direction = player.position - position
+	nearest_player()
+	nav.set_target_position(target.global_position)
+	direction = target.position - position
 	#Flipping to player direction
 	if direction.x <0:
 		sprite.flip_h = true
@@ -33,4 +37,18 @@ func _process(_delta):
 func _physics_process(delta: float) -> void:
 	velocity = direction.normalized()*70
 	move_and_collide(velocity*delta)
+	
+func nearest_player():
+	players = get_tree().get_nodes_in_group("player")
+	if players.is_empty():
+		target = null
+		return false
+	var nearest_player = null
+	var nearest_distance = INF
+	for player in players:
+		var distance = global_position.distance_to(player.global_position)
+		if distance < nearest_distance:
+			nearest_distance = distance
+			nearest_player = player
+	target = nearest_player
 	

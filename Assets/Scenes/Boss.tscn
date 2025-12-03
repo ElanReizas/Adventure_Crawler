@@ -419,4 +419,6 @@ script = ExtResource("10_7gqpm")
 [node name="Death" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("11_cda3r")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
 [connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/Idle" method="_on_player_detection_body_entered"]
