@@ -19,7 +19,7 @@ func _process(delta):
 	if (owner.direction.length() < 138 && 
 	owner.get_node("FiniteStateMachine").current_state is Melee):
 	#continuously aim pivot at player from boss
-		owner.get_node("Pivot").look_at(owner.player.global_position)
+		owner.get_node("Pivot").look_at(owner.target.global_position)
 		
 func melee():
 	var hitbox = owner.get_node("Pivot/slashHitbox")

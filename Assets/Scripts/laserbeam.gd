@@ -14,7 +14,7 @@ func play_animation(anim_name):
 	await animation_player.animation_finished
 	
 func set_target():
-	pivot.rotation = (owner.player.global_position - pivot.global_position).angle()
+	pivot.rotation = (owner.target.global_position - pivot.global_position).angle()
 
 
 func transition():

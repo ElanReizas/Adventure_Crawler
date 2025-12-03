@@ -9,7 +9,7 @@ func enter():
 	can_transition = true
 func dash():
 	var tween = create_tween()
-	tween.tween_property(owner, "position", owner.player.global_position, 0.8)
+	tween.tween_property(owner, "position", owner.target.global_position, 0.8)
 	await tween.finished
 func transition():
 	if can_transition:
