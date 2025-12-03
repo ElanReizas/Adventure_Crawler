@@ -1,12 +1,9 @@
 extends State
 class_name Melee
-var can_transition: bool = false
 
 func enter():
 	super.enter()
-	can_transition = false
-	await play_animation("SlashAttack")
-	can_transition = true
+	animation_player.play("SlashAttack")
 	
 func transition():
 		#if too far, stop melee go back to follow
@@ -26,6 +23,3 @@ func melee():
 	for body in hitbox.get_overlapping_bodies():
 		if body.is_in_group("player"):
 			body.take_damage(15)
-func play_animation(anim_name):
-	animation_player.play(anim_name)
-	await animation_player.animation_finished
