@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://3y855n60rfml" path="res://Assets/Scripts/death.gd" id="11_cda3r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fu1cy"]
-size = Vector2(112, 67)
+size = Vector2(124, 92)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cda3r"]
 size = Vector2(25.992062, 1.862745)
@@ -326,7 +326,7 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="slashspace" type="CollisionShape2D" parent="Pivot/slashHitbox"]
-position = Vector2(60.5, -3)
+position = Vector2(73, -4.9999995)
 rotation = 1.5707964
 scale = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_fu1cy")

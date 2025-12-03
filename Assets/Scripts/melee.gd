@@ -6,13 +6,13 @@ func enter():
 	animation_player.play("SlashAttack")
 	await animation_player.animation_finished
 	can_transition = true
-
+	
 func transition():
 	if can_transition:
 		can_transition = false
 		return
 	#if too far, stop melee go back to follow
-	if owner.direction.length() > 138:
+	if owner.direction.length() > 120:
 		#Stop slash animation
 		animation_player.play("RESET")
 		get_parent().change_state("Follow")
