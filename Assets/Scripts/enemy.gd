@@ -256,10 +256,11 @@ func pursuit_behavior(delta: float):
 			# Path is blocked: move to reposition instead of shooting the wall
 			nav.set_target_position(target.global_position)
 
-	elif equipped_weapon:
-		if current_distance <= attack_radius:
-			var aim_direction = (target.global_position - global_position).normalized()
-			equipped_weapon.attack(self, aim_direction)
+		#THIS IS A BUG RN
+	#elif equipped_weapon:
+		#if current_distance <= attack_radius:
+			#var aim_direction = (target.global_position - global_position).normalized()
+			#equipped_weapon.attack(self, aim_direction)
 
 
 
