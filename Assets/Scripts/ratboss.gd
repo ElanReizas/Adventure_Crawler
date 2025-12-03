@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var target = null
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 var direction : Vector2
-var max_health: int  = 200
+var max_health: int  = 2000
 var current_health: int = max_health
 func take_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)
