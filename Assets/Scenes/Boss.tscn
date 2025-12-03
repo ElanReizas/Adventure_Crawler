@@ -188,7 +188,6 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_fu1cy"]
 resource_name = "SlashAttack"
 length = 1.6666751
-loop_mode = 1
 step = 0.083333336
 tracks/0/type = "value"
 tracks/0/imported = false
