@@ -22,7 +22,8 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	# we read the input from multiplayer_input instead
 	var input_vector: Vector2 = %InputSynchronizer.input_vector
-	move_from_input(input_vector, delta)
+	set_input_vector(input_vector)
+	super._physics_process(delta)
 	if %InputSynchronizer.attack_pressed and equipped_weapon:
 		rpc("network_attack", %InputSynchronizer.aim_direction)
 

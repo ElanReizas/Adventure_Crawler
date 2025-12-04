@@ -85,22 +85,20 @@ func handle_state(delta: float) -> void:
 				state = PlayerState.IDLE
 				velocity = Vector2.ZERO
 		PlayerState.KNOCKBACK:
-				var move_velocity = input_vector * speed
-				velocity = move_velocity + knockback_velocity
-				
-				if knockback_velocity.length() > 0:
-					knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
-		
-				if input_vector.length() > 0:
-					var move_direction =  input_vector.normalized()
-					ray_cast_2d.target_position = move_direction * 32
+			var move_velocity = input_vector * speed
+			velocity = move_velocity + knockback_velocity
+			
+			if knockback_velocity.length() > 0:
+				knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
+	
+			if input_vector.length() > 0:
+				var move_direction =  input_vector.normalized()
+				ray_cast_2d.target_position = move_direction * 32
 
-				move_and_slide()
-				
-				while knockback_velocity.x > 0:
-					return
-				if knockback_velocity.x <= 0:
-					state = PlayerState.IDLE
+			move_and_slide()
+			
+			if knockback_velocity.length() <= 0.1:
+				state = PlayerState.IDLE
 
 		PlayerState.ATTACK:
 			velocity = Vector2.ZERO
