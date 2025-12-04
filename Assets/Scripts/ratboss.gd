@@ -17,6 +17,8 @@ func take_damage(amount: int) -> void:
 	
 func _ready():
 	nearest_player()
+	#add to enemy group so they can recieve damage by player weapons
+	add_to_group("enemies")
 	health_bar.max_value = max_health
 	health_bar.value = max_health
 	set_physics_process(false)
@@ -24,8 +26,6 @@ func _ready():
 	$Pivot/slash.frame = 7
 
 func _process(_delta):
-	#add to enemy group so they can recieve damage by player weapons
-	add_to_group("enemies")
 	nearest_player()
 	nav.set_target_position(target.global_position)
 	direction = target.position - position
