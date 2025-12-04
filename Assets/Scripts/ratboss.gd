@@ -16,6 +16,7 @@ func take_damage(amount: int) -> void:
 		find_child("FiniteStateMachine").change_state("Death")
 	
 func _ready():
+	nearest_player()
 	health_bar.max_value = max_health
 	health_bar.value = max_health
 	set_physics_process(false)
