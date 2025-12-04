@@ -1,9 +1,14 @@
 extends CharacterBody2D
 class_name BasePlayer
 
+
+#each player will have base stats according to their class
 @export var class_base_stats: MeleeBaseStats
+
+#stats manager takes care of stat calculations
 var stats_manager := StatsManager.new()
 
+#current stats is what the base player actually pulls
 var current_stats: Dictionary = stats_manager.getStats()
 
 var current_health: int

@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 	pass
 "
 
-[node name="Area2D" type="Area2D"]
+[node name="CollectableEntity" type="Area2D"]
 script = ExtResource("1_x5jm8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
