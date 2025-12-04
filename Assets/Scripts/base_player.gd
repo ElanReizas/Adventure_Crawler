@@ -77,9 +77,7 @@ func handle_state(delta: float) -> void:
 			velocity = input_vector * speed
 		PlayerState.DODGE:
 			current_dodge_time += delta
-			
 			velocity = dodge_direction * dodge_speed
-
 			if current_dodge_time >= dodge_time:
 				is_invulnerable = false
 				state = PlayerState.IDLE
@@ -104,8 +102,7 @@ func handle_state(delta: float) -> void:
 			velocity = Vector2.ZERO
 
 			if not animation_player.is_playing():
-				state = PlayerState.IDLE
-		
+				state = PlayerState.IDLE		
 			
 
 # Start of All Movement State Functions
