@@ -2,10 +2,13 @@ extends BasePlayer
 class_name Player
 
 
+
+
 func _ready():
+	init_player()
 	GameManager.register_player(self)
 	GameManager.load_player_state(self)
-	init_player()
+
 
 
 func _physics_process(delta):

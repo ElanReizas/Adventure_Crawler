@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4cphchv51xnn"]
+
+[ext_resource type="Script" uid="uid://b6u5kvy8jlirh" path="res://Assets/Collectables/necklace.gd" id="1_4e03i"]
+[ext_resource type="Texture2D" uid="uid://ddvg81p26y67f" path="res://Assets/Images/Necklace.png" id="2_u82nm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x5jm8"]
+radius = 15.0
+
+[sub_resource type="GDScript" id="GDScript_p5vun"]
+script/source = "extends AnimationPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the epsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Necklace" type="Area2D"]
+script = ExtResource("1_4e03i")
+itemID = null
+itemName = null
+description = null
+rarity = null
+slot = null
+allowed_class = null
+stat_changes = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -14)
+shape = SubResource("CircleShape2D_x5jm8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_u82nm")
+offset = Vector2(0, -13)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+script = SubResource("GDScript_p5vun")
