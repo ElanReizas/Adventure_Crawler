@@ -6,8 +6,8 @@ func _ready():
 	init_player()
 	
 func _physics_process(delta):
-	var input_vec = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	set_input_vector(input_vec)
+	var input_vector = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	set_input_vector(input_vector)
 	
 	if equipped_weapon:
 		var mouse_pos = get_global_mouse_position()

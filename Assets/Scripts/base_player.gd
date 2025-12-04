@@ -28,9 +28,9 @@ const WEAPON_PATHS := {
 var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_decay: float = 800.0
 
-enum PlayerState { IDLE, MOVE, DODGE, ATTACK }
+enum PlayerState { IDLE, MOVE, DODGE, ATTACK, KNOCKBACK }
 var state: PlayerState = PlayerState.IDLE
-@export var dodge_speed: float = 600.0
+@export var dodge_speed: float = 400.0
 @export var dodge_time: float = 0.4
 @export var current_dodge_time: float = 0.0
 var is_invulnerable = false
@@ -59,7 +59,6 @@ func _physics_process(delta: float) -> void:
 # This allows for future implementation of different movement states like Stunned, Frozen, Asleep, etc.
 func handle_state(delta: float) -> void:
 	match state:
-		
 		PlayerState.IDLE:
 			if Input.is_action_just_pressed("attack"):
 				start_attack()
@@ -67,9 +66,7 @@ func handle_state(delta: float) -> void:
 				start_dodge()
 			elif input_vector != Vector2.ZERO:
 				state = PlayerState.MOVE
-			
 			velocity = Vector2.ZERO
-		
 		PlayerState.MOVE:
 			if Input.is_action_just_pressed("attack"):
 				start_attack()
@@ -77,7 +74,6 @@ func handle_state(delta: float) -> void:
 				start_dodge()
 			elif input_vector == Vector2.ZERO:
 				state = PlayerState.IDLE
-
 			velocity = input_vector * speed
 		PlayerState.DODGE:
 			current_dodge_time += delta
@@ -88,7 +84,23 @@ func handle_state(delta: float) -> void:
 				is_invulnerable = false
 				state = PlayerState.IDLE
 				velocity = Vector2.ZERO
+		PlayerState.KNOCKBACK:
+				var move_velocity = input_vector * speed
+				velocity = move_velocity + knockback_velocity
+				
+				if knockback_velocity.length() > 0:
+					knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
+		
+				if input_vector.length() > 0:
+					var move_direction =  input_vector.normalized()
+					ray_cast_2d.target_position = move_direction * 32
 
+				move_and_slide()
+				
+				while knockback_velocity.x > 0:
+					return
+				if knockback_velocity.x <= 0:
+					state = PlayerState.IDLE
 
 		PlayerState.ATTACK:
 			velocity = Vector2.ZERO
@@ -124,21 +136,6 @@ func start_dodge():
 
 # End of All Movement State Functions
 
-func move_from_input(input_vector: Vector2, delta: float):
-	#player movement can only come from input
-	#knockback velocity is added on top so the player can be pushed even when not moving
-	var move_velocity = input_vector * speed
-	velocity = move_velocity + knockback_velocity
-	#knockback velocity shrinks to 0 so that it doesnt permanently add onto player velocity
-	if knockback_velocity.length() > 0:
-		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
-		
-	if input_vector.length() > 0:
-		var move_direction =  input_vector.normalized()
-		ray_cast_2d.target_position = move_direction * 32
-
-	move_and_slide()
-
 func equip_weapon(path: String) -> void:
 	if equipped_weapon != null:
 		equipped_weapon.queue_free()
@@ -162,4 +159,5 @@ func die():
 	get_tree().reload_current_scene()
 	
 func apply_knockback(direction: Vector2, force: float):
+	state = PlayerState.KNOCKBACK
 	knockback_velocity = direction.normalized() * force
