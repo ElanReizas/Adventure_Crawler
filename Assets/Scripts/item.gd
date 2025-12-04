@@ -8,7 +8,7 @@ enum AllowedClass {
 	RANGED    # ranged-only
 }
 
-@export var itemID: String
+@export var itemID: int
 @export var itemName: String
 @export var description: String
 @export var rarity: String

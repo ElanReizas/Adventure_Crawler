@@ -8,5 +8,4 @@ extends Resource
 	"melee_attack_range": 100,
 	"crit_rate": 0.2,
 	"crit_damage": 2,
-	"max_health": 100
 }
