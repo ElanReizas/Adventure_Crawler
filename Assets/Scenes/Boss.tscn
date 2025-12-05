@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://dnpkxy2iw080w"]
 
-[ext_resource type="Texture2D" uid="uid://dw23l1ghn604q" path="res://icon.svg" id="1_k161g"]
 [ext_resource type="Script" uid="uid://nxlxfh2oeti0" path="res://Assets/Scripts/ratboss.gd" id="1_te6i6"]
+[ext_resource type="Texture2D" uid="uid://cwm0itd1sobmg" path="res://Assets/Images/dillburt.png" id="2_cda3r"]
 [ext_resource type="Texture2D" uid="uid://clxsm5j7o1wux" path="res://Assets/boss assets/Laser_sheet.png" id="2_jv22h"]
 [ext_resource type="Texture2D" uid="uid://b1vfaixx4ipc0" path="res://Assets/boss assets/slash.png" id="3_m6pop"]
 [ext_resource type="Script" uid="uid://ngkok6iu0vfx" path="res://Assets/Scripts/FiniteStateMachine.gd" id="4_te6i6"]
@@ -296,8 +296,8 @@ radius = 250.0
 script = ExtResource("1_te6i6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_k161g")
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("2_cda3r")
 
 [node name="Pivot" type="Node2D" parent="."]
 position = Vector2(0, -5)
@@ -388,6 +388,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 8)
+scale = Vector2(1.5, 1.5)
 shape = SubResource("CapsuleShape2D_rbx1m")
 
 [node name="PlayerDetection" type="Area2D" parent="."]
