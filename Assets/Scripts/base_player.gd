@@ -36,6 +36,7 @@ var state: PlayerState = PlayerState.IDLE
 var is_invulnerable = false
 
 var input_vector := Vector2.ZERO
+var last_input_vector: Vector2
 var attack_direction := Vector2.ZERO
 var dodge_direction = Vector2.ZERO
 
@@ -45,10 +46,6 @@ func init_player():
 	health_bar.max_value = max_health
 	health_bar.value = current_health
 	equip_weapon(WEAPON_PATHS[weapon_type])
-
-# Take Input Passed from Player
-func set_input_vector(v: Vector2) -> void:
-	input_vector = v
 
 func _physics_process(delta: float) -> void:
 	handle_state(delta)

@@ -11,7 +11,7 @@ description = "Gives you attack Speed"
 rarity = "Uncommon"
 sprite = ExtResource("2_lfdvv")
 slotPiece = "Weapon"
-stat_changes = Dictionary[String, int]({
-"AttackSpeed": 0.5
+stat_changes = Dictionary[String, float]({
+"AttackSpeed": 0.0
 })
 metadata/_custom_type_script = "uid://b1agcmofkq6ab"
