@@ -5,13 +5,12 @@
 
 [resource]
 script = ExtResource("1_366ge")
-itemID = "2"
 itemName = "ratGun"
 description = "Gives you attack Speed"
 rarity = "Uncommon"
 sprite = ExtResource("2_lfdvv")
 slot = 1
 stat_changes = Dictionary[String, float]({
-"AttackSpeed": 0.0
+"attack_damage": 300.0
 })
 metadata/_custom_type_script = "uid://b1agcmofkq6ab"

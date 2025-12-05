@@ -3,7 +3,7 @@ class_name BasePlayer
 
 
 #each player will have base stats according to their class
-@export var class_base_stats: MeleeBaseStats
+@export var class_base_stats := MeleeBaseStats.new()
 
 #stats manager takes care of stat calculations
 var stats_manager := StatsManager.new()
@@ -41,6 +41,7 @@ func init_player():
 	if inventory == null:
 		inventory = Inventory.new()
 
+	inventory.item_changed.connect(update_stats)
 
 	if stats_manager == null:
 		stats_manager = StatsManager.new()
@@ -84,6 +85,25 @@ func equip_weapon(path: String) -> void:
 	add_child(weapon_instance)
 	equipped_weapon = weapon_instance
 
+func deal_damage(weapon: Weapon, direction: Vector2, targets: Array):
+	var dmg = current_stats.get("attack_damage", 0)
+
+	for target in targets:
+		if target.has_method("take_damage"):
+			target.take_damage(dmg)
+
+func update_stats() -> void:
+	
+	stats_manager.update_equipment_modifiers(inventory)
+	
+	current_stats = stats_manager.getStats()
+	
+	health_bar.max_value = current_stats.get("max_hp", health_bar.max_value)
+	
+	current_health = clamp(current_health, 0, current_stats.get("max_hp"))
+	health_bar.value = current_health
+	
+	print("Stats updated:", current_stats)
 
 func take_damage(amount: int):
 	current_health = max(current_health - amount, 0)
@@ -105,6 +125,7 @@ func die():
 
 func apply_knockback(direction: Vector2, force: float):
 	knockback_velocity = direction.normalized() * force
+	
 
 #TODO: Rethink this 
 func _process(_delta):
