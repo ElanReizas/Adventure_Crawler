@@ -71,12 +71,14 @@ func attempt_pickup(player: BasePlayer, item: Item) -> void:
 
 	var existing: Item = result["existing_item"]
 
-	print("Swap needed in slot:", slot_name)
-	print("Current:", existing.itemName)
-	print("New:", item.itemName)
+	print("Swapping in slot: ", slot_name)
+	print("Dropping: ", existing.itemName)
+	print("Equipping: ", item.itemName)
 
-	# For now, auto-reject swap and drop the new item
-	player.spawn_item_drop(item)
+	# drop old item
+	player.spawn_item_drop(existing)
+	#equip new item
+	set_item(slot,item)
 
 
 func drop_item_from_slot(player: BasePlayer, slot: Slot) -> void:

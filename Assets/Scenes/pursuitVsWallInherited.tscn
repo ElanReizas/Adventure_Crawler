@@ -77,6 +77,13 @@ tile_set = ExtResource("2_mnmml")
 
 [node name="Player" parent="." index="4"]
 position = Vector2(556, 171)
+speed = null
+melee_attack_range = null
+attack_damage = null
+crit_rate = null
+crit_damage = null
+max_health = null
+weapon_type = null
 
 [node name="Wall" type="StaticBody2D" parent="." index="5"]
 position = Vector2(736, 289)

@@ -89,7 +89,12 @@ func die():
 
 	#Temporary delay in scene reload to see inventory drop for testing
 	await get_tree().create_timer(5.0).timeout
-	get_tree().reload_current_scene()
+	if not is_inside_tree():
+		return
+
+	var tree := get_tree()
+	if tree:
+		tree.reload_current_scene()
 
 
 func apply_knockback(direction: Vector2, force: float):
