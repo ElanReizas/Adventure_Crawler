@@ -5,12 +5,17 @@ extends CharacterBody2D
 @onready var players = get_tree().get_nodes_in_group("player")
 @onready var target = null
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
+@onready var laser = $Pivot/laser
+@onready var laserHitBox = $Pivot/laserHitbox/laserspace
+var phase2_activation: bool = false
 var direction : Vector2
-var max_health: int  = 2000
-var current_health: int = max_health
+var max_health: float  = 100
+var current_health: float = max_health
 func take_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)
 	health_bar.value = current_health
+	if (current_health/max_health <0.5):
+		phase2()
 	if current_health <= 0:
 		health_bar.visible = false
 		find_child("FiniteStateMachine").change_state("Death")
@@ -52,4 +57,17 @@ func nearest_player():
 			nearest_distance = distance
 			nearest_player = player
 	target = nearest_player
+func phase2():
+	if (phase2_activation == false):
+		phase2_activation = true
+		laser.modulate = Color(1, 0, 0)
+		laser.scale.x *=2
+		laser.scale.y *=2
+		laserHitBox.scale.x *=2
+		laserHitBox.scale.y *=2
+		laser.position.x = 580
+		laser.position.y = 145
+		laserHitBox.position.x = 700
+		#melee_damage = 
+		
 	
