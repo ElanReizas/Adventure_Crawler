@@ -13,16 +13,6 @@ func get_modifiers() -> Dictionary:
 		"crit_rate": crit_rate,
 		"crit_multiplier": crit_damage
 	}
-	
-
-func calculate_damage(attacker: Node) -> int:
-	var damage = attack_damage
-	if randf() < crit_rate:
-		#var anim = player.get_node("AnimationPlayer")
-		#anim.play("crit")
-		damage *= crit_damage
-		print("CRIT!")
-	return damage
 
 func get_targets(attacker: Node) -> Array:
 	if attacker.is_in_group("player"):
