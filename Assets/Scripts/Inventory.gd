@@ -1,6 +1,8 @@
 extends Resource
 class_name Inventory
 
+signal item_changed()
+
 enum Slot { WEAPON, HELMET, CHESTPLATE, LEGGINGS, BOOTS, RING, NECKLACE }
 
 # Dictionary storing items by slot
@@ -21,6 +23,7 @@ func get_item(slot: Slot) -> Item:
 
 func set_item(slot: Slot, item: Item) -> void:
 	slots[slot] = item
+	emit_signal("item_changed")
 
 
 func can_equip(player: BasePlayer, item: Item) -> bool:

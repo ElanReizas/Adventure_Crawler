@@ -21,6 +21,7 @@ tile_map_data = PackedByteArray("AAABAAIAAAABAAcAAAABAAMAAAABAAcAAAABAAQAAAABAAc
 tile_set = ExtResource("4_ftpg4")
 
 [node name="Player" parent="." instance=ExtResource("1_f014a")]
+weapon_type = 0
 
 [node name="ItemDrop" parent="." instance=ExtResource("2_ftpg4")]
 position = Vector2(86, 41)

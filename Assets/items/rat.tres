@@ -5,7 +5,6 @@
 
 [resource]
 script = ExtResource("1_gcakg")
-itemID = "1"
 itemName = "Normal Rat"
 description = "Gives you 50 movement speed"
 rarity = "Common"

@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://x5nmwweyovrw"]
+
+[ext_resource type="Texture2D" uid="uid://dv0tu0q764flb" path="res://Assets/Images/sword.png" id="1_5u7an"]
+[ext_resource type="Script" uid="uid://d0oc8vl7471v4" path="res://Assets/Collectables/collectable_entity.gd" id="1_x5jm8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x5jm8"]
+radius = 19.0
+
+[sub_resource type="GDScript" id="GDScript_p5vun"]
+script/source = "extends AnimationPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the epsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="CollectableEntity" type="Area2D"]
+script = ExtResource("1_x5jm8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -14)
+shape = SubResource("CircleShape2D_x5jm8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5u7an")
+offset = Vector2(0, -13)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+script = SubResource("GDScript_p5vun")

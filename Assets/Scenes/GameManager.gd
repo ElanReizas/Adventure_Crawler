@@ -23,7 +23,7 @@ func save_player_state():
 		return
 
 	player_data.health = player.current_health
-	player_data.max_health = player.max_health
+	player_data.max_health = player.current_stats.get("max_hp")
 	player_data.weapon_type = player.weapon_type
 	player_data.inventory = player.inventory.duplicate()
 	
@@ -44,7 +44,7 @@ func load_player_state(p: BasePlayer):
 		p.current_health = player_data.health
 	else:
 		# Theres no saved health value, start fully healed.
-		p.current_health = p.max_health
+		p.current_health = p.current_health
 	if player_data.weapon_type != null:
 		p.weapon_type = player_data.weapon_type
 

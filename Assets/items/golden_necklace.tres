@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dks7alhmiuqp7"]
+
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="1_p0sx8"]
+[ext_resource type="Texture2D" uid="uid://ddvg81p26y67f" path="res://Assets/Images/Necklace.png" id="2_l000q"]
+
+[resource]
+script = ExtResource("1_p0sx8")
+itemID = 1
+itemName = "Golden Necklace"
+description = "A finely crafted magical necklace."
+rarity = "Rare"
+sprite = ExtResource("2_l000q")
+slot = 6
+stat_changes = Dictionary[String, float]({
+"attack_damage": 2.0,
+"max_hp": 10.0
+})

@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://ddb71d02kbkwq"]
+[gd_scene load_steps=13 format=4 uid="uid://ddb71d02kbkwq"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_608f5"]
 [ext_resource type="TileSet" uid="uid://bmuk58cqek4vi" path="res://Assets/map.tres" id="2_mnmml"]
 [ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="3_227lh"]
+[ext_resource type="Script" uid="uid://dhj6vcdl4iuc2" path="res://Assets/Scripts/MeleeBaseStats.gd" id="3_aw0t4"]
+[ext_resource type="Script" path="res://Assets/Scripts/Inventory.gd" id="4_kxvac"]
 [ext_resource type="PackedScene" uid="uid://8uof664rvkaj" path="res://Assets/Scenes/scene_transition.tscn" id="4_mnmml"]
 
 [sub_resource type="Gradient" id="Gradient_7ppdy"]
@@ -15,6 +17,14 @@ height = 32
 fill = 1
 fill_from = Vector2(0.51502144, 0.47639486)
 fill_to = Vector2(0.15450644, 0.16738197)
+
+[sub_resource type="Resource" id="Resource_2ky1a"]
+script = ExtResource("3_aw0t4")
+metadata/_custom_type_script = "uid://dhj6vcdl4iuc2"
+
+[sub_resource type="Resource" id="Resource_jd53k"]
+script = ExtResource("4_kxvac")
+metadata/_custom_type_script = "uid://3ctqwnshebnc"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pkla3"]
 size = Vector2(11.222225, 22.888887)
@@ -77,6 +87,8 @@ tile_set = ExtResource("2_mnmml")
 
 [node name="Player" parent="." index="4"]
 position = Vector2(556, 171)
+class_base_stats = SubResource("Resource_2ky1a")
+inventory = SubResource("Resource_jd53k")
 
 [node name="Wall" type="StaticBody2D" parent="." index="5"]
 position = Vector2(736, 289)

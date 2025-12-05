@@ -1,14 +1,16 @@
 extends CharacterBody2D
 class_name BasePlayer
 
-@export var speed: int = 300
-@export var melee_attack_range: int = 100
-@export var attack_damage: int = 10
 
-@export var crit_rate: float = 0.2
-@export var crit_damage: float = 2
+#each player will have base stats according to their class
+@export var class_base_stats := MeleeBaseStats.new()
 
-@export var max_health: int = 100
+#stats manager takes care of stat calculations
+var stats_manager := StatsManager.new()
+
+#current stats is what the base player actually pulls
+var current_stats: Dictionary = stats_manager.getStats()
+
 var current_health: int
 
 @export var inventory: Inventory
@@ -38,8 +40,18 @@ func init_player():
 	# Ensure each player has their own Inventory resource
 	if inventory == null:
 		inventory = Inventory.new()
+
+	inventory.item_changed.connect(update_stats)
+
+	if stats_manager == null:
+		stats_manager = StatsManager.new()
 	
-	health_bar.max_value = max_health
+	stats_manager.base_stats = class_base_stats.stats
+	current_stats = stats_manager.getStats()
+	
+	current_health = current_stats.get("max_hp")
+	
+	health_bar.max_value = current_stats.get("max_hp")
 	health_bar.value = current_health
 
 	equip_weapon(WEAPON_PATHS[weapon_type])
@@ -48,7 +60,7 @@ func init_player():
 func move_from_input(input_vector: Vector2, delta: float):
 	#player movement can only come from input
 	#knockback velocity is added on top so the player can be pushed even when not moving
-	var move_velocity = input_vector * speed
+	var move_velocity = input_vector * current_stats.get("speed", 0)
 	velocity = move_velocity + knockback_velocity
 	#knockback velocity shrinks to 0 so that it doesnt permanently add onto player velocity
 	if knockback_velocity.length() > 0:
@@ -73,6 +85,25 @@ func equip_weapon(path: String) -> void:
 	add_child(weapon_instance)
 	equipped_weapon = weapon_instance
 
+func deal_damage(weapon: Weapon, direction: Vector2, targets: Array):
+	var dmg = current_stats.get("attack_damage", 0)
+
+	for target in targets:
+		if target.has_method("take_damage"):
+			target.take_damage(dmg)
+
+func update_stats() -> void:
+	
+	stats_manager.update_equipment_modifiers(inventory)
+	
+	current_stats = stats_manager.getStats()
+	
+	health_bar.max_value = current_stats.get("max_hp", health_bar.max_value)
+	
+	current_health = clamp(current_health, 0, current_stats.get("max_hp"))
+	health_bar.value = current_health
+	
+	print("Stats updated:", current_stats)
 
 func take_damage(amount: int):
 	current_health = max(current_health - amount, 0)
@@ -94,6 +125,7 @@ func die():
 
 func apply_knockback(direction: Vector2, force: float):
 	knockback_velocity = direction.normalized() * force
+	
 
 #TODO: Rethink this 
 func _process(_delta):
