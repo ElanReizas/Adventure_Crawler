@@ -63,11 +63,11 @@ func phase2():
 		laser.modulate = Color(1, 0, 0)
 		laser.scale.x *=2
 		laser.scale.y *=2
-		laserHitBox.scale.x *=2
-		laserHitBox.scale.y *=2
+		laserHitBox.scale.x *=1.45
+		laserHitBox.scale.y *=1.45
 		laser.position.x = 580
 		laser.position.y = 145
-		laserHitBox.position.x = 700
+		laserHitBox.position.x = 200
 		#melee_damage = 
 		
 	
