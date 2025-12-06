@@ -36,8 +36,9 @@ var knockback_interval: float = 0.4
 
 #PATROL STATES
 
-enum State { PATROL, PURSUIT, RETURN }
-var state: State = State.PATROL
+enum EnemyState { PATROL, PURSUIT, RETURN }
+
+var state: EnemyState = EnemyState.PATROL
 var pursuit_timer: float = 0.0
 var patrol_target: Vector2 = Vector2.ZERO
 
@@ -95,17 +96,17 @@ func _physics_process(delta: float) -> void:
 	acquire_target()
 	
 	#transition to pursuit if detected
-	if can_detect_player() and state != State.PURSUIT:
-		state = State.PURSUIT
+	if can_detect_player() and state != EnemyState.PURSUIT:
+		state = EnemyState.PURSUIT
 		pursuit_timer = 0.0
 
 	#run the active state behavior
 	match state:
-		State.PATROL:
+		EnemyState.PATROL:
 			patrol_behavior()
-		State.PURSUIT:
+		EnemyState.PURSUIT:
 			pursuit_behavior(delta)
-		State.RETURN:
+		EnemyState.RETURN:
 			return_behavior()
 			
 	var collision := move_and_collide(velocity * delta)
@@ -196,7 +197,7 @@ func pursuit_behavior(delta: float):
 	
 	#return to patroling if target is lost
 	if target == null:
-		state = State.RETURN
+		state = EnemyState.RETURN
 		velocity = Vector2.ZERO
 		patrol_target = get_random_patrol_point()
 		nav.set_target_position(patrol_target)
@@ -215,7 +216,7 @@ func pursuit_behavior(delta: float):
 
 	# confirm player is still inside patrol region
 	if player_nav_point.distance_to(target.global_position) > 16:
-		state = State.RETURN
+		state = EnemyState.RETURN
 		velocity = Vector2.ZERO
 		patrol_target = get_random_patrol_point()
 		nav.set_target_position(patrol_target)
@@ -273,7 +274,7 @@ func pursuit_behavior(delta: float):
 
 	# Give up after max pursuit time
 	if pursuit_timer > max_pursuit_time:
-		state = State.RETURN
+		state = EnemyState.RETURN
 		velocity = Vector2.ZERO
 		patrol_target = get_random_patrol_point()
 		nav.set_target_position(patrol_target)
@@ -285,7 +286,7 @@ func return_behavior():
 
 	if global_position.distance_to(patrol_target) < 20:
 		is_idling = false
-		state = State.PATROL
+		state = EnemyState.PATROL
 		patrol_target = get_random_patrol_point()
 		nav.set_target_position(patrol_target)
 	# gwt navmap
@@ -469,9 +470,9 @@ func rangedMovement():
 func _draw():
 	var state_color := Color(0, 1, 0, 0.35) # green = patroling
 
-	if state == State.PURSUIT:
+	if state == EnemyState.PURSUIT:
 		state_color = Color(1, 0, 0, 0.35) # red = chasing
-	elif state == State.RETURN:
+	elif state == EnemyState.RETURN:
 		state_color = Color(0, 0.5, 1, 0.35) # blue = returning
 
 	# Detection radius (state-colored)
@@ -481,5 +482,5 @@ func _draw():
 	draw_circle(Vector2.ZERO, attack_radius, Color(1, 1, 1, 0.25))
 
 	# Patrol destination marker
-	if state != State.PURSUIT:
+	if state != EnemyState.PURSUIT:
 		draw_circle(to_local(patrol_target), 6, Color(1, 1, 0, 0.9))
