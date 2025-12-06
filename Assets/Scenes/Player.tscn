@@ -135,9 +135,10 @@ target_position = Vector2(0, 32)
 
 [node name="Pivot" type="Node2D" parent="."]
 position = Vector2(0, -5)
+rotation = 1.2304571
 
 [node name="slash" type="Sprite2D" parent="Pivot"]
-position = Vector2(20, 5)
+position = Vector2(15, 6)
 rotation = 1.1815879
 scale = Vector2(0.33, 0.33)
 texture = ExtResource("3_aee6e")
