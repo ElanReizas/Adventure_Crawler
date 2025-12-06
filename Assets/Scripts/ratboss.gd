@@ -9,12 +9,12 @@ extends CharacterBody2D
 @onready var laserHitBox = $Pivot/laserHitbox/laserspace
 var phase2_activation: bool = false
 var direction : Vector2
-var max_health: float  = 100
+var max_health: float  = 2000
 var current_health: float = max_health
 func take_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)
 	health_bar.value = current_health
-	if (current_health/max_health <0.5):
+	if (current_health/max_health <=0.5):
 		phase2()
 	if current_health <= 0:
 		health_bar.visible = false
@@ -62,12 +62,12 @@ func phase2():
 		phase2_activation = true
 		laser.modulate = Color(1, 0, 0)
 		laser.scale.x *=2
-		laser.scale.y *=2
-		laserHitBox.scale.x *=1.45
-		laserHitBox.scale.y *=1.45
+		laser.scale.y *=1.5
+		laserHitBox.scale.x = 43
+		laserHitBox.scale.y = 50
 		laser.position.x = 580
-		laser.position.y = 145
-		laserHitBox.position.x = 200
-		#melee_damage = 
+		laser.position.y = 109
+		laserHitBox.position.x = 678.5
+		laserHitBox.position.y = 3.0
 		
 	
