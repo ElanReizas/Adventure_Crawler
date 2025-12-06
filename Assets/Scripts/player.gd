@@ -16,7 +16,7 @@ func _physics_process(delta):
 		var aim_direction = (mouse_pos - global_position).normalized()
 		if equipped_weapon is MeleeWeapon:
 			get_node("Pivot").look_at(mouse_pos)
-			animation_player.play("playerSlash")
+			animation_player.play("normalSlash")
 		equipped_weapon.attack(self, aim_direction)
 
 

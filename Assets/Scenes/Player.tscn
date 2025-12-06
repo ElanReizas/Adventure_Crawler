@@ -94,7 +94,7 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_aee6e"),
 &"crit": SubResource("Animation_b2ifw"),
-&"playerSlash": SubResource("Animation_e5q2x")
+&"normalSlash": SubResource("Animation_e5q2x")
 }
 
 [node name="Player" type="CharacterBody2D"]
