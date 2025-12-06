@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bf21l51gif70h"]
+[gd_scene load_steps=9 format=3 uid="uid://bf21l51gif70h"]
 
 [ext_resource type="Script" uid="uid://di402qubv5o6x" path="res://Assets/Scripts/player.gd" id="1_3e2tf"]
 [ext_resource type="Texture2D" uid="uid://bf3arkmdj4im4" path="res://Assets/Images/player.png" id="2_b2ifw"]
+[ext_resource type="Texture2D" uid="uid://ftobmbfvtiel" path="res://Assets/combat asset/slash.png" id="3_aee6e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aee6e"]
 radius = 9.848858
@@ -32,6 +33,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(-46, -111)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/slash:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
 
 [sub_resource type="Animation" id="Animation_b2ifw"]
 resource_name = "crit"
@@ -61,16 +74,32 @@ tracks/1/keys = {
 "values": [Vector2(-46, -69), Vector2(-46, -131)]
 }
 
+[sub_resource type="Animation" id="Animation_e5q2x"]
+resource_name = "playerSlash"
+length = 0.250005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/slash:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.250005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aee6e"]
 _data = {
 &"RESET": SubResource("Animation_aee6e"),
-&"crit": SubResource("Animation_b2ifw")
+&"crit": SubResource("Animation_b2ifw"),
+&"playerSlash": SubResource("Animation_e5q2x")
 }
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_3e2tf")
-weapon_type = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_b2ifw")
@@ -103,3 +132,15 @@ theme_override_font_sizes/font_size = 16
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 32)
+
+[node name="Pivot" type="Node2D" parent="."]
+position = Vector2(0, -5)
+
+[node name="slash" type="Sprite2D" parent="Pivot"]
+position = Vector2(20, 5)
+rotation = 1.1815879
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("3_aee6e")
+hframes = 5
+vframes = 2
+frame = 9

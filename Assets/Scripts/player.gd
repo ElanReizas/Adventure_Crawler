@@ -1,7 +1,6 @@
 extends BasePlayer
 class_name Player
 
-
 func _ready():
 	GameManager.register_player(self)
 	GameManager.load_player_state(self)
@@ -15,6 +14,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("attack") and equipped_weapon:
 		var mouse_pos = get_global_mouse_position()
 		var aim_direction = (mouse_pos - global_position).normalized()
+		if equipped_weapon is MeleeWeapon:
+			get_node("Pivot").look_at(mouse_pos)
+			animation_player.play("playerSlash")
 		equipped_weapon.attack(self, aim_direction)
 
 
