@@ -10,7 +10,6 @@ itemName = "Gumball Machine"
 description = "Gives you the wise words of benson"
 rarity = "Epic"
 sprite = ExtResource("2_6wytc")
-slotPiece = 1
 stat_changes = Dictionary[String, float]({
 "Attack": 20.0
 })

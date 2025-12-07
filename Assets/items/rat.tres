@@ -10,7 +10,6 @@ itemName = "Normal Rat"
 description = "Gives you 50 movement speed"
 rarity = "Common"
 sprite = ExtResource("2_xb3jv")
-slot = 2
 stat_changes = Dictionary[String, float]({
 "Speed": 50.0
 })

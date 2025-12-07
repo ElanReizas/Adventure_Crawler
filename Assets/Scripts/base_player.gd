@@ -1,16 +1,16 @@
 extends CharacterBody2D
 class_name BasePlayer
 
+@export_category("stats")
 @export var speed: int = 300
-@export var melee_attack_range: int = 100
 @export var attack_damage: int = 10
-
 @export var crit_rate: float = 0.2
 @export var crit_damage: float = 2
-
 @export var max_health: int = 100
 var current_health: int
 
+@export_category("other stuff")
+@export var melee_attack_range: int = 100
 @export var inventory: Inventory
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
