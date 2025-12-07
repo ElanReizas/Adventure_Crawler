@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://co2uxwcmii0nh"]
+[gd_scene load_steps=11 format=4 uid="uid://co2uxwcmii0nh"]
 
 [ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="1_f014a"]
 [ext_resource type="PackedScene" uid="uid://dld706xjid8yn" path="res://Assets/Scenes/ItemDrop.tscn" id="2_ftpg4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://u5t54ipho87d" path="res://Assets/rat.tres" id="6_7e17q"]
 [ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="7_3v1pc"]
 [ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="8_1qilb"]
+[ext_resource type="PackedScene" uid="uid://8uof664rvkaj" path="res://Assets/Scenes/scene_transition.tscn" id="9_kdgud"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3v1pc"]
 vertices = PackedVector2Array(686.96875, 300, 464.89844, 300, 462.10156, 20, 686.03125, 20)
@@ -45,3 +46,7 @@ possible_drops = Array[ExtResource("8_1qilb")]([ExtResource("6_7e17q"), ExtResou
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_3v1pc")
+
+[node name="SceneTransition" parent="." instance=ExtResource("9_kdgud")]
+position = Vector2(-99, 74)
+new_scene = "res://Assets/Scenes/shop.tscn"

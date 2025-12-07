@@ -5,8 +5,11 @@ class_name Player
 var is_attacking = false
 func _ready():
 	GameManager.register_player(self)
-	GameManager.load_player_state(self)
 	init_player()
+	GameManager.load_player_state(self)
+	apply_item_stats()
+	update_health_ui()
+
 
 
 func _physics_process(delta):
@@ -38,3 +41,11 @@ func _input(event: InputEvent) -> void:
 		if last_item_in_range:
 			last_item_in_range.pickup(self)
 			return
+	if event.is_action_pressed("debug"):
+		#inventory.print_inv()
+		GameManager.save_to_file()
+
+	if event.is_action_pressed("load"):
+		#inventory.print_inv()
+		GameManager.load_from_file()
+		get_tree().reload_current_scene()
