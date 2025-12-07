@@ -32,9 +32,7 @@ I really REALLY think you should give me some gold! Can you please spare some ch
 => END 
 
 ~ gumball
-I'm gonna give you a tutorial soon. 
-Definitely soon.
-Right.
+It's good to see you again, wait a second, how did you get here...? Why are you all dirtied?
 => END 
 
 ~ dialogueAction
@@ -51,3 +49,8 @@ Whatever, I will do whatever it takes. One way or another that relic is mine!
 ~ dialogueAction2
 THE CUTSCENE JUST RAN
 => END 
+~ tutorial
+Hi there rookie, you look completely new let me give you the rundown
+wasd movement controls, e to interact, left click to attack, m for inventory
+Esc for further options
+=> END
