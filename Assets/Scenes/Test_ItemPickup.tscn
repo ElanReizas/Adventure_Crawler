@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="1_f014a"]
 [ext_resource type="PackedScene" uid="uid://dld706xjid8yn" path="res://Assets/Scenes/ItemDrop.tscn" id="2_ftpg4"]
-[ext_resource type="Resource" uid="uid://doht6s1i12boj" path="res://Assets/items/gumball.tres" id="3_8aohl"]
+[ext_resource type="Resource" uid="uid://doht6s1i12boj" path="res://Assets/gumball.tres" id="3_8aohl"]
 [ext_resource type="TileSet" uid="uid://bmuk58cqek4vi" path="res://Assets/map.tres" id="4_ftpg4"]
-[ext_resource type="Resource" uid="uid://1atwugovtayb" path="res://Assets/items/ratGun.tres" id="5_8aohl"]
-[ext_resource type="Resource" uid="uid://u5t54ipho87d" path="res://Assets/items/rat.tres" id="6_7e17q"]
+[ext_resource type="Resource" uid="uid://1atwugovtayb" path="res://Assets/ratGun.tres" id="5_8aohl"]
+[ext_resource type="Resource" uid="uid://u5t54ipho87d" path="res://Assets/rat.tres" id="6_7e17q"]
 [ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="7_3v1pc"]
 [ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="8_1qilb"]
 
@@ -27,11 +27,15 @@ position = Vector2(86, 41)
 item = ExtResource("3_8aohl")
 
 [node name="ItemDrop2" parent="." instance=ExtResource("2_ftpg4")]
+position = Vector2(88, 122)
+item = ExtResource("6_7e17q")
+
+[node name="ItemDrop3" parent="." instance=ExtResource("2_ftpg4")]
 position = Vector2(87, 212)
 item = ExtResource("5_8aohl")
 
-[node name="ItemDrop3" parent="." instance=ExtResource("2_ftpg4")]
-position = Vector2(88, 122)
+[node name="ItemDrop4" parent="." instance=ExtResource("2_ftpg4")]
+position = Vector2(89, 281)
 item = ExtResource("6_7e17q")
 
 [node name="Enemy" parent="." instance=ExtResource("7_3v1pc")]

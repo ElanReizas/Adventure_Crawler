@@ -1,5 +1,4 @@
 extends State
-
 #var locked_angle
 @onready var pivot = $"../../Pivot"
 var can_transition: bool = false

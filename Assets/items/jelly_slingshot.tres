@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b7rfcatp5droq"]
+
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="1_ebwnj"]
+[ext_resource type="Texture2D" uid="uid://bo3j534ymuuqm" path="res://Assets/Images/item sprites/jelly slingshot.png" id="2_4cfwh"]
+
+[resource]
+script = ExtResource("1_ebwnj")
+itemID = "2"
+itemName = "Jelly Slingshot"
+description = "Sticky shots fired from a wobbling jelly band."
+rarity = "Common"
+sprite = ExtResource("2_4cfwh")
+allowed_class = 2
+stat_changes = Dictionary[String, float]({
+"bullet_speed": 20.0,
+"damage": 3.0
+})

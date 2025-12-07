@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=4 uid="uid://drum2so61txqm"]
+[gd_scene load_steps=4 format=4 uid="uid://drum2so61txqm"]
 
+[ext_resource type="Script" uid="uid://cs8e5c64iely3" path="res://Assets/Scripts/init_scene.gd" id="1_0sx4s"]
 [ext_resource type="Script" uid="uid://cy0ivya6cpkti" path="res://Assets/Scripts/MultiplayerGameManager.gd" id="1_mfuk4"]
 [ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="1_pdpxg"]
 
 [node name="InheritedFloor" type="Node2D"]
+script = ExtResource("1_0sx4s")
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("host_game", "join_as_player_2")]
 unique_name_in_owner = true
@@ -25,6 +27,8 @@ tile_map_data = PackedByteArray("AAD4//z/AAAAAAcAAAD4//3/AAAAAAcAAAD4//7/AAAAAAc
 [node name="NavigationObstacles" type="Node2D" parent="NavigationItems"]
 
 [node name="NavigationRegions" type="Node2D" parent="NavigationItems"]
+
+[node name="CutsceneNodes" type="Node2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

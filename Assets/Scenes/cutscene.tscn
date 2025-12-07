@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://4w7go04aon1u"]
+
+[ext_resource type="Script" uid="uid://c7rkf7vh4c4gp" path="res://Assets/Scripts/cutscene_scripts/cutscene.gd" id="1_argyg"]
+[ext_resource type="Script" uid="uid://pallb83dwmjh" path="res://Assets/Scripts/cutscene_scripts/cutscene_action.gd" id="2_lgdvr"]
+
+[node name="Cutscene" type="Node2D"]
+script = ExtResource("1_argyg")
+steps = Array[ExtResource("2_lgdvr")]([null])
