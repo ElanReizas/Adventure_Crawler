@@ -1,7 +1,7 @@
 extends Node2D
 var shop_inventory: Array[ItemStack]= []
 @export var dialogue_file: DialogueResource
-@export var dialogue_title: String = "start"
+@export var dialogue_title: String = "itemHolder"
 @export var item_price: int = 10
 @export var items: Array[Item]
 @onready var sprite_node := $Sprite2D

@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var laserHitBox = $Pivot/laserHitbox/laserspace
 var phase2_activation: bool = false
 var direction : Vector2
-var max_health: float  = 2000
+var max_health: float  = 100
 var current_health: float = max_health
 func take_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)

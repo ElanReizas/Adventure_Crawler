@@ -1,12 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1oy5576f4dy7"]
+[gd_scene load_steps=2 format=3 uid="uid://b1oy5576f4dy7"]
 
 [ext_resource type="PackedScene" uid="uid://dnpkxy2iw080w" path="res://Assets/Scenes/Boss.tscn" id="1_nj2bo"]
-[ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="2_ngy7y"]
 
 [node name="BossRoom" type="Node2D"]
 
 [node name="RatBoss" parent="." instance=ExtResource("1_nj2bo")]
 position = Vector2(348, 168)
-
-[node name="Player" parent="." instance=ExtResource("2_ngy7y")]
-position = Vector2(43, 323)

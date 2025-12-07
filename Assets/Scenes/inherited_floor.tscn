@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://drum2so61txqm"]
+[gd_scene load_steps=5 format=4 uid="uid://drum2so61txqm"]
 
-[ext_resource type="Script" uid="uid://cs8e5c64iely3" path="res://Assets/Scripts/init_scene.gd" id="1_0sx4s"]
+[ext_resource type="Script" path="res://Assets/Scripts/init_scene.gd" id="1_0sx4s"]
 [ext_resource type="Script" uid="uid://cy0ivya6cpkti" path="res://Assets/Scripts/MultiplayerGameManager.gd" id="1_mfuk4"]
 [ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="1_pdpxg"]
+[ext_resource type="AudioStream" uid="uid://dscwnq3uc207m" path="res://Assets/Witch Bolt - Growing Sycamore.mp3" id="4_cmyw1"]
 
 [node name="InheritedFloor" type="Node2D"]
 script = ExtResource("1_0sx4s")
@@ -63,3 +64,7 @@ spawn_path = NodePath("../Players")
 spawn_limit = 2
 
 [node name="Players" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_cmyw1")
+autoplay = true
