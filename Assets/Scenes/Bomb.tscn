@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bywwns87m51ml"]
 
-[ext_resource type="Script" uid="uid://ct0ehwekwb0b5" path="res://Assets/Scripts/bullet.gd" id="1_ofauy"]
-[ext_resource type="Texture2D" uid="uid://dw23l1ghn604q" path="res://icon.svg" id="2_pwa3h"]
+[ext_resource type="Script" path="res://Assets/Scripts/bullet.gd" id="1_ofauy"]
+[ext_resource type="Texture2D" uid="uid://cj0wfpiu6o38h" path="res://Assets/Images/apple bomb.png" id="2_ofauy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i5nsh"]
 radius = 5.0
@@ -12,7 +12,7 @@ script = ExtResource("1_ofauy")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.875, -4.375001)
 scale = Vector2(0.091796875, 0.08398439)
-texture = ExtResource("2_pwa3h")
+texture = ExtResource("2_ofauy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5)
