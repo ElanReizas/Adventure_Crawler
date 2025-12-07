@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_xjc4d")
-itemID = "3"
+itemID = "999"
 itemName = "Gumball Machine"
 description = "Gives you the wise words of benson"
 rarity = "Epic"

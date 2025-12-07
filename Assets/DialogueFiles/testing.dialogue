@@ -29,3 +29,11 @@ I'm gonna give you a tutorial soon.
 Definitely soon.
 Right.
 => END 
+
+~ dialogueAction
+HELLO WORLD
+=> END 
+
+~ dialogueAction2
+THE CUTSCENE JUST RAN
+=> END 
