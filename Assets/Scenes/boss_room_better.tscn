@@ -1,12 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://glapcrxrqs24"]
+[gd_scene load_steps=4 format=3 uid="uid://glapcrxrqs24"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_j2esp"]
 [ext_resource type="PackedScene" uid="uid://dnpkxy2iw080w" path="res://Assets/Scenes/Boss.tscn" id="2_8vp2r"]
+[ext_resource type="Texture2D" uid="uid://cpxds4tsrfamk" path="res://Assets/Images/tilesets/bossMap.png" id="2_r3y3p"]
 
 [node name="InheritedFloor" instance=ExtResource("1_j2esp")]
 
-[node name="Player" parent="." index="2"]
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+offset_left = -963.0
+offset_top = -1239.0
+offset_right = 931.0
+offset_bottom = 399.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+position = Vector2(-43, -430)
+texture = ExtResource("2_r3y3p")
+
+[node name="TextureRect" type="TextureRect" parent="Sprite2D" index="0"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Player" parent="." index="4"]
 weapon_type = 1
 
-[node name="RatBoss" parent="." index="10" instance=ExtResource("2_8vp2r")]
-position = Vector2(500, 0)
+[node name="RatBoss" parent="." index="12" instance=ExtResource("2_8vp2r")]
+position = Vector2(4, -634)
+
+[node name="SceneTransition" parent="." index="14"]
+position = Vector2(-16, 10)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="15"]
+
+[node name="Border" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
+build_mode = 1
+polygon = PackedVector2Array(-139, 80, -108, 10, -315, -86, -365, -143, -426, -162, -499, -255, -527, -384, -558, -411, -556, -471, -524, -513, -501, -606, -368, -779, -189, -851, -59, -847, 58, -866, 160, -841, 238, -841, 307, -814, 410, -720, 441, -565, 471, -518, 470, -395, 449, -232, 380, -144, 371, -104, 296, -52, 229, -33, 134, 11, 171, 78)
