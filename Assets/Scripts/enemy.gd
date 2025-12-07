@@ -5,6 +5,7 @@ var player_in_sight: bool = false
 @export var current_health: int
 #grab group of player in players
 @onready var players = get_tree().get_nodes_in_group("player")
+@onready var sprite = $Sprite2D
 #Variable to determine if the player was seen by an enemy to initiate engage targetting
 var playerSeen = false
 #Enemy combat style
@@ -59,7 +60,12 @@ var is_idling: bool = false
 
 
 func _ready():
-	
+	if weapon_type == WeaponType.MELEE:
+		sprite.texture = load("res://Assets/Images/enemy.png")
+	else:
+		sprite.texture = load("res://Assets/Images/enemy_strapped.png")
+	nav.avoidance_enabled = true
+	nav.radius = 8.0
 	#randomize for patroling
 	randomize()
 	enemy_id = get_path()
@@ -412,7 +418,7 @@ func SightCheck():
 	if target ==null:
 		player_in_sight = false
 		return
-	
+
 	var space_state = get_world_2d().direct_space_state
 
 	# Raycast setup: start at enemy, end at player
