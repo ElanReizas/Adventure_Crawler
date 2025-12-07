@@ -32,6 +32,7 @@ const WEAPON_PATHS := {
 var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_decay: float = 800.0
 
+var running_dialogue: bool = false
 
 func init_player():
 	add_to_group("player")
