@@ -27,10 +27,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interaction"):
 
 		# Priority 1: world object interaction (NPCs, shops, doors, etc.)
-		var object: Object = ray_cast_2d.get_collider()
-		if object and object.has_method("interaction"):
-			object.interaction()
-			return
+		for object in interaction_area.get_overlapping_bodies():
+			if object and object.has_method("interaction"):
+				object.interaction()
+				return
 
 		# Priority 2: item pickup
 		if last_item_in_range:

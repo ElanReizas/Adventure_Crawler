@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bf21l51gif70h"]
+[gd_scene load_steps=10 format=3 uid="uid://bf21l51gif70h"]
 
 [ext_resource type="Script" uid="uid://di402qubv5o6x" path="res://Assets/Scripts/player.gd" id="1_3e2tf"]
 [ext_resource type="Texture2D" uid="uid://bf3arkmdj4im4" path="res://Assets/Images/player.png" id="2_b2ifw"]
@@ -97,6 +97,9 @@ _data = {
 &"normalSlash": SubResource("Animation_e5q2x")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_b2ifw"]
+radius = 26.0
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_3e2tf")
@@ -130,8 +133,11 @@ offset_right = 36.0
 offset_bottom = -17.0
 theme_override_font_sizes/font_size = 16
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, 32)
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_b2ifw")
+debug_color = Color(0.52328384, 0.45031285, 0.91723084, 0.41960785)
 
 [node name="Pivot" type="Node2D" parent="."]
 position = Vector2(0, -5)
