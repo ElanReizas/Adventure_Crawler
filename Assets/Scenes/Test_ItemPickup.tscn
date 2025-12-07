@@ -27,11 +27,15 @@ position = Vector2(86, 41)
 item = ExtResource("3_8aohl")
 
 [node name="ItemDrop2" parent="." instance=ExtResource("2_ftpg4")]
+position = Vector2(88, 122)
+item = ExtResource("6_7e17q")
+
+[node name="ItemDrop3" parent="." instance=ExtResource("2_ftpg4")]
 position = Vector2(87, 212)
 item = ExtResource("5_8aohl")
 
-[node name="ItemDrop3" parent="." instance=ExtResource("2_ftpg4")]
-position = Vector2(88, 122)
+[node name="ItemDrop4" parent="." instance=ExtResource("2_ftpg4")]
+position = Vector2(89, 281)
 item = ExtResource("6_7e17q")
 
 [node name="Enemy" parent="." instance=ExtResource("7_3v1pc")]
