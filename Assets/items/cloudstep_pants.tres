@@ -10,7 +10,7 @@ itemName = "Cloudstep Pants"
 description = "Light as air and twice as floaty."
 rarity = "Uncommon"
 sprite = ExtResource("2_x4tfk")
-slot = 3
+slot = 1
 stat_changes = Dictionary[String, float]({
 "melee_range": 5.0,
 "speed": 25.0

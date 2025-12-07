@@ -54,9 +54,7 @@ func init_player():
 
 		
 	apply_item_stats()
-	health_bar.max_value = max_health
-	health_bar.value = current_health
-
+	update_health_ui()
 	equip_weapon(WEAPON_PATHS[weapon_type])
 
 
@@ -74,7 +72,10 @@ func move_from_input(input_vector: Vector2, delta: float):
 
 	move_and_slide()
 
-
+func update_health_ui():
+	health_bar.max_value = max_health
+	health_bar.value = current_health
+	
 func equip_weapon(path: String) -> void:
 	if equipped_weapon != null:
 		equipped_weapon.queue_free()
@@ -87,7 +88,7 @@ func equip_weapon(path: String) -> void:
 
 func take_damage(amount: int):
 	current_health = max(current_health - amount, 0)
-	health_bar.value = current_health
+	update_health_ui()
 
 	if current_health <= 0:
 		die()
