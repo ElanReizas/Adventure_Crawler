@@ -1,7 +1,7 @@
 extends BasePlayer
 class_name Player
 #test money for shop purchase
-@export var gold = 10
+@export var gold = 200
 var is_attacking = false
 func _ready():
 	GameManager.register_player(self)

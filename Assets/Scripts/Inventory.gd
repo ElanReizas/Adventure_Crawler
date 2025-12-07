@@ -4,7 +4,7 @@ class_name Inventory
 #im shrinking the size of the inventory for now, but we can scale it back later
 enum Slot { WEAPON, HELMET, CHESTPLATE}
 
-@export var slots: Array[Item] = [null, null, null]
+@export var slots: Array[Item] = [null, null, null, null, null]
 
 
 func get_item(slot: Slot) -> Item:
