@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bpy235cer03ge"]
+
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="1_ji6wb"]
+[ext_resource type="Texture2D" uid="uid://dp1gdpx1bfu4h" path="res://Assets/Images/item sprites/toasted chestpiece.png" id="2_yo5lu"]
+
+[resource]
+script = ExtResource("1_ji6wb")
+itemID = "4"
+itemName = "Toasted Chestpiece"
+description = "Warm armor made from enchanted bread plates."
+rarity = "Rare"
+sprite = ExtResource("2_yo5lu")
+slot = 2
+stat_changes = Dictionary[String, float]({
+"max_health": 20.0,
+"speed": -10.0
+})

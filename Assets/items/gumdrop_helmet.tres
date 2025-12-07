@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c34te5kjf8qxa"]
+
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="1_8odiq"]
+[ext_resource type="Texture2D" uid="uid://bcy1tbgdemoiu" path="res://Assets/Images/item sprites/gumdrop helmet.png" id="2_mbtbr"]
+
+[resource]
+script = ExtResource("1_8odiq")
+itemID = "3"
+itemName = "Gumdrop Helmet"
+description = "Soft candy shell that protects the mind."
+rarity = "Common"
+sprite = ExtResource("2_mbtbr")
+slot = 1
+stat_changes = Dictionary[String, float]({
+"max_health": 15.0
+})

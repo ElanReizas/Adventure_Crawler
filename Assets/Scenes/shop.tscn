@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://diw6i3cwqa1ic"]
+[gd_scene load_steps=28 format=4 uid="uid://diw6i3cwqa1ic"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_7ortk"]
 [ext_resource type="TileSet" uid="uid://bmuk58cqek4vi" path="res://Assets/map.tres" id="2_dciiy"]
@@ -9,9 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://vu4wsol6hs0c" path="res://Assets/Scenes/item_interaction.tscn" id="7_dciiy"]
 [ext_resource type="Texture2D" uid="uid://dv0tu0q764flb" path="res://Assets/Images/sword.png" id="7_ydhgn"]
 [ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="8_v0t5h"]
-[ext_resource type="Resource" uid="uid://u5t54ipho87d" path="res://Assets/items/rat.tres" id="9_v0t5h"]
-[ext_resource type="Resource" uid="uid://doht6s1i12boj" path="res://Assets/items/gumball.tres" id="10_ydhgn"]
-[ext_resource type="Resource" uid="uid://1atwugovtayb" path="res://Assets/items/ratGun.tres" id="11_g7qtd"]
+[ext_resource type="Resource" uid="uid://c34te5kjf8qxa" path="res://Assets/items/gumdrop_helmet.tres" id="10_7gtlo"]
+[ext_resource type="Resource" uid="uid://b7rfcatp5droq" path="res://Assets/items/jelly_slingshot.tres" id="11_nd8g5"]
+[ext_resource type="Resource" uid="uid://dt6iplkspidlw" path="res://Assets/items/marshmallow_boots.tres" id="12_i6re0"]
+[ext_resource type="Resource" uid="uid://ryen0ugjho5s" path="res://Assets/items/candy_carver.tres" id="12_ydhgn"]
+[ext_resource type="Resource" uid="uid://bpy235cer03ge" path="res://Assets/items/toasted_chestpiece.tres" id="13_qf3f5"]
+[ext_resource type="Resource" uid="uid://oo4fqxv7tq06" path="res://Assets/items/cloudstep_pants.tres" id="14_ynjiw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgaav"]
 texture = ExtResource("3_s5gg0")
@@ -32,7 +35,7 @@ sources/0 = SubResource("TileSetAtlasSource_fgaav")
 size = Vector2(48, 70)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_myf4l"]
-size = Vector2(26, 32)
+size = Vector2(17.5, 17.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8kdgp"]
 size = Vector2(42, 50)
@@ -52,7 +55,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(65, -4.2115383)]
+"values": [Vector2(65, -5)]
 }
 
 [sub_resource type="Animation" id="Animation_v0t5h"]
@@ -106,12 +109,29 @@ tracks/0/keys = {
 "values": [Vector2(165, -5), Vector2(165, -10), Vector2(165, -5)]
 }
 
+[sub_resource type="Animation" id="Animation_0tssf"]
+resource_name = "hoveritem4"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(65, -5), Vector2(65, -10)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_myf4l"]
 _data = {
 &"RESET": SubResource("Animation_ydhgn"),
 &"hoverItem1": SubResource("Animation_v0t5h"),
 &"hoverItem2": SubResource("Animation_8kdgp"),
-&"hoverItem3": SubResource("Animation_7ortk")
+&"hoverItem3": SubResource("Animation_7ortk"),
+&"hoveritem4": SubResource("Animation_0tssf")
 }
 
 [node name="InheritedFloor" instance=ExtResource("1_7ortk")]
@@ -152,7 +172,7 @@ dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "Guntro"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Guntro" index="0"]
-position = Vector2(-117, -55)
+position = Vector2(-116.25, -57.75)
 shape = SubResource("RectangleShape2D_myf4l")
 
 [node name="notBMO" parent="Interactions" index="2" instance=ExtResource("4_fm1ei")]
@@ -166,10 +186,10 @@ shape = SubResource("RectangleShape2D_8kdgp")
 [node name="ItemSlot1" parent="Interactions" index="3" instance=ExtResource("7_dciiy")]
 dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "itemHolder"
-items = Array[ExtResource("8_v0t5h")]([ExtResource("10_ydhgn"), ExtResource("9_v0t5h"), ExtResource("11_g7qtd")])
+items = Array[ExtResource("8_v0t5h")]([ExtResource("12_ydhgn"), ExtResource("10_7gtlo"), ExtResource("11_nd8g5"), ExtResource("12_i6re0"), ExtResource("13_qf3f5"), ExtResource("14_ynjiw")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot1" index="0"]
-position = Vector2(65, -4.2115383)
+position = Vector2(65, -5)
 texture = ExtResource("7_ydhgn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/ItemSlot1" index="1"]
@@ -194,10 +214,10 @@ horizontal_alignment = 1
 [node name="ItemSlot2" parent="Interactions" index="4" instance=ExtResource("7_dciiy")]
 dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "itemHolder"
-items = Array[ExtResource("8_v0t5h")]([ExtResource("10_ydhgn"), ExtResource("9_v0t5h"), ExtResource("11_g7qtd")])
+items = Array[ExtResource("8_v0t5h")]([ExtResource("12_ydhgn"), ExtResource("14_ynjiw"), ExtResource("10_7gtlo"), ExtResource("11_nd8g5"), ExtResource("12_i6re0"), ExtResource("13_qf3f5")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot2" index="0"]
-position = Vector2(65, -4.2115383)
+position = Vector2(65, -5)
 texture = ExtResource("7_ydhgn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/ItemSlot2" index="1"]
@@ -222,10 +242,10 @@ autoplay = "hoverItem2"
 [node name="ItemSlot3" parent="Interactions" index="5" instance=ExtResource("7_dciiy")]
 dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "itemHolder"
-items = Array[ExtResource("8_v0t5h")]([ExtResource("10_ydhgn"), ExtResource("9_v0t5h"), ExtResource("11_g7qtd")])
+items = Array[ExtResource("8_v0t5h")]([ExtResource("12_ydhgn"), ExtResource("14_ynjiw"), ExtResource("10_7gtlo"), ExtResource("11_nd8g5"), ExtResource("12_i6re0"), ExtResource("13_qf3f5")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot3" index="0"]
-position = Vector2(65, -4.2115383)
+position = Vector2(65, -5)
 texture = ExtResource("7_ydhgn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/ItemSlot3" index="1"]
@@ -247,6 +267,94 @@ libraries = {
 }
 autoplay = "hoverItem3"
 
+[node name="ItemSlot4" parent="Interactions" index="6" instance=ExtResource("7_dciiy")]
+position = Vector2(-150, 0)
+dialogue_file = ExtResource("5_0dywe")
+dialogue_title = "itemHolder"
+items = Array[ExtResource("8_v0t5h")]([ExtResource("12_ydhgn"), ExtResource("14_ynjiw"), ExtResource("10_7gtlo"), ExtResource("11_nd8g5"), ExtResource("12_i6re0"), ExtResource("13_qf3f5")])
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot4" index="0"]
+position = Vector2(65, -5)
+texture = ExtResource("7_ydhgn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/ItemSlot4" index="1"]
+position = Vector2(115, -4)
+shape = SubResource("RectangleShape2D_gmb2m")
+
+[node name="Label" type="Label" parent="Interactions/ItemSlot4" index="2"]
+offset_left = 104.0
+offset_top = 10.0
+offset_right = 146.0
+offset_bottom = 21.0
+scale = Vector2(0.55, 0.55)
+text = "10 Gold"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interactions/ItemSlot4" index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_myf4l")
+}
+autoplay = "hoverItem2"
+
+[node name="ItemSlot5" parent="Interactions" index="7" instance=ExtResource("7_dciiy")]
+position = Vector2(-200, 0)
+dialogue_file = ExtResource("5_0dywe")
+dialogue_title = "itemHolder"
+items = Array[ExtResource("8_v0t5h")]([ExtResource("12_ydhgn"), ExtResource("14_ynjiw"), ExtResource("10_7gtlo"), ExtResource("11_nd8g5"), ExtResource("12_i6re0"), ExtResource("13_qf3f5")])
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot5" index="0"]
+position = Vector2(65, -5)
+texture = ExtResource("7_ydhgn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/ItemSlot5" index="1"]
+position = Vector2(116, -4)
+shape = SubResource("RectangleShape2D_gmb2m")
+
+[node name="Label" type="Label" parent="Interactions/ItemSlot5" index="2"]
+offset_left = 104.0
+offset_top = 10.0
+offset_right = 146.0
+offset_bottom = 21.0
+scale = Vector2(0.55, 0.55)
+text = "10 Gold"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interactions/ItemSlot5" index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_myf4l")
+}
+autoplay = "hoverItem2"
+
+[node name="ItemSlot6" parent="Interactions" index="8" instance=ExtResource("7_dciiy")]
+position = Vector2(-250, 0)
+dialogue_file = ExtResource("5_0dywe")
+dialogue_title = "itemHolder"
+items = Array[ExtResource("8_v0t5h")]([ExtResource("12_ydhgn"), ExtResource("14_ynjiw"), ExtResource("10_7gtlo"), ExtResource("11_nd8g5"), ExtResource("12_i6re0"), ExtResource("13_qf3f5")])
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot6" index="0"]
+position = Vector2(65, -5)
+texture = ExtResource("7_ydhgn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/ItemSlot6" index="1"]
+position = Vector2(116, -3)
+shape = SubResource("RectangleShape2D_gmb2m")
+
+[node name="Label" type="Label" parent="Interactions/ItemSlot6" index="2"]
+offset_left = 104.0
+offset_top = 10.0
+offset_right = 146.0
+offset_bottom = 21.0
+scale = Vector2(0.55, 0.55)
+text = "10 Gold"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interactions/ItemSlot6" index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_myf4l")
+}
+autoplay = "hoverItem2"
+
 [node name="MultiplayerHUD" parent="CanvasLayer" index="0"]
+visible = false
 offset_left = 1.0
 offset_right = 1.0
