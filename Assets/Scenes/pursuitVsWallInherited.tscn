@@ -1,9 +1,14 @@
-[gd_scene load_steps=9 format=4 uid="uid://ddb71d02kbkwq"]
+[gd_scene load_steps=17 format=4 uid="uid://ddb71d02kbkwq"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_608f5"]
 [ext_resource type="TileSet" uid="uid://bmuk58cqek4vi" path="res://Assets/map.tres" id="2_mnmml"]
 [ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="3_227lh"]
 [ext_resource type="PackedScene" uid="uid://8uof664rvkaj" path="res://Assets/Scenes/scene_transition.tscn" id="4_mnmml"]
+[ext_resource type="PackedScene" uid="uid://4w7go04aon1u" path="res://Assets/Scenes/cutscene.tscn" id="5_2ky1a"]
+[ext_resource type="Script" uid="uid://pallb83dwmjh" path="res://Assets/Scripts/cutscene_scripts/cutscene_action.gd" id="6_jd53k"]
+[ext_resource type="Resource" uid="uid://dw10r8i6nx47h" path="res://Assets/DialogueFiles/testing.dialogue" id="7_4ku44"]
+[ext_resource type="Script" uid="uid://dj00aqrrrc4pu" path="res://Assets/Scripts/cutscene_scripts/dialogue_action.gd" id="8_8qgw2"]
+[ext_resource type="Script" uid="uid://c8g0l6q1sd8t3" path="res://Assets/Scripts/cutscene_scripts/wait_action.gd" id="9_jd53k"]
 
 [sub_resource type="Gradient" id="Gradient_7ppdy"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -23,6 +28,23 @@ size = Vector2(11.222225, 22.888887)
 vertices = PackedVector2Array(752.2578, 337, 915.9219, 453, 463.9375, 453, 636.0469, 337, 913.0781, 78, 746.75, 123, 468, 78, 635.0469, 123, 468, 121.921875, 462.04688, 121.9375)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7, 8), PackedInt32Array(7, 3, 2, 9, 8)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(452, 112, 645, 111, 646, 327, 742, 327, 737, 133, 458, 133, 458, 68, 923, 68, 926, 463, 454, 463)])
+
+[sub_resource type="Resource" id="Resource_n0ofx"]
+script = ExtResource("8_8qgw2")
+dialogue = ExtResource("7_4ku44")
+start_id = "dialogueAction"
+metadata/_custom_type_script = "uid://dj00aqrrrc4pu"
+
+[sub_resource type="Resource" id="Resource_4ku44"]
+script = ExtResource("9_jd53k")
+duration = 2.0
+metadata/_custom_type_script = "uid://c8g0l6q1sd8t3"
+
+[sub_resource type="Resource" id="Resource_jd53k"]
+script = ExtResource("8_8qgw2")
+dialogue = ExtResource("7_4ku44")
+start_id = "dialogueAction2"
+metadata/_custom_type_script = "uid://dj00aqrrrc4pu"
 
 [node name="InheritedFloor" instance=ExtResource("1_608f5")]
 
@@ -120,3 +142,7 @@ enter_cost = 1.0
 [node name="SceneTransition" parent="." index="9" instance=ExtResource("4_mnmml")]
 position = Vector2(351, 272)
 new_scene = "res://shop.tscn"
+
+[node name="Cutscene" parent="CutsceneNodes" index="0" instance=ExtResource("5_2ky1a")]
+steps = Array[ExtResource("6_jd53k")]([SubResource("Resource_n0ofx"), SubResource("Resource_4ku44"), SubResource("Resource_jd53k")])
+auto_start = true
