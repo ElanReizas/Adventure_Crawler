@@ -10,7 +10,7 @@ itemName = "ratGun"
 description = "Gives you attack Speed"
 rarity = "Uncommon"
 sprite = ExtResource("2_lfdvv")
-slot = 1
+slot = 2
 stat_changes = Dictionary[String, float]({
 "AttackSpeed": 0.0
 })

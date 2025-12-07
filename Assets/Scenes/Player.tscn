@@ -1,8 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bf21l51gif70h"]
+[gd_scene load_steps=12 format=3 uid="uid://bf21l51gif70h"]
 
 [ext_resource type="Script" uid="uid://di402qubv5o6x" path="res://Assets/Scripts/player.gd" id="1_3e2tf"]
 [ext_resource type="Texture2D" uid="uid://bf3arkmdj4im4" path="res://Assets/Images/player.png" id="2_b2ifw"]
+[ext_resource type="Script" uid="uid://3ctqwnshebnc" path="res://Assets/Scripts/Inventory.gd" id="2_e5q2x"]
 [ext_resource type="Texture2D" uid="uid://ftobmbfvtiel" path="res://Assets/combat asset/slash.png" id="3_aee6e"]
+
+[sub_resource type="Resource" id="Resource_e5q2x"]
+script = ExtResource("2_e5q2x")
+metadata/_custom_type_script = "uid://3ctqwnshebnc"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aee6e"]
 radius = 9.848858
@@ -103,6 +108,7 @@ radius = 26.0
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_3e2tf")
+inventory = SubResource("Resource_e5q2x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_b2ifw")

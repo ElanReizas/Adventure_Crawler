@@ -1,26 +1,18 @@
 extends Resource
 class_name Inventory
 
-enum Slot { WEAPON, HELMET, CHESTPLATE, LEGGINGS, BOOTS, RING, NECKLACE }
+#im shrinking the size of the inventory for now, but we can scale it back later
+enum Slot { WEAPON, HELMET, CHESTPLATE}
 
-# Dictionary storing items by slot
-@export var slots := {
-	Slot.WEAPON: null,
-	Slot.HELMET: null,
-	Slot.CHESTPLATE: null,
-	Slot.LEGGINGS: null,
-	Slot.BOOTS: null,
-	Slot.RING: null,
-	Slot.NECKLACE: null
-}
+@export var slots: Array[Item] = [null, null, null, null, null]
 
 
 func get_item(slot: Slot) -> Item:
-	return slots[slot]
+	return slots[int(slot)]
 
 
 func set_item(slot: Slot, item: Item) -> void:
-	slots[slot] = item
+	slots[int(slot)] = item
 
 
 func can_equip(player: BasePlayer, item: Item) -> bool:
@@ -50,35 +42,23 @@ func evaluate_equip(player: BasePlayer, item: Item) -> Dictionary:
 
 
 func attempt_pickup(player: BasePlayer, item: Item) -> void:
-	var result := evaluate_equip(player, item)
+	var slot: Slot = item.slot
 
-	var slot: Slot = result["slot"]
-	var slot_index: int = int(slot)
-
-	# keys() returns Array, so keep it untyped and cast when we read from it
-	var all_slot_names: Array = Slot.keys()
-	var slot_name: String = String(all_slot_names[slot_index])
-
-	if not result["can_equip"]:
-		# Class restriction failed – drop it back on the ground
+	if not can_equip(player, item):
 		player.spawn_item_drop(item)
 		return
 
-	if result["slot_empty"]:
+	var existing = slots[int(slot)]
+
+	if existing == null:
 		set_item(slot, item)
-		print("Equipped:", item.itemName, "into slot:", slot_index, "\"" + slot_name + "\"")
+		player.apply_item_stats()
 		return
-
-	var existing: Item = result["existing_item"]
-
-	print("Swapping in slot: ", slot_name)
-	print("Dropping: ", existing.itemName)
-	print("Equipping: ", item.itemName)
-
-	# drop old item
+	
 	player.spawn_item_drop(existing)
-	#equip new item
-	set_item(slot,item)
+	set_item(slot, item)
+	player.apply_item_stats()
+
 
 
 func drop_item_from_slot(player: BasePlayer, slot: Slot) -> void:

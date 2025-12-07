@@ -7,11 +7,9 @@ class_name Weapon
 var cooldown: float = 0.0 
 
 func calculate_damage(attacker: Node) -> int:
-	var damage = attack_damage
-	if randf() < crit_rate:
-		#var anim = player.get_node("AnimationPlayer")
-		#anim.play("crit")
-		damage *= crit_damage
+	var damage = attacker.attack_damage
+	if randf() < attacker.crit_rate:
+		damage *= attacker.crit_damage
 		print("CRIT!")
 	return damage
 	

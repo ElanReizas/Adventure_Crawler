@@ -2,8 +2,6 @@ extends CharacterBody2D
 class_name Enemy
 @onready var target = null
 var player_in_sight: bool = false
-@export var speed: float = 100.0
-var max_health: int = 100
 @export var current_health: int
 #grab group of player in players
 @onready var players = get_tree().get_nodes_in_group("player")
@@ -50,6 +48,15 @@ var is_idling: bool = false
 @export var dialogue_title: String = "start"
 
 @onready var enemy_id: String = ""
+
+
+@export_category("stats")
+@export var speed: int = 100
+@export var attack_damage: int = 10
+@export var crit_rate: float = 0.2
+@export var crit_damage: float = 2
+@export var max_health: int = 100
+
 
 func _ready():
 	

@@ -99,13 +99,6 @@ tile_set = ExtResource("2_mnmml")
 
 [node name="Player" parent="." index="4"]
 position = Vector2(556, 171)
-speed = null
-melee_attack_range = null
-attack_damage = null
-crit_rate = null
-crit_damage = null
-max_health = null
-weapon_type = null
 
 [node name="Wall" type="StaticBody2D" parent="." index="5"]
 position = Vector2(736, 289)
@@ -127,6 +120,7 @@ color = Color(0.72051126, 0.8730382, 0.9209301, 1)
 
 [node name="Enemy" parent="Enemies" index="0" instance=ExtResource("3_227lh")]
 position = Vector2(778, 137)
+weapon_type = 1
 
 [node name="Enemy2" parent="Enemies" index="1" instance=ExtResource("3_227lh")]
 position = Vector2(733, 381)

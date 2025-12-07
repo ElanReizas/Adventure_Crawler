@@ -11,6 +11,6 @@ description = "Gives you the wise words of benson"
 rarity = "Epic"
 sprite = ExtResource("2_6wytc")
 stat_changes = Dictionary[String, float]({
-"Attack": 20.0
+"attack_damage": 20.0
 })
 metadata/_custom_type_script = "uid://b1agcmofkq6ab"
