@@ -90,6 +90,23 @@ func drop_entire_inventory(player: BasePlayer) -> void:
 		player.call_deferred("spawn_item_drop_at", item, player.global_position + offset)
 		index += 1
 
+func serialize_inv():
+	var serialized_inv: Array = []
+	for item in slots:
+		if item == null:
+			serialized_inv.append(null)
+		else:
+			serialized_inv.append(item.resource_path)
+	return serialized_inv
+
+func deserialize_inv(data: Array):
+	for i in range(data.size()):
+		var path = data[i]
+		if path == null:
+			slots[i] = null
+		else:
+			slots[i] = load(path) 
+
 #gonna add a UI later. if a miracle happens
 func print_inv():
 	print("inventory array")

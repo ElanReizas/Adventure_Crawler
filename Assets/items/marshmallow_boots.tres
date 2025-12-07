@@ -10,4 +10,4 @@ itemName = "Marshmallow Boots"
 description = "Soft but speedy sugar-stompers."
 rarity = "Common"
 sprite = ExtResource("2_x4lqv")
-slot = 4
+slot = 2

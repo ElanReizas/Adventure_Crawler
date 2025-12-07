@@ -11,6 +11,8 @@ var dead_enemies: Dictionary = {}
 var player_data: Dictionary = {
 	"health": null,
 	"max_health": null,
+	"speed": null,
+	"gold": null,
 	"weapon_type": null,
 	"inventory": null,
 }
@@ -24,12 +26,16 @@ func save_player_state():
 
 	player_data.health = player.current_health
 	player_data.max_health = player.max_health
+	player_data.speed = player.speed
+	player_data.gold = player.gold
 	player_data.weapon_type = player.weapon_type
-	player_data.inventory = player.inventory.duplicate()
+	player_data.inventory = player.inventory.serialize_inv()
 	
 	print("Saved via GameManager:",
 		" health=", player_data.health,
 		" max_health=", player_data.max_health,
+		" speed=", player_data.speed,
+		" gold=", player_data.gold,
 		" weapon_type=", player_data.weapon_type,
 		" inventory=", player_data.inventory)
 
@@ -45,11 +51,16 @@ func load_player_state(p: BasePlayer):
 	else:
 		# Theres no saved health value, start fully healed.
 		p.current_health = p.max_health
+	if player_data.speed != null:
+		p.speed = player_data.speed
+	if player_data.gold != null:
+		p.gold = player_data.gold
 	if player_data.weapon_type != null:
 		p.weapon_type = player_data.weapon_type
 
 	if player_data.inventory != null:
-		p.inventory = player_data.inventory.duplicate()
+		p.inventory.deserialize_inv(player_data.inventory)
+		p.apply_item_stats()
 
 
 func mark_enemy_dead(enemy_id: String):
@@ -67,14 +78,14 @@ func save_to_file():
 		"player_data": player_data,
 		"dead_enemies": dead_enemies,
 	}
-
+	save_player_state()
 	var json_text = JSON.stringify(save_dict, "\t")
 
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	file.store_string(json_text)
 
 	print("Game saved to:", SAVE_PATH)
-
+	print("player data saved: ", player_data)
 
 func load_from_file():
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
@@ -86,3 +97,6 @@ func load_from_file():
 	# TODO: use ID to rebuild the inventories entries since JSON only stores simple data types
 	player_data = result["player_data"]
 	dead_enemies = result["dead_enemies"]
+	print("player data loaded: ", player_data)
+	if player != null:
+		load_player_state(player)
