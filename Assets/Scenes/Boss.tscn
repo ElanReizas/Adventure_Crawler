@@ -1,16 +1,17 @@
-[gd_scene load_steps=24 format=3 uid="uid://dnpkxy2iw080w"]
+[gd_scene load_steps=25 format=3 uid="uid://dnpkxy2iw080w"]
 
-[ext_resource type="Script" uid="uid://nxlxfh2oeti0" path="res://Assets/Scripts/ratboss.gd" id="1_te6i6"]
+[ext_resource type="Script" path="res://Assets/Scripts/ratboss.gd" id="1_te6i6"]
 [ext_resource type="Texture2D" uid="uid://cwm0itd1sobmg" path="res://Assets/Images/dillburt.png" id="2_cda3r"]
 [ext_resource type="Texture2D" uid="uid://clxsm5j7o1wux" path="res://Assets/boss assets/Laser_sheet.png" id="2_jv22h"]
 [ext_resource type="Texture2D" uid="uid://b1vfaixx4ipc0" path="res://Assets/boss assets/slash.png" id="3_m6pop"]
-[ext_resource type="Script" uid="uid://ngkok6iu0vfx" path="res://Assets/Scripts/FiniteStateMachine.gd" id="4_te6i6"]
-[ext_resource type="Script" uid="uid://cdv1d413y647y" path="res://Assets/Scripts/idle.gd" id="5_jv22h"]
-[ext_resource type="Script" uid="uid://31nshanclpgs" path="res://Assets/Scripts/follow.gd" id="7_5kty5"]
-[ext_resource type="Script" uid="uid://b7mf4otyu0d5j" path="res://Assets/Scripts/melee.gd" id="8_5kty5"]
+[ext_resource type="Script" path="res://Assets/Scripts/FiniteStateMachine.gd" id="4_te6i6"]
+[ext_resource type="Script" path="res://Assets/Scripts/idle.gd" id="5_jv22h"]
+[ext_resource type="Script" path="res://Assets/Scripts/follow.gd" id="7_5kty5"]
+[ext_resource type="Script" path="res://Assets/Scripts/melee.gd" id="8_5kty5"]
 [ext_resource type="Script" uid="uid://dwpn1egemkvjs" path="res://Assets/Scripts/laserbeam.gd" id="9_cda3r"]
-[ext_resource type="Script" uid="uid://c603negc5iapy" path="res://Assets/Scripts/dash.gd" id="10_7gqpm"]
-[ext_resource type="Script" uid="uid://3y855n60rfml" path="res://Assets/Scripts/death.gd" id="11_cda3r"]
+[ext_resource type="Script" path="res://Assets/Scripts/dash.gd" id="10_7gqpm"]
+[ext_resource type="AudioStream" uid="uid://bwpf8j11626y6" path="res://Assets/ima-firin-mah-lazer.mp3" id="10_fu1cy"]
+[ext_resource type="Script" path="res://Assets/Scripts/death.gd" id="11_cda3r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fu1cy"]
 size = Vector2(124, 92)
@@ -412,6 +413,11 @@ script = ExtResource("8_5kty5")
 
 [node name="LaserBeam" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("9_cda3r")
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="FiniteStateMachine/LaserBeam"]
+stream = ExtResource("10_fu1cy")
+pitch_scale = 1.1
+max_distance = 704.0
 
 [node name="Dash" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("10_7gqpm")
