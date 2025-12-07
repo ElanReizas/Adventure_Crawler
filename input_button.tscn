@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0nmxej4exvpc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e54jf"]
+bg_color = Color(0.003921569, 0.003921569, 0.003921569, 0.39215687)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uv6y7"]
+bg_color = Color(0.9782521, 0.9777321, 0.97850674, 0.39215687)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxflg"]
+bg_color = Color(0.9955804, 0.99558026, 0.99558026, 0.39215687)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5wdax"]
+
+[node name="InputButton" type="Button"]
+custom_minimum_size = Vector2(0, 18)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_vertical = 8
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_e54jf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uv6y7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sxflg")
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="LabelAction" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5wdax")
+text = "      "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 0
+justification_flags = 0
+metadata/_edit_lock_ = true
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="LabelInput" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5wdax")
+vertical_alignment = 1
+autowrap_trim_flags = 0
+justification_flags = 0

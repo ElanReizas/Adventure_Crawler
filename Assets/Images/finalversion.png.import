@@ -2,26 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<<< Updated upstream:Assets/Images/shop.png.import
-uid="uid://c8m811g1t2kma"
-path="res://.godot/imported/shop.png-772b2b67b10ef70cbc2ab91b1d9db247.ctex"
-========
-uid="uid://da11divt7u5he"
+uid="uid://bk537ox04ydpl"
 path="res://.godot/imported/finalversion.png-c0ef03832d91d78c42df71edf39fc385.ctex"
->>>>>>>> Stashed changes:Assets/Images/finalversion.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<<< Updated upstream:Assets/Images/shop.png.import
-source_file="res://Assets/Images/shop.png"
-dest_files=["res://.godot/imported/shop.png-772b2b67b10ef70cbc2ab91b1d9db247.ctex"]
-========
 source_file="res://Assets/Images/finalversion.png"
 dest_files=["res://.godot/imported/finalversion.png-c0ef03832d91d78c42df71edf39fc385.ctex"]
->>>>>>>> Stashed changes:Assets/Images/finalversion.png.import
 
 [params]
 
