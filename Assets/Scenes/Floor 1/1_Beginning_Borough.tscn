@@ -65,7 +65,7 @@ vertices = PackedVector2Array(934, 408.1875, 853.0625, 409.78906, 854.9297, 132,
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(845, 122, 944, 122, 944, 418, 843, 420)])
 
-[node name="InheritedFloor" instance=ExtResource("1_187m7")]
+[node name="BeginningBorough" instance=ExtResource("1_187m7")]
 
 [node name="TileMapLayer" parent="." index="1"]
 tile_map_data = PackedByteArray()
