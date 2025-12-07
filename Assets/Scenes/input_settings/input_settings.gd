@@ -2,7 +2,7 @@ extends Control
 
 
 @onready var input_button_scene = preload("res://Assets/Scenes/input_settings/input_button.tscn")
-@onready var action_list = $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Action_List
+@export var action_list: VBoxContainer
 
 
 var is_remapping = false
