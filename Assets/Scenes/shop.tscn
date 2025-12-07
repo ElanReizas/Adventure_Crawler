@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://diw6i3cwqa1ic"]
+[gd_scene load_steps=25 format=4 uid="uid://diw6i3cwqa1ic"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_7ortk"]
 [ext_resource type="TileSet" uid="uid://bmuk58cqek4vi" path="res://Assets/map.tres" id="2_dciiy"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://u5t54ipho87d" path="res://Assets/items/rat.tres" id="9_v0t5h"]
 [ext_resource type="Resource" uid="uid://doht6s1i12boj" path="res://Assets/items/gumball.tres" id="10_ydhgn"]
 [ext_resource type="Resource" uid="uid://1atwugovtayb" path="res://Assets/items/ratGun.tres" id="11_g7qtd"]
+[ext_resource type="Resource" uid="uid://ryen0ugjho5s" path="res://Assets/items/Uncommon/candy_carver.tres" id="12_ydhgn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgaav"]
 texture = ExtResource("3_s5gg0")
@@ -166,7 +167,7 @@ shape = SubResource("RectangleShape2D_8kdgp")
 [node name="ItemSlot1" parent="Interactions" index="3" instance=ExtResource("7_dciiy")]
 dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "itemHolder"
-items = Array[ExtResource("8_v0t5h")]([ExtResource("10_ydhgn"), ExtResource("9_v0t5h"), ExtResource("11_g7qtd")])
+items = Array[ExtResource("8_v0t5h")]([ExtResource("10_ydhgn"), ExtResource("9_v0t5h"), ExtResource("11_g7qtd"), ExtResource("12_ydhgn")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot1" index="0"]
 position = Vector2(65, -4.2115383)
@@ -194,7 +195,7 @@ horizontal_alignment = 1
 [node name="ItemSlot2" parent="Interactions" index="4" instance=ExtResource("7_dciiy")]
 dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "itemHolder"
-items = Array[ExtResource("8_v0t5h")]([ExtResource("10_ydhgn"), ExtResource("9_v0t5h"), ExtResource("11_g7qtd")])
+items = Array[ExtResource("8_v0t5h")]([ExtResource("10_ydhgn"), ExtResource("9_v0t5h"), ExtResource("11_g7qtd"), ExtResource("12_ydhgn")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot2" index="0"]
 position = Vector2(65, -4.2115383)
@@ -222,7 +223,7 @@ autoplay = "hoverItem2"
 [node name="ItemSlot3" parent="Interactions" index="5" instance=ExtResource("7_dciiy")]
 dialogue_file = ExtResource("5_0dywe")
 dialogue_title = "itemHolder"
-items = Array[ExtResource("8_v0t5h")]([ExtResource("10_ydhgn"), ExtResource("9_v0t5h"), ExtResource("11_g7qtd")])
+items = Array[ExtResource("8_v0t5h")]([ExtResource("10_ydhgn"), ExtResource("9_v0t5h"), ExtResource("11_g7qtd"), ExtResource("12_ydhgn")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot3" index="0"]
 position = Vector2(65, -4.2115383)

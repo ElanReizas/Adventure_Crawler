@@ -9,8 +9,8 @@ var shop_inventory: Array[ItemStack]= []
 @export var current_item: Item = null
 var SAVE_PATH := "user://userData/save.json"
 const RARITY_WEIGHTS: Dictionary[String, int] = {
-	"Common": 60,
-	"Uncommon": 25,
+	"Common": 25,
+	"Uncommon": 60,
 	"Epic": 15
 }
 
