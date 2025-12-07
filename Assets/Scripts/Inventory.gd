@@ -52,10 +52,12 @@ func attempt_pickup(player: BasePlayer, item: Item) -> void:
 
 	if existing == null:
 		set_item(slot, item)
+		player.apply_item_stats()
 		return
 	
 	player.spawn_item_drop(existing)
 	set_item(slot, item)
+	player.apply_item_stats()
 
 
 

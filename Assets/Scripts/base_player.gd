@@ -9,6 +9,12 @@ class_name BasePlayer
 @export var max_health: int = 100
 var current_health: int
 
+var base_speed: int
+var base_attack_damage: int
+var base_crit_rate: float
+var base_crit_damage: float
+var base_max_health: int
+
 @export_category("other stuff")
 @export var melee_attack_range: int = 100
 @export var inventory: Inventory
@@ -39,7 +45,15 @@ func init_player():
 	# Ensure each player has their own Inventory resource
 	if inventory == null:
 		inventory = Inventory.new()
-	
+		
+	base_speed = speed
+	base_attack_damage = attack_damage
+	base_crit_rate = crit_rate
+	base_crit_damage = crit_damage
+	base_max_health = max_health
+
+		
+	apply_item_stats()
 	health_bar.max_value = max_health
 	health_bar.value = current_health
 
@@ -116,3 +130,36 @@ func spawn_item_drop_at(item: Item, pos: Vector2) -> void:
 	drop.global_position = pos
 
 	get_tree().get_current_scene().add_child(drop)
+
+func apply_item_stats():
+	var final_speed = base_speed
+	var final_attack_damage = base_attack_damage
+	var final_crit_rate = base_crit_rate
+	var final_crit_damage = base_crit_damage
+	var final_max_health = base_max_health
+
+	for item in inventory.slots:
+		if item == null:
+			continue
+		for key in item.stat_changes.keys():
+			var value = item.stat_changes[key]
+			match key:
+				"speed":
+					final_speed += value
+				"attack_damage":
+					final_attack_damage += value
+				"crit_rate":
+					final_crit_rate += value
+				"crit_damage":
+					final_crit_damage += value
+				"max_health":
+					final_max_health += value
+	speed = final_speed
+	attack_damage = final_attack_damage
+	crit_rate = final_crit_rate
+	crit_damage = final_crit_damage
+
+	var old_max_health = max_health
+	max_health = final_max_health
+	if current_health > max_health:
+		current_health = max_health
