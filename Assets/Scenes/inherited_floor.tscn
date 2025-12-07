@@ -30,6 +30,8 @@ tile_map_data = PackedByteArray("AAD4//z/AAAAAAcAAAD4//3/AAAAAAcAAAD4//7/AAAAAAc
 
 [node name="NavigationRegions" type="Node2D" parent="NavigationItems"]
 
+[node name="CameraLimits" type="Node2D" parent="."]
+
 [node name="CutsceneNodes" type="Node2D" parent="."]
 
 [node name="PlayerUi" parent="." instance=ExtResource("4_vm5fj")]

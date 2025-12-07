@@ -8,7 +8,6 @@ func _ready():
 	init_player()
 	GameManager.load_player_state(self)
 	apply_item_stats()
-	update_health_ui()
 
 
 

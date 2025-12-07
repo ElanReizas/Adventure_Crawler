@@ -472,22 +472,22 @@ func rangedMovement():
 		velocity = Vector2.ZERO
 
 
-#DEBUGGING
-
-func _draw():
-	var state_color := Color(0, 1, 0, 0.35) # green = patroling
-
-	if state == EnemyState.PURSUIT:
-		state_color = Color(1, 0, 0, 0.35) # red = chasing
-	elif state == EnemyState.RETURN:
-		state_color = Color(0, 0.5, 1, 0.35) # blue = returning
-
-	# Detection radius (state-colored)
-	draw_circle(Vector2.ZERO, detection_radius, state_color)
-
-	# Attack radius (always white)
-	draw_circle(Vector2.ZERO, attack_radius, Color(1, 1, 1, 0.25))
-
-	# Patrol destination marker
-	if state != EnemyState.PURSUIT:
-		draw_circle(to_local(patrol_target), 6, Color(1, 1, 0, 0.9))
+##DEBUGGING
+#
+#func _draw():
+	#var state_color := Color(0, 1, 0, 0.35) # green = patroling
+#
+	#if state == EnemyState.PURSUIT:
+		#state_color = Color(1, 0, 0, 0.35) # red = chasing
+	#elif state == EnemyState.RETURN:
+		#state_color = Color(0, 0.5, 1, 0.35) # blue = returning
+#
+	## Detection radius (state-colored)
+	#draw_circle(Vector2.ZERO, detection_radius, state_color)
+#
+	## Attack radius (always white)
+	#draw_circle(Vector2.ZERO, attack_radius, Color(1, 1, 1, 0.25))
+#
+	## Patrol destination marker
+	#if state != EnemyState.PURSUIT:
+		#draw_circle(to_local(patrol_target), 6, Color(1, 1, 0, 0.9))

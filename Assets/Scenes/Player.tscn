@@ -1,14 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bf21l51gif70h"]
+[gd_scene load_steps=11 format=3 uid="uid://bf21l51gif70h"]
 
 [ext_resource type="Script" uid="uid://di402qubv5o6x" path="res://Assets/Scripts/player.gd" id="1_3e2tf"]
 [ext_resource type="Texture2D" uid="uid://bf3arkmdj4im4" path="res://Assets/Images/player.png" id="2_b2ifw"]
-[ext_resource type="Script" uid="uid://3ctqwnshebnc" path="res://Assets/Scripts/Inventory.gd" id="2_e5q2x"]
 [ext_resource type="Texture2D" uid="uid://ftobmbfvtiel" path="res://Assets/combat asset/slash.png" id="3_aee6e"]
-[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="3_mifcl"]
-
-[sub_resource type="Resource" id="Resource_e5q2x"]
-script = ExtResource("2_e5q2x")
-metadata/_custom_type_script = "uid://3ctqwnshebnc"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aee6e"]
 radius = 9.848858
@@ -106,10 +100,11 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_b2ifw"]
 radius = 26.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mifcl"]
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_3e2tf")
-inventory = SubResource("Resource_e5q2x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_b2ifw")
@@ -133,13 +128,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_aee6e")
 }
 
-[node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -31.0
-offset_top = -32.0
-offset_right = 36.0
-offset_bottom = -17.0
-theme_override_font_sizes/font_size = 16
-
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
@@ -158,3 +146,12 @@ texture = ExtResource("3_aee6e")
 hframes = 5
 vframes = 2
 frame = 9
+
+[node name="CameraLimiter" type="Area2D" parent="."]
+position = Vector2(0, -5)
+rotation = 1.2304571
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimiter"]
+position = Vector2(4.7132072, 1.6690345)
+rotation = -1.2304571
+shape = SubResource("RectangleShape2D_mifcl")
