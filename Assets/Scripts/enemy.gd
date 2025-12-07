@@ -9,7 +9,7 @@ var player_in_sight: bool = false
 var playerSeen = false
 #Enemy combat style
 enum WeaponType { MELEE, RANGED }
-@export var weapon_type: WeaponType = WeaponType.MELEE
+@export var weapon_type: WeaponType = WeaponType.RANGED
 var equipped_weapon: Weapon
 const WEAPON_PATHS := {
 	WeaponType.MELEE:  "res://Assets/Scenes/MeleeWeapon.tscn",

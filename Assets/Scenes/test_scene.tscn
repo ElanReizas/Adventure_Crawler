@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://1t0f56i7b5xy"]
 
 [ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="1_gjict"]
-[ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="2_ecx8b"]
+[ext_resource type="PackedScene" uid="uid://df2boi74svwq4" path="res://applebaumber.tscn" id="2_gjict"]
 
 [node name="TestScene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_gjict")]
+position = Vector2(400, 0)
 
-[node name="Enemy" parent="." instance=ExtResource("2_ecx8b")]
-position = Vector2(271, 91)
+[node name="applebaumber" parent="." instance=ExtResource("2_gjict")]
