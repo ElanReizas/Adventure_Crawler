@@ -21,6 +21,8 @@ var base_max_health: int
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var interaction_area: Area2D = $InteractionArea
+@onready var camera_limiter: Area2D = $CameraLimiter
+@onready var camera_2d: Camera2D = $Camera2D
 
 var last_item_in_range: ItemDrop = null
 
@@ -54,8 +56,8 @@ func init_player():
 
 		
 	apply_item_stats()
-	update_health_ui()
 	equip_weapon(WEAPON_PATHS[weapon_type])
+	camera_limiter.area_entered.connect(_on_camera_limiter_area_entered)
 
 
 func move_from_input(input_vector: Vector2, delta: float):
@@ -71,10 +73,6 @@ func move_from_input(input_vector: Vector2, delta: float):
 		)
 
 	move_and_slide()
-
-func update_health_ui():
-	health_bar.max_value = max_health
-	health_bar.value = current_health
 	
 func equip_weapon(path: String) -> void:
 	if equipped_weapon != null:
@@ -88,7 +86,7 @@ func equip_weapon(path: String) -> void:
 
 func take_damage(amount: int):
 	current_health = max(current_health - amount, 0)
-	update_health_ui()
+	#update_health_ui()
 
 	if current_health <= 0:
 		die()
@@ -164,3 +162,19 @@ func apply_item_stats():
 	max_health = final_max_health
 	if current_health > max_health:
 		current_health = max_health
+
+func _on_camera_limiter_area_entered(area_2d: Area2D) -> void:
+	if area_2d.has_node("Limit"):
+		var collision_shape = area_2d.get_node("Limit")
+		var size = collision_shape.shape.extents*2
+		
+		var view_size = get_viewport_rect().size
+		if size.y < view_size.y:
+			size.y = view_size.y
+			
+		if size.x < view_size.x:
+			size.x = view_size.x
+		camera_2d.limit_top = collision_shape.global_position.y - size.y/2
+		camera_2d.limit_left = collision_shape.global_position.x - size.x/2
+		camera_2d.limit_bottom = camera_2d.limit_top + size.y
+		camera_2d.limit_right = camera_2d.limit_left + size.x
