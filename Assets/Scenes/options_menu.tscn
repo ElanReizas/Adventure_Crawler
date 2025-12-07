@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cceu77cxmffox"]
+[gd_scene load_steps=3 format=3 uid="uid://cceu77cxmffox"]
 
 [ext_resource type="Script" uid="uid://d1o57rbubedks" path="res://Assets/Scenes/options_menu.gd" id="1_g88qp"]
+[ext_resource type="Texture2D" uid="uid://dv0tu0q764flb" path="res://Assets/Images/sword.png" id="3_lpqgh"]
 
 [node name="Options_Menu" type="Control"]
 layout_mode = 3
@@ -64,6 +65,26 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 31
 text = "Back"
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0.467673, 0.94076645, 0.90344894, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 63.0
+offset_top = 49.0
+offset_right = 467.0
+offset_bottom = 334.0
+texture = ExtResource("3_lpqgh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 175.0
+offset_top = 53.0
+offset_right = 575.0
+offset_bottom = 334.0
+texture = ExtResource("3_lpqgh")
+flip_h = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/KeyBindings" to="." method="_on_key_bindings_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/AudioSettings" to="." method="_on_audio_settings_pressed"]

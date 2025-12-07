@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnyh57kfbrdht"]
+[gd_scene load_steps=4 format=3 uid="uid://bnyh57kfbrdht"]
 
 [ext_resource type="Script" uid="uid://c6ilvy3igbhjv" path="res://main_menu.gd" id="1_fsbqx"]
 [ext_resource type="PackedScene" uid="uid://cceu77cxmffox" path="res://Assets/Scenes/options_menu.tscn" id="2_cbhea"]
+[ext_resource type="Texture2D" uid="uid://28xo63rydadm" path="res://Assets/Images/big_worm.png" id="2_tanm1"]
 
 [node name="CanvasGroup" type="CanvasGroup"]
 script = ExtResource("1_fsbqx")
@@ -24,6 +25,7 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = ExtResource("2_tanm1")
 expand_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
