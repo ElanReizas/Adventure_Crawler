@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct4en4iu5dptd"]
+
+[ext_resource type="Script" uid="uid://duir0a3lxsnsy" path="res://Assets/scripts/player_ui.gd" id="1_07wts"]
+[ext_resource type="Texture2D" uid="uid://bwpd5f346ovoo" path="res://Assets/Images/ui/coin.png" id="1_sital"]
+[ext_resource type="Texture2D" uid="uid://dr5m5j2hd72n8" path="res://Assets/Images/ui/healthbar_behind.png" id="2_gcuip"]
+[ext_resource type="Texture2D" uid="uid://dsyjxi24har0g" path="res://Assets/Images/ui/healthbar_progress.png" id="3_e8ye8"]
+[ext_resource type="Texture2D" uid="uid://bx6ubfqyhh6rw" path="res://Assets/Images/ui/coin_label_bg.png" id="3_gnk8h"]
+
+[node name="PlayerUi" type="CanvasLayer" node_paths=PackedStringArray("health_bar")]
+script = ExtResource("1_07wts")
+health_bar = NodePath("Control/HealthBar")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="coingraphic" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 70.0
+offset_right = 50.0
+offset_bottom = 92.0
+texture = ExtResource("1_sital")
+
+[node name="ColorRect" type="TextureRect" parent="Control/coingraphic"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 2.0
+offset_right = 62.0
+offset_bottom = 21.0
+texture = ExtResource("3_gnk8h")
+
+[node name="Label" type="Label" parent="Control/coingraphic"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 6.0
+offset_right = 54.0
+offset_bottom = 17.0
+text = "200"
+
+[node name="HealthBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 19.0
+offset_right = 177.0
+offset_bottom = 62.0
+value = 100.0
+texture_under = ExtResource("2_gcuip")
+texture_progress = ExtResource("3_e8ye8")
+
+[node name="HealthLabel" type="Label" parent="Control/HealthBar"]
+z_index = 1
+layout_mode = 0
+offset_left = 122.0
+offset_top = 13.0
+offset_right = 162.0
+offset_bottom = 24.0
+text = "Text"

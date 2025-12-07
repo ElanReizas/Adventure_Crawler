@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://drum2so61txqm"]
+[gd_scene load_steps=6 format=4 uid="uid://drum2so61txqm"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/init_scene.gd" id="1_0sx4s"]
 [ext_resource type="Script" uid="uid://cy0ivya6cpkti" path="res://Assets/Scripts/MultiplayerGameManager.gd" id="1_mfuk4"]
 [ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="1_pdpxg"]
 [ext_resource type="AudioStream" uid="uid://dscwnq3uc207m" path="res://Assets/Witch Bolt - Growing Sycamore.mp3" id="4_cmyw1"]
+[ext_resource type="PackedScene" uid="uid://ct4en4iu5dptd" path="res://Assets/Scenes/player_ui.tscn" id="4_vm5fj"]
 
 [node name="InheritedFloor" type="Node2D"]
 script = ExtResource("1_0sx4s")
@@ -11,8 +12,8 @@ script = ExtResource("1_0sx4s")
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("host_game", "join_as_player_2")]
 unique_name_in_owner = true
 script = ExtResource("1_mfuk4")
-host_game = NodePath("../CanvasLayer/MultiplayerHUD/HostGame")
-join_as_player_2 = NodePath("../CanvasLayer/MultiplayerHUD/JoinAsPlayer2")
+host_game = NodePath("../MultiplayerCanvas/MultiplayerHUD/HostGame")
+join_as_player_2 = NodePath("../MultiplayerCanvas/MultiplayerHUD/JoinAsPlayer2")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD4//z/AAAAAAcAAAD4//3/AAAAAAcAAAD4//7/AAAAAAcAAAD4////AAABAAYAAAD4/wAAAAAAAAcAAAD4/wEAAAAAAAcAAAD4/wIAAAAAAAcAAAD4/wMAAAAAAAcAAAD5//z/AAAAAAcAAAD5//3/AAAAAAcAAAD5//7/AAAAAAcAAAD5////AAAAAAcAAAD5/wAAAAAAAAcAAAD5/wEAAAAAAAcAAAD5/wIAAAABAAYAAAD5/wMAAAAAAAcAAAD6//z/AAAAAAcAAAD6//3/AAAAAAcAAAD6//7/AAAAAAcAAAD6////AAAAAAcAAAD6/wAAAAAAAAcAAAD6/wEAAAAAAAcAAAD6/wIAAAAAAAcAAAD6/wMAAAAAAAcAAAD7//z/AAAAAAcAAAD7//3/AAAAAAcAAAD7//7/AAAAAAcAAAD7////AAAAAAcAAAD7/wAAAAAAAAcAAAD7/wEAAAAAAAcAAAD7/wIAAAAAAAcAAAD7/wMAAAAAAAcAAAD8//z/AAAAAAcAAAD8//3/AAACAAYAAAD8//7/AAADAAYAAAD8////AAACAAcAAAD8/wAAAAACAAkAAAD8/wEAAAACAAoAAAD8/wIAAAAAAAYAAAD8/wMAAAAAAAcAAAD9//z/AAAAAAcAAAD9//3/AAADAAYAAAD9//7/AAADAAcAAAD9////AAAEAAcAAAD9/wAAAAADAAkAAAD9/wEAAAADAAoAAAD9/wIAAAAAAAcAAAD9/wMAAAAAAAcAAAD+//z/AAAAAAcAAAD+//3/AAAEAAYAAAD+//7/AAABAAcAAAD+////AAAFAAgAAAD+/wAAAAABAAcAAAD+/wEAAAAEAAoAAAD+/wIAAAAAAAcAAAD+/wMAAAAAAAcAAAD///z/AAAAAAcAAAD///3/AAAEAAYAAAD///7/AAAFAAcAAAD/////AAAFAAgAAAD//wAAAAAFAAgAAAD//wEAAAAEAAoAAAD//wIAAAAAAAcAAAD//wMAAAAAAAcAAAAAAPz/AAAAAAcAAAAAAP3/AAAEAAYAAAAAAP7/AAABAAcAAAAAAP//AAAFAAgAAAAAAAAAAAAFAAcAAAAAAAEAAAAEAAoAAAAAAAIAAAAAAAcAAAAAAAMAAAAAAAcAAAABAPz/AAAAAAcAAAABAP3/AAAFAAYAAAABAP7/AAABAAcAAAABAP//AAABAAcAAAABAAAAAAAFAAkAAAABAAEAAAAFAAoAAAABAAIAAAAAAAcAAAABAAMAAAAAAAcAAAACAPz/AAAAAAcAAAACAP3/AAAGAAYAAAACAP7/AAAGAAcAAAACAP//AAAGAAgAAAACAAAAAAAGAAgAAAACAAEAAAAGAAoAAAACAAIAAAAAAAcAAAACAAMAAAAAAAcAAAADAPz/AAAAAAcAAAADAP3/AAAAAAcAAAADAP7/AAAAAAcAAAADAP//AAAAAAcAAAADAAAAAAAAAAcAAAADAAEAAAAAAAcAAAADAAIAAAAAAAcAAAADAAMAAAAAAAcAAAAEAPz/AAAAAAcAAAAEAP3/AAAAAAcAAAAEAP7/AAAAAAYAAAAEAP//AAAAAAcAAAAEAAAAAAAAAAcAAAAEAAEAAAAAAAcAAAAEAAIAAAAAAAcAAAAEAAMAAAAAAAcAAAAFAPz/AAAAAAcAAAAFAP3/AAAAAAcAAAAFAP7/AAAAAAcAAAAFAP//AAAAAAcAAAAFAAAAAAAAAAcAAAAFAAEAAAAAAAcAAAAFAAIAAAAAAAcAAAAFAAMAAAAAAAcAAAAGAPz/AAAAAAcAAAAGAP3/AAAAAAcAAAAGAP7/AAAAAAcAAAAGAP//AAAAAAcAAAAGAAAAAAAAAAcAAAAGAAEAAAAAAAcAAAAGAAIAAAAAAAcAAAAGAAMAAAAAAAcAAAA=")
@@ -31,9 +32,11 @@ tile_map_data = PackedByteArray("AAD4//z/AAAAAAcAAAD4//3/AAAAAAcAAAD4//7/AAAAAAc
 
 [node name="CutsceneNodes" type="Node2D" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="PlayerUi" parent="." instance=ExtResource("4_vm5fj")]
 
-[node name="MultiplayerHUD" type="Control" parent="CanvasLayer"]
+[node name="MultiplayerCanvas" type="CanvasLayer" parent="."]
+
+[node name="MultiplayerHUD" type="Control" parent="MultiplayerCanvas"]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -42,7 +45,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HostGame" type="Button" parent="CanvasLayer/MultiplayerHUD"]
+[node name="HostGame" type="Button" parent="MultiplayerCanvas/MultiplayerHUD"]
 layout_mode = 0
 offset_left = 502.0
 offset_top = 37.0
@@ -50,7 +53,7 @@ offset_right = 571.0
 offset_bottom = 56.0
 text = "host game"
 
-[node name="JoinAsPlayer2" type="Button" parent="CanvasLayer/MultiplayerHUD"]
+[node name="JoinAsPlayer2" type="Button" parent="MultiplayerCanvas/MultiplayerHUD"]
 layout_mode = 0
 offset_left = 493.0
 offset_top = 59.0
