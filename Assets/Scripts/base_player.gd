@@ -14,7 +14,7 @@ var current_health: int
 @export var inventory: Inventory
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var ray_cast_2d: RayCast2D = $RayCast2D
+@onready var interaction_area: Area2D = $InteractionArea
 
 var last_item_in_range: ItemDrop = null
 
@@ -56,10 +56,6 @@ func move_from_input(input_vector: Vector2, delta: float):
 			Vector2.ZERO,
 			knockback_decay * delta
 		)
-
-	if input_vector.length() > 0:
-		var move_direction = input_vector.normalized()
-		ray_cast_2d.target_position = move_direction * 32
 
 	move_and_slide()
 

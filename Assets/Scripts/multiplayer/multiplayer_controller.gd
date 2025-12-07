@@ -35,9 +35,11 @@ func network_attack(direction: Vector2):
 		equipped_weapon.attack(self, direction)
 
 func interaction() -> void:
-	var object: Object = ray_cast_2d.get_collider()
-	if object and object.has_method("interaction"):
-		object.interaction()
+	for object in interaction_area.get_overlapping_bodies():
+		if object and object.has_method("interaction"):
+			object.interaction()
+			return
+
 
 #we'll change this routine to generally handle player appearances
 func set_player_graphics():
