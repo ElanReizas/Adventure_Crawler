@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_366ge")
-itemID = "2"
+itemID = "997"
 itemName = "ratGun"
 description = "Gives you attack Speed"
 rarity = "Uncommon"
