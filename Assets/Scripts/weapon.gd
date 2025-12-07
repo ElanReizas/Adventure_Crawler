@@ -7,11 +7,9 @@ class_name Weapon
 var cooldown: float = 0.0 
 
 func calculate_damage(attacker: Node) -> int:
-	var damage = attack_damage
-	if randf() < crit_rate:
-		#var anim = player.get_node("AnimationPlayer")
-		#anim.play("crit")
-		damage *= crit_damage
+	var damage = attacker.attack_damage
+	if randf() < attacker.crit_rate:
+		damage *= attacker.crit_damage
 		print("CRIT!")
 	return damage
 	
@@ -21,7 +19,8 @@ func get_targets(attacker: Node) -> Array:
 	else:
 		return attacker.get_tree().get_nodes_in_group("player")
 
-func attack(attacker: Node):
+#theres a direction parameter here, but by default its 0 so melee ignores it
+func attack(attacker: Node, direction: Vector2 = Vector2.ZERO):
 	pass
 
 func enemy_cooldown(attacker: Node, delta: float) -> void:

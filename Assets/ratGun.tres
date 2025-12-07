@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://1atwugovtayb"]
+
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="1_366ge"]
+[ext_resource type="Texture2D" uid="uid://cyq0ego5eljp8" path="res://Assets/Images/enemy_strapped.png" id="2_lfdvv"]
+
+[resource]
+script = ExtResource("1_366ge")
+itemID = "997"
+itemName = "ratGun"
+description = "Gives you attack Speed"
+rarity = "Uncommon"
+sprite = ExtResource("2_lfdvv")
+slot = 2
+stat_changes = Dictionary[String, float]({
+"AttackSpeed": 0.0
+})
+metadata/_custom_type_script = "uid://b1agcmofkq6ab"

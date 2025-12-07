@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vu4wsol6hs0c"]
+
+[ext_resource type="Script" uid="uid://clnaacp6b480a" path="res://Assets/Scripts/item_interaction.gd" id="1_fyubf"]
+
+[node name="ItemInteraction" type="StaticBody2D"]
+script = ExtResource("1_fyubf")

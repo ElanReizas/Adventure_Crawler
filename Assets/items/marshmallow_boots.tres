@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dt6iplkspidlw"]
+
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="1_o0p2h"]
+[ext_resource type="Texture2D" uid="uid://tvcoqx1pw7w7" path="res://Assets/Images/item sprites/marshmallow boots.png" id="2_x4lqv"]
+
+[resource]
+script = ExtResource("1_o0p2h")
+itemID = "6"
+itemName = "Marshmallow Boots"
+description = "Soft but speedy sugar-stompers."
+rarity = "Common"
+sprite = ExtResource("2_x4lqv")
+slot = 4

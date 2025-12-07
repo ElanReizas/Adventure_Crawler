@@ -20,10 +20,9 @@ size = Vector2(52, 714.5)
 
 [node name="Room1Floor2" type="Node2D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("equipped_weapon") instance=ExtResource("1_1brkv")]
+[node name="Player" parent="." instance=ExtResource("1_1brkv")]
 position = Vector2(171, 142)
 speed = 800
-equipped_weapon = NodePath("../Weapons/RangedWeapon")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1328.0
@@ -31,11 +30,12 @@ offset_bottom = 689.0
 color = Color(0.33958673, 0.40593436, 0.7483299, 1)
 
 [node name="SceneTransition" parent="." instance=ExtResource("1_myjhu")]
-position = Vector2(1004, 31)
+position = Vector2(127, 229)
 new_scene = "res://Assets/Scenes/room1_f1.tscn"
 
 [node name="Enemy" parent="." instance=ExtResource("4_smgks")]
 position = Vector2(554, 127)
+weapon_type = 1
 
 [node name="Weapons" type="Node2D" parent="."]
 

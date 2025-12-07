@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://cajlyrcs82iw2"]
+[gd_scene load_steps=10 format=4 uid="uid://cajlyrcs82iw2"]
 
 [ext_resource type="TileSet" uid="uid://bmuk58cqek4vi" path="res://Assets/map.tres" id="1_7ppdy"]
 [ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="1_j2wcy"]
 [ext_resource type="PackedScene" uid="uid://bf21l51gif70h" path="res://Assets/Scenes/Player.tscn" id="2_7ppdy"]
+[ext_resource type="Texture2D" uid="uid://28xo63rydadm" path="res://Assets/Images/big_worm.png" id="4_gtdvp"]
+[ext_resource type="Texture2D" uid="uid://dy1oatgq0p6af" path="res://Assets/Images/gumball_machine.png" id="5_7puh5"]
 
 [sub_resource type="Gradient" id="Gradient_7ppdy"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -24,7 +26,6 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(452, 112, 645, 111, 646, 327, 742, 327, 737, 133, 458, 133, 458, 68, 923, 68, 926, 463, 454, 463)])
 
 [node name="PursuitVsWall" type="Node2D"]
-modulate = Color(0.9861887, 0.89271134, 0.8306893, 1)
 
 [node name="Lighting" type="Node2D" parent="."]
 position = Vector2(530, 4)
@@ -77,10 +78,10 @@ tile_set = ExtResource("1_7ppdy")
 
 [node name="Player" parent="." instance=ExtResource("2_7ppdy")]
 position = Vector2(595, 157)
-weapon_type = 1
 
 [node name="Enemy" parent="." instance=ExtResource("1_j2wcy")]
-position = Vector2(778, 137)
+position = Vector2(585, 108)
+weapon_type = 1
 
 [node name="Wall -staticbody2d" type="StaticBody2D" parent="."]
 position = Vector2(736, 289)
@@ -104,6 +105,15 @@ color = Color(0.72051126, 0.8730382, 0.9209301, 1)
 vertices = PackedVector2Array(640, 85, 638, 291, 741, 291, 741, 85)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 position = Vector2(-5, -44)
 navigation_polygon = SubResource("NavigationPolygon_j2wcy")
 enter_cost = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(522, 141)
+texture = ExtResource("4_gtdvp")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(497, 108)
+texture = ExtResource("5_7puh5")

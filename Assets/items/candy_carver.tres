@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://ryen0ugjho5s"]
+
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="1_o0b8x"]
+[ext_resource type="Texture2D" uid="uid://o6p6nhxlww3l" path="res://Assets/Images/item sprites/candy sword.png" id="2_5tjrw"]
+
+[resource]
+script = ExtResource("1_o0b8x")
+itemID = "1"
+itemName = "Candy Carver"
+description = "A pink candy blade that hits harder the sweeter the danger."
+rarity = "Uncommon"
+sprite = ExtResource("2_5tjrw")
+allowed_class = 1
+stat_changes = Dictionary[String, float]({
+"attack_speed": -0.1,
+"damage": 6.0,
+"melee_range": 12.0
+})
