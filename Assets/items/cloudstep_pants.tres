@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://oo4fqxv7tq06"]
+
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="1_ubt3o"]
+[ext_resource type="Texture2D" uid="uid://f8gbaaedkskd" path="res://Assets/Images/item sprites/cloudstep pants.png" id="2_x4tfk"]
+
+[resource]
+script = ExtResource("1_ubt3o")
+itemID = "5"
+itemName = "Cloudstep Pants"
+description = "Light as air and twice as floaty."
+rarity = "Uncommon"
+sprite = ExtResource("2_x4tfk")
+slot = 3
+stat_changes = Dictionary[String, float]({
+"melee_range": 5.0,
+"speed": 25.0
+})

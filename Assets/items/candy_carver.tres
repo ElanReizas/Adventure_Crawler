@@ -12,7 +12,7 @@ rarity = "Uncommon"
 sprite = ExtResource("2_5tjrw")
 allowed_class = 1
 stat_changes = Dictionary[String, float]({
-"attack_speed": -0.05,
+"attack_speed": -0.1,
 "damage": 6.0,
 "melee_range": 12.0
 })
