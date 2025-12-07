@@ -1,18 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://tde3nf6gv2ow"]
 
-[ext_resource type="Script" uid="uid://ct0ehwekwb0b5" path="res://Assets/Scripts/projectile.gd" id="1_b6is6"]
-[ext_resource type="Texture2D" uid="uid://dw23l1ghn604q" path="res://icon.svg" id="2_q323y"]
+[ext_resource type="Script" uid="uid://ct0ehwekwb0b5" path="res://Assets/Scripts/bullet.gd" id="1_eqnv0"]
+[ext_resource type="Texture2D" uid="uid://dw23l1ghn604q" path="res://icon.svg" id="2_7pdaj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i5nsh"]
 radius = 5.0
 
-[node name="Projectile" type="Area2D"]
-script = ExtResource("1_b6is6")
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_eqnv0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.875, -4.375001)
 scale = Vector2(0.091796875, 0.08398439)
-texture = ExtResource("2_q323y")
+texture = ExtResource("2_7pdaj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5)
