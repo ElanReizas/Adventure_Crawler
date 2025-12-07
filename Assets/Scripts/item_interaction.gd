@@ -13,7 +13,8 @@ var SAVE_PATH := "user://userData/save.json"
 const RARITY_WEIGHTS: Dictionary[String, int] = {
 	"Common": 60,
 	"Uncommon": 25,
-	"Epic": 15
+	"Rare": 10,
+	"Epic": 5
 }
 
 
