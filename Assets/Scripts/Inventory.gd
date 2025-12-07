@@ -43,20 +43,21 @@ func evaluate_equip(player: BasePlayer, item: Item) -> Dictionary:
 
 func attempt_pickup(player: BasePlayer, item: Item) -> void:
 	var slot: Slot = item.slot
-
 	if not can_equip(player, item):
 		player.spawn_item_drop(item)
 		return
-
+	
 	var existing = slots[int(slot)]
 
 	if existing == null:
 		set_item(slot, item)
+		print_inv()
 		player.apply_item_stats()
 		return
 	
 	player.spawn_item_drop(existing)
 	set_item(slot, item)
+	print_inv()
 	player.apply_item_stats()
 
 
@@ -88,3 +89,12 @@ func drop_entire_inventory(player: BasePlayer) -> void:
 		# Use deferred spawn to avoid physics "flushing queries"
 		player.call_deferred("spawn_item_drop_at", item, player.global_position + offset)
 		index += 1
+
+#gonna add a UI later. if a miracle happens
+func print_inv():
+	print("inventory array")
+	for i in range(slots.size()):
+		if slots[i] == null:
+			print("Slot", i, ": EMPTY")
+		else:
+			print("Slot", i, ": ", slots[i].itemName, " (ID=", slots[i].itemID, ")", " Type: ", Slot.keys()[slots[i].slot])
