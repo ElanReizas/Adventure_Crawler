@@ -1,9 +1,12 @@
 extends State
 #var locked_angle
 @onready var pivot = $"../../Pivot"
+@onready var sfx: AudioStreamPlayer2D = $sfx
+
 var can_transition: bool = false
 func enter():
 	super.enter()
+	sfx.play()
 	await play_animation("lasercharge")
 	await play_animation("FiringMaLaser")
 	can_transition = true

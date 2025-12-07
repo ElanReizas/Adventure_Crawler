@@ -41,6 +41,13 @@ Right.
 HELLO WORLD
 => END 
 
+~ boss_defeat
+I just need more time. I need to harvest it... 
+The tree heart is all I need to save my kingdom. 
+What possible reason could you have to get in my way
+Whatever, I will do whatever it takes. One way or another that relic is mine!
+
+=> END
 ~ dialogueAction2
 THE CUTSCENE JUST RAN
 => END 
