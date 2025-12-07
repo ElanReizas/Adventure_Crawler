@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg5mm62rokltj"]
+
+[ext_resource type="Script" uid="uid://ler3huoeowu6" path="res://Assets/Scenes/input_settings/input_settings.gd" id="1_sxflg"]
+[ext_resource type="PackedScene" uid="uid://clkdknmbqu40y" path="res://Assets/Scenes/input_settings/input_button.tscn" id="2_5wdax"]
+
+[sub_resource type="FontVariation" id="FontVariation_sxflg"]
+
+[node name="InputSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 33.0
+offset_right = 2.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sxflg")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -238.0
+offset_top = -184.0
+offset_right = 232.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "KEYBINDINGS"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_lock_ = true
+
+[node name="Action_List" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_edit_lock_ = true
+
+[node name="InputButton" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Action_List" instance=ExtResource("2_5wdax")]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 14
+
+[node name="ResetButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = SubResource("FontVariation_sxflg")
+theme_override_font_sizes/font_size = 31
+text = "RESET TO DEFAULT"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
