@@ -1,0 +1,106 @@
+[gd_scene load_steps=2 format=3 uid="uid://cudaghtpvib5c"]
+
+[ext_resource type="Script" uid="uid://bjwb6p5qox00d" path="res://Assets/Scenes/title_screen.gd" id="1_gussk"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.00671131
+script = ExtResource("1_gussk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.23167
+offset_top = -122.27745
+offset_right = 155.62367
+offset_bottom = 137.39146
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 36
+text = "Start"
+
+[node name="SinglePlayer" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "Player Type"
+metadata/_edit_use_anchors_ = true
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/SinglePlayer"]
+layout_mode = 0
+offset_left = -3.208095
+offset_top = 1.3263233
+offset_right = 290.868
+offset_bottom = 28.01686
+flat = true
+item_count = 2
+popup/item_0/text = "Single Player"
+popup/item_0/id = 0
+popup/item_1/text = "Multiplayer"
+popup/item_1/id = 1
+
+[node name="Mutiplayer" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "Multiplayer"
+metadata/_edit_use_anchors_ = true
+
+[node name="Weapon Type" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "Weapon Type"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Weapon Type"]
+layout_mode = 0
+offset_left = 3.3152485
+offset_top = 4.371704
+offset_right = 296.31525
+offset_bottom = 24.371704
+flat = true
+item_count = 1
+popup/item_0/text = "melee"
+popup/item_0/id = 0
+
+[node name="LoadGame" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "Load Game"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/SinglePlayer" to="." method="_on_single_player_pressed"]
+[connection signal="pressed" from="VBoxContainer/Mutiplayer" to="." method="_on_mutiplayer_pressed"]
+[connection signal="pressed" from="VBoxContainer/Weapon Type" to="." method="_on_weapon_type_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadGame" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
