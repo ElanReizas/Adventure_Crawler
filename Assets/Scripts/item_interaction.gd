@@ -2,11 +2,13 @@ extends Node2D
 var shop_inventory: Array[ItemStack]= []
 @export var dialogue_file: DialogueResource
 @export var dialogue_title: String = "start"
-@export var itemPrice: int = 10
+@export var item_price: int = 10
 @export var items: Array[Item]
 @onready var sprite_node := $Sprite2D
 @onready var textBox := $Label
+@onready var player = $"../../Player"
 @export var current_item: Item = null
+
 var SAVE_PATH := "user://userData/save.json"
 const RARITY_WEIGHTS: Dictionary[String, int] = {
 	"Common": 60,
@@ -26,13 +28,13 @@ func _ready():
 	#Set Price
 	if current_item.rarity == "Common":
 		textBox.set_text("10 gold")
-		itemPrice = 10
+		item_price = 10
 	elif current_item.rarity == "Uncommon":
 		textBox.set_text("15 gold")
-		itemPrice = 15
+		item_price = 15
 	elif current_item.rarity == "Epic":
 		textBox.set_text("20 gold")
-		itemPrice = 20
+		item_price = 20
 	
 func interaction():
 	if dialogue_file:
@@ -52,11 +54,11 @@ func buy_item(player, slot_index: int):
 
 
 	# Check gold
-	if player.coins < itemPrice:
+	if player.coins < item_price:
 		return # Not enough money
 
 	# Remove the coins
-	player.coins -= itemPrice
+	player.coins -= item_price
 
 	# Add the item to player’s inventory (you will implement add_item)
 	#player.inventory.add_item(current_item)
@@ -120,3 +122,15 @@ func find_item_by_id(id: String) -> Item:
 		if item.id == id:
 			return item
 	return null
+	
+func purchase_item(Item):
+	if player.gold < item_price:
+		DialogueManager.show_dialogue_balloon(load("res://Assets/DialogueFiles/testing.dialogue"), "noMoney")
+	else:
+		DialogueManager.show_dialogue_balloon(load("res://Assets/DialogueFiles/testing.dialogue"), "yesMoney")
+		player.inventory.attempt_pickup(player, current_item)
+		player.gold -= item_price
+		#delete the shop stand
+		queue_free()
+		
+	
