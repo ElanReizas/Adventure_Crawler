@@ -64,7 +64,7 @@ popup/item_0/id = 0
 popup/item_1/text = "Multiplayer"
 popup/item_1/id = 1
 
-[node name="Weapon Type" type="Button" parent="VBoxContainer"]
+[node name="WeaponType" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -72,7 +72,7 @@ theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 32
 text = "Weapon Type"
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Weapon Type"]
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/WeaponType"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 0.5
@@ -101,6 +101,8 @@ text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/SinglePlayer" to="." method="_on_single_player_pressed"]
-[connection signal="pressed" from="VBoxContainer/Weapon Type" to="." method="_on_weapon_type_pressed"]
+[connection signal="item_selected" from="VBoxContainer/SinglePlayer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="VBoxContainer/WeaponType" to="." method="_on_weapon_type_pressed"]
+[connection signal="item_selected" from="VBoxContainer/WeaponType/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="VBoxContainer/LoadGame" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

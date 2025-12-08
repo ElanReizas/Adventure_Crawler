@@ -51,7 +51,7 @@ theme_override_colors/font_color = Color(0.87769634, 0.470311, 0.63783514, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 80
-text = "Main Menu"
+text = "Pause Menu"
 vertical_alignment = 1
 
 [node name="Play" type="Button" parent="Control/VBoxContainer"]
@@ -63,7 +63,7 @@ mouse_filter = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 30
-text = "Play"
+text = "Resume"
 
 [node name="Save Game" type="Button" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(100, 33)
