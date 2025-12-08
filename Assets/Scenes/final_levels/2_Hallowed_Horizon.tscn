@@ -53,6 +53,7 @@ texture = ExtResource("2_hirsa")
 
 [node name="SceneTransition" parent="." index="14"]
 position = Vector2(459, 110)
+new_scene = "res://Assets/Scenes/final_levels/room3_split_shroom.tscn"
 
 [node name="Enemy" parent="." index="15" instance=ExtResource("3_wf6jf")]
 position = Vector2(259, 484)
