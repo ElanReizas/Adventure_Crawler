@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://n765nn8k1br8"]
+
+[ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="1_o6m5s"]
+[ext_resource type="Texture2D" uid="uid://dbu7vehsled1t" path="res://Assets/Images/apple.png" id="2_fvyds"]
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="2_o7rx1"]
+
+[node name="Enemy" instance=ExtResource("1_o6m5s")]
+current_health = 0
+weapon_type = 1
+follow_distance_min = 100
+follow_distance_max = 700
+drop_chance = 1.0
+possible_drops = Array[ExtResource("2_o7rx1")]([])
+drop_radius = 60.0
+detection_radius = 250.0
+attack_radius = 150.0
+max_pursuit_time = 10.0
+patrol_idle_time = 1.0
+dialogue_title = "start"
+speed = 100
+attack_damage = 10
+crit_rate = 0.2
+crit_damage = 2.0
+max_health = 100
+
+[node name="HealthBar" parent="." index="1"]
+offset_left = -31.0
+offset_top = -47.0
+offset_right = 36.0
+offset_bottom = -31.0
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("2_fvyds")
+
+[node name="CollisionShape2D" parent="." index="3"]
+visible = true
+position = Vector2(0.99999976, 0)

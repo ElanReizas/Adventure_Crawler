@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://tde3nf6gv2ow"]
 
-[ext_resource type="Script" uid="uid://ct0ehwekwb0b5" path="res://Assets/Scripts/projectile.gd" id="1_b6is6"]
+[ext_resource type="Script" path="res://Assets/Scripts/bullet.gd" id="1_b6is6"]
 [ext_resource type="Texture2D" uid="uid://dw23l1ghn604q" path="res://icon.svg" id="2_q323y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i5nsh"]
 radius = 5.0
 
-[node name="Projectile" type="Area2D"]
+[node name="Bullet" type="Area2D"]
 script = ExtResource("1_b6is6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
