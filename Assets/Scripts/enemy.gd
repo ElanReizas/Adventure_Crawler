@@ -5,6 +5,8 @@ var player_in_sight: bool = false
 @export var current_health: int
 #grab group of player in players
 @onready var players = get_tree().get_nodes_in_group("player")
+@onready var enemy_sprite: Sprite2D = $Sprite2D
+
 #Variable to determine if the player was seen by an enemy to initiate engage targetting
 var playerSeen = false
 #Enemy combat style
@@ -78,6 +80,8 @@ func _ready():
 		target =players[0]
 		
 	equip_weapon(WEAPON_PATHS[weapon_type])
+	if enemy_sprite.texture == load("res://Assets/Images/apple.png"):
+		equipped_weapon.ranged_type = RangedWeapon.ProjectileType.BOMB
 	#ranged enemies use detection radius as attack radius
 	update_ranged_attack_radius()
 	#wait for navmesh to sync before patrol

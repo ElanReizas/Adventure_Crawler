@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dbu7vehsled1t" path="res://Assets/Images/apple.png" id="2_28oyt"]
 
 [node name="enemy" instance=ExtResource("1_g8s1a")]
+attack_damage = 20
 
 [node name="Sprite2D" parent="." index="2"]
 scale = Vector2(0.75, 0.75)
