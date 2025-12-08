@@ -35,8 +35,6 @@ const WEAPON_PATHS := {
 	WeaponType.RANGED: "res://Assets/Scenes/RangedWeapon.tscn"
 }
 
-@onready var health_bar: ProgressBar = $HealthBar
-
 var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_decay: float = 800.0
 
