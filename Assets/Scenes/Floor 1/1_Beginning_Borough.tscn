@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://cbwtvo0sku8uu"]
+[gd_scene load_steps=26 format=4 uid="uid://cbwtvo0sku8uu"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_187m7"]
 [ext_resource type="TileSet" uid="uid://db1rcwbt2n6hx" path="res://Assets/Images/tilesets/mushroom_stuff.tres" id="2_ey1u4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://dw10r8i6nx47h" path="res://Assets/DialogueFiles/testing.dialogue" id="5_m8mnd"]
 [ext_resource type="Texture2D" uid="uid://dy1oatgq0p6af" path="res://Assets/Images/gumball_machine.png" id="6_7modm"]
 [ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="7_3q1tg"]
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="8_ey1u4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7o6bv"]
 size = Vector2(697.5, 55)
@@ -90,7 +91,6 @@ visible = false
 visible = false
 
 [node name="SceneTransition2" parent="." index="11" instance=ExtResource("3_o42f1")]
-visible = false
 new_scene = "res://Assets/Scenes/final_levels/2_Hallowed_Horizon.tscn"
 
 [node name="Node2D" type="Node2D" parent="." index="12"]
@@ -270,13 +270,63 @@ navigation_polygon = SubResource("NavigationPolygon_34mnn")
 
 [node name="Enemy" parent="." index="17" instance=ExtResource("7_3q1tg")]
 position = Vector2(896, 256)
+current_health = 0
+weapon_type = 0
+follow_distance_min = 100
+follow_distance_max = 700
+drop_chance = 1.0
+possible_drops = Array[ExtResource("8_ey1u4")]([])
+drop_radius = 20.0
+detection_radius = 250.0
+attack_radius = 150.0
+max_pursuit_time = 10.0
+patrol_idle_time = 1.0
+dialogue_title = "start"
+speed = 100
+attack_damage = 10
+crit_rate = 0.2
+crit_damage = 2.0
+max_health = 100
 
 [node name="Enemy2" parent="." index="18" instance=ExtResource("7_3q1tg")]
 position = Vector2(338, 219)
+current_health = 0
+weapon_type = 0
+follow_distance_min = 100
+follow_distance_max = 700
+drop_chance = 1.0
+possible_drops = Array[ExtResource("8_ey1u4")]([])
+drop_radius = 20.0
+detection_radius = 250.0
+attack_radius = 150.0
+max_pursuit_time = 10.0
+patrol_idle_time = 1.0
+dialogue_title = "start"
+speed = 100
+attack_damage = 10
+crit_rate = 0.2
+crit_damage = 2.0
+max_health = 100
 
 [node name="Enemy3" parent="." index="19" instance=ExtResource("7_3q1tg")]
 position = Vector2(225, 130)
+current_health = 0
 weapon_type = 1
+follow_distance_min = 100
+follow_distance_max = 700
+drop_chance = 1.0
+possible_drops = Array[ExtResource("8_ey1u4")]([])
+drop_radius = 20.0
+detection_radius = 250.0
+attack_radius = 150.0
+max_pursuit_time = 10.0
+patrol_idle_time = 1.0
+dialogue_title = "start"
+speed = 100
+attack_damage = 10
+crit_rate = 0.2
+crit_damage = 2.0
+max_health = 100
 
 [node name="AudioStreamPlayer2D" parent="." index="20"]
 visible = false
