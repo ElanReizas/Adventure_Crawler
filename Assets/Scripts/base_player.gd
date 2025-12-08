@@ -26,7 +26,7 @@ var base_max_health: int
 
 var last_item_in_range: ItemDrop = null
 
-@export var potions = 2
+@export var potions = 20
 
 enum WeaponType { MELEE, RANGED }
 @export var weapon_type: WeaponType = WeaponType.MELEE
