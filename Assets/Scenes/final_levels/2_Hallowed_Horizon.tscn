@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://da05decb46gyy"]
+[gd_scene load_steps=10 format=3 uid="uid://da05decb46gyy"]
 
-[ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_vkr6w"]
-[ext_resource type="Texture2D" uid="uid://bu85asefxd3qc" path="res://Assets/Images/tilesets/room1.png" id="2_ta4kn"]
-[ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="3_53nmr"]
+[ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_xg55u"]
+[ext_resource type="Texture2D" uid="uid://bu85asefxd3qc" path="res://Assets/Images/tilesets/room1.png" id="2_hirsa"]
+[ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="3_wf6jf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y0hao"]
 size = Vector2(1000, 720)
@@ -27,13 +27,12 @@ vertices = PackedVector2Array(488.65625, 250.39063, 98, 353.9922, 98, 266.4297, 
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(88, 367, 499, 258, 496, 188, 88, 258)])
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vkr6w"]
-size = Vector2(20, 354.2842)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xg55u"]
+vertices = PackedVector2Array(608.09375, 335.47656, 417.85156, 327.45313, 428.17188, 207.9375, 586.53906, 207.03906)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(419, 198, 407, 337, 620, 346, 595, 197)])
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ta4kn"]
-size = Vector2(4.286682, 354.2842)
-
-[node name="InheritedFloor2" instance=ExtResource("1_vkr6w")]
+[node name="InheritedFloor2" instance=ExtResource("1_xg55u")]
 modulate = Color(0.8599081, 0.632505, 0.91362244, 1)
 
 [node name="Player" parent="." index="2"]
@@ -50,18 +49,18 @@ shape = SubResource("RectangleShape2D_y0hao")
 [node name="TextureRect" type="TextureRect" parent="." index="12"]
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("2_ta4kn")
+texture = ExtResource("2_hirsa")
 
 [node name="SceneTransition" parent="." index="14"]
 position = Vector2(459, 110)
 
-[node name="Enemy" parent="." index="15" instance=ExtResource("3_53nmr")]
+[node name="Enemy" parent="." index="15" instance=ExtResource("3_wf6jf")]
 position = Vector2(259, 484)
 
-[node name="Enemy2" parent="." index="16" instance=ExtResource("3_53nmr")]
+[node name="Enemy2" parent="." index="16" instance=ExtResource("3_wf6jf")]
 position = Vector2(720, 445)
 
-[node name="Enemy3" parent="." index="17" instance=ExtResource("3_53nmr")]
+[node name="Enemy3" parent="." index="17" instance=ExtResource("3_wf6jf")]
 position = Vector2(840, 281)
 weapon_type = 1
 
@@ -77,15 +76,11 @@ navigation_polygon = SubResource("NavigationPolygon_53nmr")
 [node name="NavigationRegion2D4" type="NavigationRegion2D" parent="." index="21"]
 navigation_polygon = SubResource("NavigationPolygon_byjgd")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="22"]
+[node name="NavigationRegion2D5" type="NavigationRegion2D" parent="." index="22"]
+navigation_polygon = SubResource("NavigationPolygon_xg55u")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
-position = Vector2(317.99997, 484.99997)
-rotation = 0.9075712
-shape = SubResource("RectangleShape2D_vkr6w")
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="23"]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" index="1"]
-position = Vector2(266, 412.00003)
-rotation = 0.9075712
-shape = SubResource("RectangleShape2D_ta4kn")
-one_way_collision = true
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
+build_mode = 1
+polygon = PackedVector2Array(139, 682, 182, 620, 204, 567, 264, 537, 327, 495, 379, 462, 404, 417, 439, 380, 452, 437, 434, 522, 412, 564, 390, 629, 439, 650, 442, 724, 502, 726, 552, 714, 552, 672, 566, 639, 578, 597, 558, 542, 534, 488, 542, 379, 593, 412, 671, 466, 708, 517, 699, 611, 714, 654, 754, 639, 763, 597, 792, 626, 832, 644, 865, 639, 857, 605, 887, 608, 919, 632, 929, 581, 927, 520, 887, 502, 929, 488, 911, 454, 832, 460, 766, 412, 709, 363, 630, 315, 606, 278, 696, 297, 778, 323, 881, 387, 929, 387, 938, 303, 927, 224, 830, 214, 742, 212, 636, 191, 663, 161, 766, 176, 846, 177, 923, 188, 931, 150, 917, 84, 856, 66, 753, 68, 615, 61, 585, 104, 478, 54, 391, 75, 285, 75, 199, 78, 158, 84, 235, 136, 310, 170, 358, 199, 317, 204, 249, 188, 176, 182, 217, 222, 126, 245, 76, 218, 73, 268, 74, 354, 78, 390, 158, 357, 262, 332, 360, 302, 397, 296, 361, 331, 306, 394, 237, 435, 173, 466, 114, 508, 74, 518, 74, 556, 81, 600, 113, 639)
