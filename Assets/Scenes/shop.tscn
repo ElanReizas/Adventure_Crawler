@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://diw6i3cwqa1ic"]
+[gd_scene load_steps=29 format=4 uid="uid://diw6i3cwqa1ic"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_7ortk"]
 [ext_resource type="TileSet" uid="uid://bmuk58cqek4vi" path="res://Assets/map.tres" id="2_dciiy"]
@@ -15,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://ryen0ugjho5s" path="res://Assets/items/candy_carver.tres" id="12_ydhgn"]
 [ext_resource type="Resource" uid="uid://bpy235cer03ge" path="res://Assets/items/toasted_chestpiece.tres" id="13_qf3f5"]
 [ext_resource type="Resource" uid="uid://oo4fqxv7tq06" path="res://Assets/items/cloudstep_pants.tres" id="14_ynjiw"]
+[ext_resource type="Resource" uid="uid://c0wdvhfaptudc" path="res://Assets/items/doorag.tres" id="15_jm8ju"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgaav"]
 texture = ExtResource("3_s5gg0")
@@ -186,7 +187,7 @@ shape = SubResource("RectangleShape2D_8kdgp")
 
 [node name="ItemSlot1" parent="Interactions" index="3" instance=ExtResource("7_dciiy")]
 dialogue_file = ExtResource("5_0dywe")
-items = Array[ExtResource("8_v0t5h")]([ExtResource("12_ydhgn"), ExtResource("10_7gtlo"), ExtResource("11_nd8g5"), ExtResource("12_i6re0"), ExtResource("13_qf3f5"), ExtResource("14_ynjiw")])
+items = Array[ExtResource("8_v0t5h")]([ExtResource("12_ydhgn"), ExtResource("10_7gtlo"), ExtResource("11_nd8g5"), ExtResource("12_i6re0"), ExtResource("13_qf3f5"), ExtResource("14_ynjiw"), ExtResource("15_jm8ju")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot1" index="0"]
 position = Vector2(65, -5)
@@ -213,7 +214,7 @@ horizontal_alignment = 1
 
 [node name="ItemSlot2" parent="Interactions" index="4" instance=ExtResource("7_dciiy")]
 dialogue_file = ExtResource("5_0dywe")
-items = Array[ExtResource("8_v0t5h")]([ExtResource("12_ydhgn"), ExtResource("14_ynjiw"), ExtResource("10_7gtlo"), ExtResource("11_nd8g5"), ExtResource("12_i6re0"), ExtResource("13_qf3f5")])
+items = Array[ExtResource("8_v0t5h")]([ExtResource("12_ydhgn"), ExtResource("14_ynjiw"), ExtResource("10_7gtlo"), ExtResource("11_nd8g5"), ExtResource("12_i6re0"), ExtResource("13_qf3f5"), ExtResource("15_jm8ju")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot2" index="0"]
 position = Vector2(65, -5)
@@ -240,7 +241,7 @@ autoplay = "hoverItem2"
 
 [node name="ItemSlot3" parent="Interactions" index="5" instance=ExtResource("7_dciiy")]
 dialogue_file = ExtResource("5_0dywe")
-items = Array[ExtResource("8_v0t5h")]([ExtResource("12_ydhgn"), ExtResource("14_ynjiw"), ExtResource("10_7gtlo"), ExtResource("11_nd8g5"), ExtResource("12_i6re0"), ExtResource("13_qf3f5")])
+items = Array[ExtResource("8_v0t5h")]([ExtResource("12_ydhgn"), ExtResource("14_ynjiw"), ExtResource("10_7gtlo"), ExtResource("11_nd8g5"), ExtResource("12_i6re0"), ExtResource("13_qf3f5"), ExtResource("15_jm8ju")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactions/ItemSlot3" index="0"]
 position = Vector2(65, -5)
@@ -348,8 +349,3 @@ libraries = {
 &"": SubResource("AnimationLibrary_myf4l")
 }
 autoplay = "hoverItem2"
-
-[node name="MultiplayerHUD" parent="CanvasLayer" index="0"]
-visible = false
-offset_left = 1.0
-offset_right = 1.0

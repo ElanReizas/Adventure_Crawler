@@ -8,11 +8,11 @@ script = ExtResource("1_dl5si")
 itemID = "1"
 itemName = "Doorag"
 description = "Keeps your hair healthy, keeps yourself stylish."
-rarity = "Uncommon"
+rarity = "Epic"
 sprite = ExtResource("2_dl5si")
 allowed_class = 1
 stat_changes = Dictionary[String, float]({
-"attack_speed": -0.1,
-"damage": 6.0,
-"melee_range": 12.0
+"damage": 15.0,
+"max_health": -5.0,
+"speed": 20.0
 })

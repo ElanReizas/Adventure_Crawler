@@ -10,4 +10,7 @@ itemName = "Marshmallow Boots"
 description = "Soft but speedy sugar-stompers."
 rarity = "Common"
 sprite = ExtResource("2_x4lqv")
-slot = 3
+slot = 4
+stat_changes = Dictionary[String, float]({
+"speed": 50.0
+})
