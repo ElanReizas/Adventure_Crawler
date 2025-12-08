@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=4 uid="uid://crir8vo6p8hw4"]
+
+[ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_15ioy"]
+[ext_resource type="Texture2D" uid="uid://djof12cuji84" path="res://Assets/Images/tilesets/room4.png" id="2_nnlxy"]
+[ext_resource type="TileSet" uid="uid://db1rcwbt2n6hx" path="res://Assets/Images/tilesets/mushroom_stuff.tres" id="3_l2apo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnlxy"]
+size = Vector2(1000, 720)
+
+[node name="InheritedFloor" instance=ExtResource("1_15ioy")]
+modulate = Color(0.85882354, 0.6313726, 0.9137255, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." index="1"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_nnlxy")
+
+[node name="TileMapLayer" parent="." index="2"]
+tile_map_data = PackedByteArray("AAADAAIAAQAAAAAAAAADAAMAAQAAAAEAAAAEAAIAAQABAAAAAAAEAAMAAQABAAEAAAAFAAIAAQACAAAAAAAFAAMAAQACAAEAAAAGAAMAAQADAAEAAAADAAQAAQAGAAIAAAAEAAQAAQABAAIAAAAFAAQAAQACAAIAAAAVAAQAAQAAAAAAAAAVAAUAAQAAAAEAAAAVAAYAAQAGAAIAAAAWAAQAAQABAAAAAAAWAAUAAQABAAEAAAAWAAYAAQABAAIAAAAXAAQAAQACAAAAAAAXAAUAAQACAAEAAAAXAAYAAQACAAIAAAAGAA4AAQAAAAAAAAAGAA8AAQAAAAEAAAAGABAAAQAAAAIAAAAHAA4AAQABAAAAAAAHAA8AAQABAAEAAAAHABAAAQABAAIAAAAIAA4AAQACAAAAAAAIAA8AAQACAAEAAAAIABAAAQACAAIAAAAHABEAAQABAAMAAAAEAAUAAQABAAMAAAAWAAcAAQABAAMAAAAaABEAAQAHAAcAAAAaABIAAQAHAAgAAAAbABEAAQAIAAcAAAAbABIAAQAIAAgAAAALABIAAQAHAAcAAAALABMAAQAHAAgAAAAMABIAAQAIAAcAAAAMABMAAQAIAAgAAAAGAAQAAQADAAIAAAAHAAMAAQAEAAEAAAAHAAQAAQAEAAIAAAAUAAYAAQAFAAIAAAACAAQAAQAFAAIAAAA=")
+tile_set = ExtResource("3_l2apo")
+
+[node name="Player" parent="." index="3"]
+position = Vector2(500, 629)
+
+[node name="Area2D" type="Area2D" parent="CameraLimits" index="0"]
+
+[node name="Limit" type="CollisionShape2D" parent="CameraLimits/Area2D" index="0"]
+visible = false
+position = Vector2(500, 360)
+shape = SubResource("RectangleShape2D_nnlxy")
