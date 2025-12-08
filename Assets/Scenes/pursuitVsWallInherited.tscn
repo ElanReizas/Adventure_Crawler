@@ -135,7 +135,7 @@ enter_cost = 1.0
 
 [node name="SceneTransition" parent="." index="9" instance=ExtResource("4_mnmml")]
 position = Vector2(351, 272)
-new_scene = "res://shop.tscn"
+new_scene = "res://Assets/Scenes/shop.tscn"
 
 [node name="Cutscene" parent="CutsceneNodes" index="0" instance=ExtResource("5_2ky1a")]
 steps = Array[ExtResource("6_jd53k")]([SubResource("Resource_n0ofx"), SubResource("Resource_4ku44"), SubResource("Resource_jd53k")])

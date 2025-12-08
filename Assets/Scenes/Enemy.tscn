@@ -37,6 +37,7 @@ theme_override_font_sizes/font_size = 16
 texture = ExtResource("2_3pmh0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-2.9999998, 0)
 scale = Vector2(7, 7)
 shape = SubResource("CircleShape2D_3pmh0")
