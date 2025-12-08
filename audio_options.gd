@@ -20,3 +20,4 @@ func _on_sfx_slider_mouse_exited() -> void:
 
 func _on_master_slider_mouse_exited() -> void:
 	release_focus()
+	
