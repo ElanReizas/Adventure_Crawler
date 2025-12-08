@@ -58,6 +58,7 @@ offset_bottom = 65.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
+metadata/_edit_use_anchors_ = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(50, 70)
@@ -117,4 +118,5 @@ theme_override_font_sizes/font_size = 32
 text = "RESET TO DEFAULT"
 
 [connection signal="pressed" from="Panel/HBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/ApplyChanges" to="." method="_on_apply_changes_pressed"]
 [connection signal="pressed" from="Panel/ResetButton" to="." method="_on_reset_button_pressed"]

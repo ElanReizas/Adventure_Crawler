@@ -41,7 +41,6 @@ theme_override_constants/margin_bottom = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-metadata/_edit_lock_ = true
 
 [node name="LabelAction" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
