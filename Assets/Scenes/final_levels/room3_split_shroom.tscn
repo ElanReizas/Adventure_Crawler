@@ -71,6 +71,7 @@ visible = false
 
 [node name="SceneTransition" parent="." index="15"]
 position = Vector2(338, 10)
+new_scene = "res://Assets/Scenes/final_levels/room_4_micelium_town.tscn"
 
 [node name="enemy collisions" type="Node2D" parent="." index="16"]
 

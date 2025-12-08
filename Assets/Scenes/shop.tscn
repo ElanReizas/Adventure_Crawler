@@ -349,3 +349,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_myf4l")
 }
 autoplay = "hoverItem2"
+
+[node name="SceneTransition" parent="." index="15"]
+position = Vector2(210, 113)
+new_scene = "res://Assets/Scenes/boss_room_better.tscn"
