@@ -86,20 +86,12 @@ visible = false
 [node name="NavigationObstacles" parent="NavigationItems" index="0"]
 visible = false
 
-[node name="CutsceneNodes" parent="." index="6"]
-visible = false
-
-[node name="CanvasLayer" parent="." index="7"]
-visible = false
-
-[node name="Players" parent="." index="9"]
-visible = false
-
-[node name="AudioStreamPlayer2D" parent="." index="10"]
+[node name="CutsceneNodes" parent="." index="7"]
 visible = false
 
 [node name="SceneTransition2" parent="." index="11" instance=ExtResource("3_o42f1")]
 visible = false
+new_scene = "res://Assets/Scenes/final_levels/2_Hallowed_Horizon.tscn"
 
 [node name="Node2D" type="Node2D" parent="." index="12"]
 
@@ -119,7 +111,7 @@ tile_set = ExtResource("2_ey1u4")
 tile_map_data = PackedByteArray("AAAOAAUAAQAHAAcAAAAOAAYAAQAHAAgAAAAPAAUAAQAIAAcAAAAPAAYAAQAIAAgAAAAEAAEAAQAHAAcAAAAEAAIAAQAHAAgAAAAFAAEAAQAIAAcAAAAFAAIAAQAIAAgAAAACAAYAAQAHAAcAAAACAAcAAQAHAAgAAAADAAYAAQAIAAcAAAADAAcAAQAIAAgAAAAIAAkAAQAAAAMAAAALAAIAAQAAAAMAAAAIAAUAAQAAAAMAAAAUAAAAAQABAAMAAAAUAAEAAQABAAMAAAAUAAIAAQABAAMAAAAbAAIAAQABAAMAAAAcAAIAAQABAAMAAAAAAAIAAQAAAAMAAAABAAIAAQAAAAMAAAACAAIAAQAAAAMAAAACAAAAAQAAAAMAAAACAAEAAQAAAAMAAAAAAAAAAQAAAAMAAAAAAAEAAQAAAAMAAAABAAAAAQAAAAMAAAA=")
 tile_set = ExtResource("2_ey1u4")
 
-[node name="SceneTransition" parent="." index="13"]
+[node name="Players" parent="." index="13"]
 visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="14"]
@@ -285,3 +277,9 @@ position = Vector2(338, 219)
 [node name="Enemy3" parent="." index="19" instance=ExtResource("7_3q1tg")]
 position = Vector2(225, 130)
 weapon_type = 1
+
+[node name="AudioStreamPlayer2D" parent="." index="20"]
+visible = false
+
+[node name="SceneTransition" parent="." index="21"]
+visible = false

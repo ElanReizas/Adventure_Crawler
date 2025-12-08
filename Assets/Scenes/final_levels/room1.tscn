@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvu6u2t62ux3k"]
+[gd_scene load_steps=4 format=3 uid="uid://buc4433ov02vb"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_y0hao"]
 [ext_resource type="Texture2D" uid="uid://bu85asefxd3qc" path="res://Assets/Images/tilesets/room1.png" id="2_hn2xr"]
