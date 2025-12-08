@@ -2,7 +2,8 @@ extends Control
 
 
 @onready var input_button_scene = preload("res://Assets/Scenes/input_settings/input_button.tscn")
-@onready var action_list = $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Action_List
+@export var action_list: VBoxContainer
+
 
 
 var is_remapping = false
@@ -20,8 +21,7 @@ var input_actions = {
 }
 
 
-func _ready():
-	_create_action_list()
+	
 	
 	
 func _create_action_list():
@@ -78,3 +78,8 @@ func _update_action_list(button, event):
 
 func _on_reset_button_pressed() -> void:
 	_create_action_list()
+
+
+
+func _on_back_pressed() -> void:
+	get_tree().change_scene_to_file("res://Assets/Scenes/options_menu.tscn") 
