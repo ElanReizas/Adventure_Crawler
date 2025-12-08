@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dr5jqt1he2060"]
+[gd_scene load_steps=11 format=3 uid="uid://dr5jqt1he2060"]
 
-[ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_nkib6"]
-[ext_resource type="Texture2D" uid="uid://ooxdxsv0wht1" path="res://Assets/Images/tilesets/room2.png" id="2_luex4"]
-[ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="3_4sebg"]
+[ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_pvfom"]
+[ext_resource type="Texture2D" uid="uid://ooxdxsv0wht1" path="res://Assets/Images/tilesets/room2.png" id="2_g6kgf"]
+[ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="3_xalll"]
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="4_3hk0i"]
+[ext_resource type="Resource" uid="uid://c0wdvhfaptudc" path="res://Assets/items/doorag.tres" id="5_wcsrw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luex4"]
 size = Vector2(720, 945)
@@ -18,20 +20,19 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(331, 66, 288, 96, 247, 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kc0ol"]
 vertices = PackedVector2Array(403.22656, 407.39063, 459.64063, 491.1328, 256.60938, 517.0469, 290.35156, 417.6172, 398.3203, 342.71094, 275.1172, 345.28906, 299.9375, 327.3828, 362.75, 310.27344, 243.79688, 193.10156, 239.29688, 134.53906, 273.84375, 96.703125, 340.2578, 121.078125, 343.1875, 198.07031, 263.28125, 228.96875, 384.59375, 229.84375, 255.60938, 299.8203)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5, 6, 7), PackedInt32Array(8, 9, 10, 11, 12, 13), PackedInt32Array(13, 12, 14, 7, 6, 15)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(350, 114, 353, 193, 396, 226, 374, 307, 408, 338, 413, 404, 477, 499, 242, 529, 280, 417, 264, 341, 282, 328, 245, 305, 253, 231, 234, 196, 229, 131, 271, 85)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rxyx0"]
 vertices = PackedVector2Array(984.2422, 134.92969, 935.59375, 408.15625, 854.3125, 409.77344, 888.75, 125.86719)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(880, 115, 996, 126, 944, 418, 843, 420)])
 
-[node name="InheritedFloor" instance=ExtResource("1_nkib6")]
+[node name="InheritedFloor" instance=ExtResource("1_pvfom")]
 modulate = Color(0.85882354, 0.6313726, 0.9137255, 1)
 
 [node name="TextureRect" type="TextureRect" parent="." index="1"]
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("2_luex4")
+texture = ExtResource("2_g6kgf")
 
 [node name="Player" parent="." index="3"]
 position = Vector2(369, 876)
@@ -89,17 +90,19 @@ navigation_polygon = SubResource("NavigationPolygon_kc0ol")
 position = Vector2(-380, 452)
 navigation_polygon = SubResource("NavigationPolygon_rxyx0")
 
-[node name="Enemy" parent="." index="17" instance=ExtResource("3_4sebg")]
+[node name="Enemy" parent="." index="17" instance=ExtResource("3_xalll")]
 position = Vector2(530, 829)
+possible_drops = Array[ExtResource("4_3hk0i")]([ExtResource("5_wcsrw")])
 
-[node name="Enemy2" parent="." index="18" instance=ExtResource("3_4sebg")]
+[node name="Enemy2" parent="." index="18" instance=ExtResource("3_xalll")]
 position = Vector2(519, 129)
+possible_drops = Array[ExtResource("4_3hk0i")]([null])
 
-[node name="Enemy3" parent="." index="19" instance=ExtResource("3_4sebg")]
+[node name="Enemy3" parent="." index="19" instance=ExtResource("3_xalll")]
 position = Vector2(224, 134)
 weapon_type = 1
 
-[node name="Enemy4" parent="." index="20" instance=ExtResource("3_4sebg")]
+[node name="Enemy4" parent="." index="20" instance=ExtResource("3_xalll")]
 position = Vector2(172, 585)
 weapon_type = 1
 
