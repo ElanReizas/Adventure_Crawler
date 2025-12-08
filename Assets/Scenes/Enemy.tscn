@@ -16,12 +16,29 @@ properties/2/spawn = true
 properties/2/replication_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3pmh0"]
-radius = 1.4356965
+radius = 3.8571427
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_mask = 5
 script = ExtResource("1_3pmh0")
+current_health = null
+weapon_type = null
+follow_distance_min = null
+follow_distance_max = null
+drop_chance = null
+possible_drops = null
+drop_radius = null
+detection_radius = null
+attack_radius = null
+max_pursuit_time = null
+patrol_idle_time = null
 dialogue_file = ExtResource("2_td1d5")
+dialogue_title = null
+speed = null
+attack_damage = null
+crit_rate = null
+crit_damage = null
+max_health = null
 
 [node name="EnemySynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_td1d5")
