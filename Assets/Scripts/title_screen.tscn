@@ -16,19 +16,24 @@ grow_vertical = 2
 script = ExtResource("1_gussk")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = -325.0
-offset_top = -152.0
-offset_right = 288.0
-offset_bottom = 101.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -319.0
+offset_top = -181.0
+offset_right = 319.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_etona")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -123.0
-offset_top = -142.0
-offset_right = 146.0
-offset_bottom = 82.0
+offset_left = -133.0
+offset_top = -154.0
+offset_right = 207.0
+offset_bottom = 147.0
 texture = ExtResource("3_on6mf")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -38,10 +43,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -138.23167
-offset_top = -122.27745
-offset_right = 155.62367
-offset_bottom = 137.39146
+offset_left = -128.0
+offset_top = -102.0
+offset_right = 165.85535
+offset_bottom = 157.66891
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -74,14 +79,6 @@ popup/item_0/id = 0
 popup/item_1/text = "Multiplayer"
 popup/item_1/id = 1
 
-[node name="Mutiplayer" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/font_size = 32
-text = "Multiplayer"
-metadata/_edit_use_anchors_ = true
-
 [node name="Weapon Type" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
@@ -92,14 +89,16 @@ text = "Weapon Type"
 
 [node name="OptionButton" type="OptionButton" parent="VBoxContainer/Weapon Type"]
 layout_mode = 0
-offset_left = 4.231676
-offset_top = 5.2774506
-offset_right = 297.2317
-offset_bottom = 25.27745
+offset_left = 0.2316761
+offset_top = 6.2774506
+offset_right = 293.2317
+offset_bottom = 26.27745
 flat = true
-item_count = 1
+item_count = 2
 popup/item_0/text = "melee"
 popup/item_0/id = 0
+popup/item_1/text = "gun"
+popup/item_1/id = 1
 
 [node name="LoadGame" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -117,7 +116,6 @@ text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/SinglePlayer" to="." method="_on_single_player_pressed"]
-[connection signal="pressed" from="VBoxContainer/Mutiplayer" to="." method="_on_mutiplayer_pressed"]
 [connection signal="pressed" from="VBoxContainer/Weapon Type" to="." method="_on_weapon_type_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadGame" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
