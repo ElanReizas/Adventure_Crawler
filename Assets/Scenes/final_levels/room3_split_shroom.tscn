@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dr5jqt1he2060"]
+[gd_scene load_steps=11 format=3 uid="uid://pqbntyf01han"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_pvfom"]
 [ext_resource type="Texture2D" uid="uid://ooxdxsv0wht1" path="res://Assets/Images/tilesets/room2.png" id="2_g6kgf"]
 [ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="3_xalll"]
 [ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="4_3hk0i"]
-[ext_resource type="Resource" uid="uid://c0wdvhfaptudc" path="res://Assets/items/doorag.tres" id="5_wcsrw"]
+[ext_resource type="Resource" path="res://Assets/items/doorag.tres" id="5_wcsrw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luex4"]
 size = Vector2(720, 945)
