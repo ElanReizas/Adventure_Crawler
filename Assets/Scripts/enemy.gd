@@ -28,7 +28,7 @@ var knockback_interval: float = 0.4
 
 @export var drop_chance: float = 1.0   # % chance to drop an item
 @export var possible_drops: Array[Item] = []
-@export var drop_radius: float = 60.0
+@export var drop_radius: float = 20.0
 
 @export var detection_radius: float = 250.0
 @export var attack_radius: float = 150.0

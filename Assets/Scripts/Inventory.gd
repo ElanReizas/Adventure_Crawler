@@ -2,7 +2,7 @@ extends Resource
 class_name Inventory
 
 #im shrinking the size of the inventory for now, but we can scale it back later
-enum Slot { WEAPON, HELMET, CHESTPLATE}
+enum Slot { WEAPON, HELMET, CHESTPLATE, LEGGINGS, BOOTS}
 
 @export var slots: Array[Item] = [null, null, null, null, null]
 

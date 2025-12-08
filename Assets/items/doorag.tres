@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c0wdvhfaptudc"]
+
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="1_dl5si"]
+[ext_resource type="Texture2D" uid="uid://bv400btqruid3" path="res://Assets/Images/item sprites/doorag.png" id="2_dl5si"]
+
+[resource]
+script = ExtResource("1_dl5si")
+itemID = "1"
+itemName = "Doorag"
+description = "Keeps your hair healthy, keeps yourself stylish."
+rarity = "Epic"
+sprite = ExtResource("2_dl5si")
+allowed_class = 1
+stat_changes = Dictionary[String, float]({
+"damage": 15.0,
+"max_health": -5.0,
+"speed": 20.0
+})
