@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://dvu6u2t62ux3k"]
+
+[ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_vkr6w"]
+[ext_resource type="Texture2D" uid="uid://bu85asefxd3qc" path="res://Assets/Images/tilesets/room1.png" id="2_ta4kn"]
+[ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="3_53nmr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0hao"]
+size = Vector2(1000, 720)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_vkr6w"]
+vertices = PackedVector2Array(359.5, 369.35938, 474.5703, 287.71875, 444.65625, 346.3203, 325.40625, 480.35156, 106.77344, 523.3828, 128.75, 527.9922, 169.39063, 582.46875)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(5, 3, 6)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(123, 537, 167, 596, 332, 488, 453, 352, 502, 256, 354, 361, 80, 528)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ta4kn"]
+vertices = PackedVector2Array(646.8672, 441.5625, 526.3672, 288.7578, 583.65625, 299.54688, 897.71875, 466.39063, 724.1406, 493.78125, 766.4922, 600.34375, 721.28906, 605.7031, 903.2969, 511.03906)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 4, 3, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(770, 610, 914, 516, 907, 460, 587, 290, 502, 274, 640, 449, 714, 499, 711, 617)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_53nmr"]
+vertices = PackedVector2Array(905.40625, 235.20313, 897.89844, 356.95313, 732.1875, 282.46875, 504.72656, 203.78906, 570.09375, 245.77344, 503.3125, 259.64063)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 0, 2, 4), PackedInt32Array(3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(907, 372, 916, 226, 495, 193, 493, 272, 570, 256, 729, 292)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_byjgd"]
+vertices = PackedVector2Array(488.65625, 250.39063, 98, 353.9922, 98, 266.4297, 486.4922, 199.78125)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(88, 367, 499, 258, 496, 188, 88, 258)])
+
+[node name="InheritedFloor" instance=ExtResource("1_vkr6w")]
+modulate = Color(0.8599081, 0.632505, 0.91362244, 1)
+
+[node name="Player" parent="." index="2"]
+position = Vector2(498, 675)
+
+[node name="Area2D" type="Area2D" parent="CameraLimits" index="0"]
+visible = false
+
+[node name="Limit" type="CollisionShape2D" parent="CameraLimits/Area2D" index="0"]
+z_index = 1
+position = Vector2(500, 360)
+shape = SubResource("RectangleShape2D_y0hao")
+
+[node name="MultiplayerCanvas" parent="." index="9"]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="." index="12"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_ta4kn")
+
+[node name="SceneTransition" parent="." index="14"]
+position = Vector2(459, 110)
+
+[node name="Enemy" parent="." index="15" instance=ExtResource("3_53nmr")]
+position = Vector2(259, 484)
+
+[node name="Enemy2" parent="." index="16" instance=ExtResource("3_53nmr")]
+position = Vector2(720, 445)
+
+[node name="Enemy3" parent="." index="17" instance=ExtResource("3_53nmr")]
+position = Vector2(840, 281)
+weapon_type = 1
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="18"]
+navigation_polygon = SubResource("NavigationPolygon_vkr6w")
+
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." index="19"]
+navigation_polygon = SubResource("NavigationPolygon_ta4kn")
+
+[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="." index="20"]
+navigation_polygon = SubResource("NavigationPolygon_53nmr")
+
+[node name="NavigationRegion2D4" type="NavigationRegion2D" parent="." index="21"]
+navigation_polygon = SubResource("NavigationPolygon_byjgd")
