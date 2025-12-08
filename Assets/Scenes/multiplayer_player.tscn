@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d4iop28fh42tr"]
+[gd_scene load_steps=13 format=3 uid="uid://d4iop28fh42tr"]
 
 [ext_resource type="Texture2D" uid="uid://bf3arkmdj4im4" path="res://Assets/Images/player.png" id="1_gc5b2"]
 [ext_resource type="Script" uid="uid://b87yarjbtl26v" path="res://Assets/Scripts/multiplayer/multiplayer_controller.gd" id="1_kgvho"]
@@ -32,6 +32,8 @@ radius = 9.848858
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aapfv"]
 radius = 31.016125
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aapfv"]
 
 [sub_resource type="Animation" id="Animation_aee6e"]
 length = 0.001
@@ -124,6 +126,15 @@ shape = SubResource("CircleShape2D_kgvho")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_aapfv")
 debug_color = Color(0.52328384, 0.45031285, 0.91723084, 0.41960785)
+
+[node name="CameraLimiter" type="Area2D" parent="."]
+position = Vector2(0, -5)
+rotation = 1.2304571
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimiter"]
+position = Vector2(4.7132072, 1.6690345)
+rotation = -1.2304571
+shape = SubResource("RectangleShape2D_aapfv")
 
 [node name="Label" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)

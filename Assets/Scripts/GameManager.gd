@@ -15,6 +15,7 @@ var player_data: Dictionary = {
 	"gold": null,
 	"weapon_type": null,
 	"inventory": null,
+	"potions": null,
 }
 
 func register_player(p):
@@ -30,6 +31,7 @@ func save_player_state():
 	player_data.gold = player.gold
 	player_data.weapon_type = player.weapon_type
 	player_data.inventory = player.inventory.serialize_inv()
+	player_data.potions = player.potions
 	
 	print("Saved via GameManager:",
 		" health=", player_data.health,
@@ -61,6 +63,8 @@ func load_player_state(p: BasePlayer):
 	if player_data.inventory != null:
 		p.inventory.deserialize_inv(player_data.inventory)
 		p.apply_item_stats()
+	if player_data.potions != null:
+		p.potions = player_data.potions
 
 
 func mark_enemy_dead(enemy_id: String):

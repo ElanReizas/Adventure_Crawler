@@ -54,7 +54,10 @@ func _add_player_to_game(id: int):
 	
 	#offset the position of the second player. player 1 always has ID 1
 	var all_players = _players_spawn_node.get_children()
+	var spawn_point = get_tree().get_current_scene().get_node("MultiplayerSpawnPoint")
 	if id == 1:
+		if spawn_point:
+			player_to_add.global_position = spawn_point.global_position
 		return
 	var player_1 = _players_spawn_node.get_node("1")
 	if player_1:

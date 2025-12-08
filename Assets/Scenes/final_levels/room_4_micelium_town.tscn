@@ -54,6 +54,7 @@ shape = SubResource("RectangleShape2D_nnlxy")
 
 [node name="SceneTransition" parent="." index="14"]
 position = Vector2(924, 329)
+new_scene = "res://Assets/Scenes/shop.tscn"
 
 [node name="Enemy" parent="." index="15" instance=ExtResource("4_b3o1t")]
 position = Vector2(852, 510)
