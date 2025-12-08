@@ -8,7 +8,8 @@ func _ready():
 	init_player()
 	GameManager.load_player_state(self)
 	apply_item_stats()
-
+	if current_health <= 0:
+		current_health = max_health
 
 
 func _physics_process(delta):
