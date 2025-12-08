@@ -4,13 +4,21 @@ class_name ItemDrop
 signal picked_up(item: Item)
 
 @export var item: Item
+@export var is_gold := false
+@export var gold_amount := 0
+@export var is_potion := false
 
 @onready var sprite: Sprite2D = $Sprite2D
 
 
 func _ready():
+	
+	if is_gold:
+		sprite.texture = preload("res://Assets/Images/ui/coin.png")
+	elif is_potion:
+		sprite.texture = preload("res://Assets/Images/ui/potion.png")
 	# Display the correct sprite for this item
-	if item and item.sprite:
+	elif item and item.sprite:
 		sprite.texture = item.sprite
 
 	# Track when a player enters/exits range
@@ -29,6 +37,12 @@ func _on_body_exited(body):
 
 
 func pickup(player: BasePlayer) -> void:
-	# Delegate the pickup logic to the player's inventory
-	player.inventory.attempt_pickup(player, item)
+	if is_gold:
+		player.gold += gold_amount
+	elif is_potion:
+		player.potions += 1
+	else:
+		# Delegate the pickup logic to the player's inventory
+		player.inventory.attempt_pickup(player, item)
 	queue_free()
+	

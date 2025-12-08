@@ -1,10 +1,13 @@
-[gd_scene load_steps=17 format=4 uid="uid://ddb71d02kbkwq"]
+[gd_scene load_steps=20 format=4 uid="uid://ddb71d02kbkwq"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_608f5"]
 [ext_resource type="TileSet" uid="uid://bmuk58cqek4vi" path="res://Assets/map.tres" id="2_mnmml"]
 [ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="3_227lh"]
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="4_4ku44"]
 [ext_resource type="PackedScene" uid="uid://8uof664rvkaj" path="res://Assets/Scenes/scene_transition.tscn" id="4_mnmml"]
 [ext_resource type="PackedScene" uid="uid://4w7go04aon1u" path="res://Assets/Scenes/cutscene.tscn" id="5_2ky1a"]
+[ext_resource type="Resource" uid="uid://b7rfcatp5droq" path="res://Assets/items/jelly_slingshot.tres" id="5_n0ofx"]
+[ext_resource type="Resource" uid="uid://c34te5kjf8qxa" path="res://Assets/items/gumdrop_helmet.tres" id="6_dqymh"]
 [ext_resource type="Script" uid="uid://pallb83dwmjh" path="res://Assets/Scripts/cutscene_scripts/cutscene_action.gd" id="6_jd53k"]
 [ext_resource type="Resource" uid="uid://dw10r8i6nx47h" path="res://Assets/DialogueFiles/testing.dialogue" id="7_4ku44"]
 [ext_resource type="Script" uid="uid://dj00aqrrrc4pu" path="res://Assets/Scripts/cutscene_scripts/dialogue_action.gd" id="8_8qgw2"]
@@ -99,6 +102,7 @@ tile_set = ExtResource("2_mnmml")
 
 [node name="Player" parent="." index="4"]
 position = Vector2(556, 171)
+weapon_type = 1
 
 [node name="Wall" type="StaticBody2D" parent="." index="5"]
 position = Vector2(736, 289)
@@ -120,10 +124,14 @@ color = Color(0.72051126, 0.8730382, 0.9209301, 1)
 
 [node name="Enemy" parent="Enemies" index="0" instance=ExtResource("3_227lh")]
 position = Vector2(778, 137)
-weapon_type = 1
+weapon_type = 0
+possible_drops = Array[ExtResource("4_4ku44")]([ExtResource("5_n0ofx")])
 
 [node name="Enemy2" parent="Enemies" index="1" instance=ExtResource("3_227lh")]
 position = Vector2(733, 381)
+weapon_type = 0
+drop_chance = 0.5
+possible_drops = Array[ExtResource("4_4ku44")]([ExtResource("6_dqymh")])
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationItems/NavigationObstacles" index="0"]
 vertices = PackedVector2Array(640, 85, 638, 291, 741, 291, 741, 85)
@@ -133,7 +141,7 @@ position = Vector2(-5, -44)
 navigation_polygon = SubResource("NavigationPolygon_pkla3")
 enter_cost = 1.0
 
-[node name="SceneTransition" parent="." index="9" instance=ExtResource("4_mnmml")]
+[node name="SceneTransition2" parent="." index="9" instance=ExtResource("4_mnmml")]
 position = Vector2(351, 272)
 new_scene = "res://Assets/Scenes/shop.tscn"
 

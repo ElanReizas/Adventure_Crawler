@@ -41,7 +41,6 @@ item = ExtResource("6_7e17q")
 
 [node name="Enemy" parent="." instance=ExtResource("7_3v1pc")]
 position = Vector2(572, 48)
-weapon_type = 1
 possible_drops = Array[ExtResource("8_1qilb")]([ExtResource("6_7e17q"), ExtResource("5_8aohl"), ExtResource("3_8aohl")])
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]

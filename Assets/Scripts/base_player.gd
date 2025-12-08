@@ -26,6 +26,8 @@ var base_max_health: int
 
 var last_item_in_range: ItemDrop = null
 
+@export var potions = 2
+
 enum WeaponType { MELEE, RANGED }
 @export var weapon_type: WeaponType = WeaponType.MELEE
 var equipped_weapon: Weapon
@@ -114,6 +116,8 @@ func apply_knockback(direction: Vector2, force: float):
 func _process(_delta):
 	if last_item_in_range and not is_instance_valid(last_item_in_range):
 		last_item_in_range = null
+	if Input.is_action_just_pressed("use_potion"):
+		use_potion()
 
 
 func spawn_item_drop(item: Item) -> void:
@@ -178,3 +182,12 @@ func _on_camera_limiter_area_entered(area_2d: Area2D) -> void:
 		camera_2d.limit_left = collision_shape.global_position.x - size.x/2
 		camera_2d.limit_bottom = camera_2d.limit_top + size.y
 		camera_2d.limit_right = camera_2d.limit_left + size.x
+
+func use_potion():
+	if potions <= 0:
+		return
+
+	potions -= 1
+	current_health = min(current_health + 25, max_health)
+	
+	

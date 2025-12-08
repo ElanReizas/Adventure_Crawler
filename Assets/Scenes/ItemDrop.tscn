@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bhxbsnia4jo55" path="res://Assets/Scripts/ItemDrop.gd" id="1_6c0va"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6c0va"]
-radius = 21.213203
 
 [node name="ItemDrop" type="Area2D"]
 script = ExtResource("1_6c0va")

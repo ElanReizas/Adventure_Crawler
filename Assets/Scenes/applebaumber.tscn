@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://df2boi74svwq4"]
+
+[ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="1_g8s1a"]
+[ext_resource type="Texture2D" uid="uid://dbu7vehsled1t" path="res://Assets/Images/apple.png" id="2_28oyt"]
+
+[node name="enemy" instance=ExtResource("1_g8s1a")]
+attack_damage = 20
+
+[node name="Sprite2D" parent="." index="2"]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_28oyt")
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(-2.3841858e-07, 0.99999994)
