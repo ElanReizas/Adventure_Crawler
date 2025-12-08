@@ -40,8 +40,10 @@ texture = ExtResource("2_g6kgf")
 [node name="Player" parent="." index="3"]
 position = Vector2(369, 876)
 
+[node name="CameraLimits" parent="." index="7"]
+z_index = 8
+
 [node name="Area2D" type="Area2D" parent="CameraLimits" index="0"]
-visible = false
 
 [node name="Limit" type="CollisionShape2D" parent="CameraLimits/Area2D" index="0"]
 position = Vector2(360, 472.5)
