@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://crir8vo6p8hw4"]
+[gd_scene load_steps=7 format=4 uid="uid://crir8vo6p8hw4"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_15ioy"]
 [ext_resource type="Texture2D" uid="uid://djof12cuji84" path="res://Assets/Images/tilesets/room4.png" id="2_nnlxy"]
 [ext_resource type="TileSet" uid="uid://db1rcwbt2n6hx" path="res://Assets/Images/tilesets/mushroom_stuff.tres" id="3_l2apo"]
+[ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="4_b3o1t"]
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="5_af15c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnlxy"]
 size = Vector2(1000, 720)
@@ -28,3 +30,23 @@ position = Vector2(500, 629)
 visible = false
 position = Vector2(500, 360)
 shape = SubResource("RectangleShape2D_nnlxy")
+
+[node name="Enemy" parent="." index="15" instance=ExtResource("4_b3o1t")]
+position = Vector2(852, 510)
+current_health = 0
+weapon_type = 0
+follow_distance_min = 100
+follow_distance_max = 700
+drop_chance = 1.0
+possible_drops = Array[ExtResource("5_af15c")]([])
+drop_radius = 60.0
+detection_radius = 250.0
+attack_radius = 150.0
+max_pursuit_time = 10.0
+patrol_idle_time = 1.0
+dialogue_title = "start"
+speed = 100
+attack_damage = 10
+crit_rate = 0.2
+crit_damage = 2.0
+max_health = 100
