@@ -1,11 +1,34 @@
-[gd_scene load_steps=5 format=4 uid="uid://b7y4a3l4ck1hj"]
+[gd_scene load_steps=12 format=4 uid="uid://crir8vo6p8hw4"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_15ioy"]
 [ext_resource type="Texture2D" uid="uid://djof12cuji84" path="res://Assets/Images/tilesets/room4.png" id="2_nnlxy"]
 [ext_resource type="TileSet" uid="uid://db1rcwbt2n6hx" path="res://Assets/Images/tilesets/mushroom_stuff.tres" id="3_l2apo"]
+[ext_resource type="PackedScene" uid="uid://w7fn2ns1k5r" path="res://Assets/Scenes/Enemy.tscn" id="4_b3o1t"]
+[ext_resource type="Script" uid="uid://b1agcmofkq6ab" path="res://Assets/Scripts/item.gd" id="5_af15c"]
+[ext_resource type="PackedScene" uid="uid://n765nn8k1br8" path="res://Assets/Scenes/Applebaumber.tscn" id="6_af15c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnlxy"]
 size = Vector2(1000, 720)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_b3o1t"]
+vertices = PackedVector2Array(107.90625, 225.52344, 281.4297, 173.04688, 343.96875, 195.45313, 407.39844, 274.27344, 432.28906, 329.65625, 310.35938, 344, 119.10156, 346.85938, 98.203125, 178.63281)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6), PackedInt32Array(0, 7, 1)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(86, 169, 283, 163, 350, 187, 416, 269, 447, 338, 311, 354, 110, 357, 98, 227)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_af15c"]
+vertices = PackedVector2Array(900.9922, 468.96875, 751.21094, 508.0703, 719.53906, 443.8828, 763.1094, 433.77344, 840.6328, 419.04688, 902.64844, 422.45313, 815.21875, 628, 777, 626.39844, 777, 579.2422, 904.9375, 606.2031, 815.22656, 628, 895.3281, 629.84375, 292.22656, 530.60156, 346, 589.1406, 346, 625, 292.6328, 625, 269.39844, 557.22656, 264.90625, 388.89844, 277.82813, 405.04688, 264.2578, 447.2578, 235.03125, 440.7578, 185.42188, 403.27344, 189.77344, 450.54688, 112.609375, 441.40625, 138.22656, 414.9297, 167.29688, 397.82813, 198.8125, 553.7031, 168.50781, 609.22656, 116.1875, 588.64844, 121.00781, 559.75, 175.38281, 509.3125, 307.25, 462.03125, 357.10938, 455.70313, 376.3828, 484.60156, 384.47656, 546.7031, 119.99219, 491.1875)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(1, 0, 9, 8), PackedInt32Array(10, 9, 11), PackedInt32Array(12, 13, 14, 15, 16), PackedInt32Array(17, 18, 19, 20, 21), PackedInt32Array(21, 20, 22, 23, 24, 25), PackedInt32Array(26, 27, 28, 29, 30), PackedInt32Array(12, 31, 32, 33, 34, 13), PackedInt32Array(16, 15, 27, 26), PackedInt32Array(30, 29, 35, 22), PackedInt32Array(22, 35, 23)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(166, 619, 292, 635, 356, 635, 356, 593, 395, 550, 386, 481, 362, 445, 299, 453, 283, 526, 265, 547, 205, 544, 186, 508, 198, 459, 235, 451, 271, 459, 289, 403, 269, 378, 186, 393, 166, 387, 132, 407, 102, 438, 110, 492, 111, 559, 105, 595)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7njb5"]
+vertices = PackedVector2Array(895.97656, 437.5078, 891.25, 621.7031, 775.1875, 618.22656, 738.28125, 439.3672, 763.8828, 348.84375, 881.46094, 329.53125)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(767, 628, 901, 632, 906, 437, 890, 318, 756, 340, 728, 439)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7qk53"]
+vertices = PackedVector2Array(464.42188, 124.28906, 420.72656, 93.609375, 591.39844, 90.453125, 572.1172, 109.74219, 625.59375, 195.77344, 520.77344, 179.60938, 626.5703, 136.96875, 640.9297, 231.5625, 712.9219, 281.85938, 720.6719, 323.17188, 652.22656, 292.9297, 565.9219, 248.32031, 656.9922, 151.79688)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 0, 3, 6), PackedInt32Array(7, 8, 9, 10, 11), PackedInt32Array(4, 7, 11, 5), PackedInt32Array(6, 12, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(400, 84, 616, 80, 589, 107, 631, 128, 672, 148, 637, 197, 649, 225, 722, 276, 734, 340, 648, 302, 559, 256, 513, 186, 458, 132, 411, 99)])
 
 [node name="InheritedFloor" instance=ExtResource("1_15ioy")]
 modulate = Color(0.85882354, 0.6313726, 0.9137255, 1)
@@ -29,5 +52,122 @@ visible = false
 position = Vector2(500, 360)
 shape = SubResource("RectangleShape2D_nnlxy")
 
-[node name="MultiplayerSpawnPoint" parent="." index="15"]
-position = Vector2(500, 629)
+[node name="SceneTransition" parent="." index="14"]
+position = Vector2(924, 329)
+new_scene = "res://Assets/Scenes/shop.tscn"
+
+[node name="Enemy" parent="." index="15" instance=ExtResource("4_b3o1t")]
+position = Vector2(852, 510)
+current_health = 0
+weapon_type = 0
+follow_distance_min = 100
+follow_distance_max = 700
+drop_chance = 1.0
+possible_drops = Array[ExtResource("5_af15c")]([])
+drop_radius = 60.0
+detection_radius = 250.0
+attack_radius = 150.0
+max_pursuit_time = 10.0
+patrol_idle_time = 1.0
+dialogue_title = "start"
+speed = 100
+attack_damage = 10
+crit_rate = 0.2
+crit_damage = 2.0
+max_health = 100
+
+[node name="Enemy2" parent="." index="16" instance=ExtResource("6_af15c")]
+position = Vector2(173, 253)
+
+[node name="Enemy3" parent="." index="17" instance=ExtResource("4_b3o1t")]
+position = Vector2(161, 467)
+current_health = 0
+weapon_type = 0
+follow_distance_min = 100
+follow_distance_max = 700
+drop_chance = 1.0
+possible_drops = Array[ExtResource("5_af15c")]([])
+drop_radius = 60.0
+detection_radius = 250.0
+attack_radius = 150.0
+max_pursuit_time = 10.0
+patrol_idle_time = 1.0
+dialogue_title = "start"
+speed = 100
+attack_damage = 10
+crit_rate = 0.2
+crit_damage = 2.0
+max_health = 100
+
+[node name="Enemy4" parent="." index="18" instance=ExtResource("4_b3o1t")]
+position = Vector2(161, 544)
+current_health = 0
+weapon_type = 0
+follow_distance_min = 100
+follow_distance_max = 700
+drop_chance = 1.0
+possible_drops = Array[ExtResource("5_af15c")]([])
+drop_radius = 60.0
+detection_radius = 250.0
+attack_radius = 150.0
+max_pursuit_time = 10.0
+patrol_idle_time = 1.0
+dialogue_title = "start"
+speed = 100
+attack_damage = 10
+crit_rate = 0.2
+crit_damage = 2.0
+max_health = 100
+
+[node name="Enemy5" parent="." index="19" instance=ExtResource("4_b3o1t")]
+position = Vector2(509, 132)
+current_health = 0
+weapon_type = 1
+follow_distance_min = 100
+follow_distance_max = 700
+drop_chance = 1.0
+possible_drops = Array[ExtResource("5_af15c")]([])
+drop_radius = 60.0
+detection_radius = 250.0
+attack_radius = 150.0
+max_pursuit_time = 10.0
+patrol_idle_time = 1.0
+dialogue_title = "start"
+speed = 100
+attack_damage = 10
+crit_rate = 0.2
+crit_damage = 2.0
+max_health = 100
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="20"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
+polygon = PackedVector2Array(673, 630, 666, 585, 668, 564, 654, 542, 643, 540, 621, 498, 586, 462, 630, 446, 654, 428, 676, 417, 692, 437, 720, 466, 742, 527, 753, 571, 759, 631, 758, 642, 676, 639)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D" index="1"]
+build_mode = 1
+polygon = PackedVector2Array(5, 716, 156, 718, 424, 716, 652, 717, 847, 720, 931, 715, 1001, 720, 1001, 628, 1000, 421, 999, -4, 0, 6)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D" index="2"]
+polygon = PackedVector2Array(241, 542, 266, 540, 276, 530, 277, 516, 272, 503, 277, 495, 280, 486, 252, 459, 228, 456, 204, 478, 195, 494, 202, 500, 199, 522, 203, 535, 220, 542)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D" index="3"]
+polygon = PackedVector2Array(493, 380, 460, 346, 442, 311, 440, 295, 446, 286, 453, 267, 445, 248, 433, 233, 413, 225, 408, 226, 388, 207, 355, 189, 313, 168, 283, 146, 264, 114, 257, 83, 397, 80, 424, 120, 467, 161, 501, 204, 531, 262, 545, 275, 547, 283, 554, 298, 568, 311, 590, 314, 616, 334, 542, 345, 525, 351, 511, 362, 496, 375)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D" index="4"]
+polygon = PackedVector2Array(693, 217, 719, 224, 750, 219, 758, 207, 750, 182, 759, 168, 733, 140, 718, 134, 699, 144, 684, 158, 681, 174, 687, 181, 680, 198, 666, 192, 658, 199, 670, 205, 676, 215)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D" index="5"]
+polygon = PackedVector2Array(736, 271, 770, 242, 786, 224, 786, 157, 748, 136, 716, 109, 651, 120, 608, 116, 610, 90, 630, 90, 630, 64, 883, 85, 926, 93, 934, 153, 928, 216, 922, 260, 920, 283, 902, 275, 885, 276, 887, 290, 869, 295, 846, 300, 819, 300, 793, 288, 778, 280, 748, 280)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="21"]
+navigation_polygon = SubResource("NavigationPolygon_b3o1t")
+
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." index="22"]
+navigation_polygon = SubResource("NavigationPolygon_af15c")
+
+[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="." index="23"]
+navigation_polygon = SubResource("NavigationPolygon_7njb5")
+
+[node name="NavigationRegion2D44" type="NavigationRegion2D" parent="." index="24"]
+navigation_polygon = SubResource("NavigationPolygon_7qk53")

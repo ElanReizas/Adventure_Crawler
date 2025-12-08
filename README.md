@@ -1,6 +1,6 @@
-# Project Name
-Put here a short paragraph describing your project. 
-Adding an screenshot or a mockup of your application in action would be nice.  
+# Aventure Crawler
+This is a blend of a roguelike metroidvania and tower ascension. This brings together whimsy and difficult combat where you have to manage your resources to last you.
+Only problem is, you have 1 life, it must not be wasted.
 
 ![This is a screenshot.](images.png)
 # How to run

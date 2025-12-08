@@ -27,8 +27,10 @@ var knockback_cooldown: float = 0.0
 var knockback_interval: float = 0.4
 
 @export var drop_chance: float = 1.0   # % chance to drop an item
+@export var gold_drop_chance: float = 1.0    
+@export var potion_drop_chance: float = 0.75 
 @export var possible_drops: Array[Item] = []
-@export var drop_radius: float = 60.0
+@export var drop_radius: float = 20.0
 
 @export var detection_radius: float = 250.0
 @export var attack_radius: float = 150.0
@@ -81,6 +83,10 @@ func _ready():
 	equip_weapon(WEAPON_PATHS[weapon_type])
 	if enemy_sprite.texture == load("res://Assets/Images/apple.png"):
 		equipped_weapon.ranged_type = RangedWeapon.ProjectileType.BOMB
+	elif weapon_type == WeaponType.MELEE:
+		enemy_sprite.texture = load("res://Assets/Images/enemy.png")
+	else:
+		enemy_sprite.texture = load("res://Assets/Images/enemy_strapped.png")
 	#ranged enemies use detection radius as attack radius
 	update_ranged_attack_radius()
 	#wait for navmesh to sync before patrol
@@ -382,31 +388,38 @@ func die():
 
 
 func drop_loot():
-	# If no items assigned, nothing can drop
-	if possible_drops.is_empty():
-		return
-
-	# Roll random chance
-	if randf() > drop_chance:
-		return
-
-	# Pick random item from this enemy's drop table
-	var item: Item = possible_drops.pick_random()
 
 	# Spawn the item drop
 	var drop_scene := preload("res://Assets/Scenes/ItemDrop.tscn")
-	var drop := drop_scene.instantiate()
-
-	drop.item = item
-
+	
 	# Spread items around the enemy using radius
 	var offset := Vector2(
 		randf_range(-drop_radius, drop_radius),
 		randf_range(-drop_radius, drop_radius)
 	)
+	
+	if not possible_drops.is_empty() and randf() <= drop_chance:
+		var item: Item = possible_drops.pick_random()
+		var drop := drop_scene.instantiate()
+		drop.item = item
+		drop.global_position = global_position + offset
+		get_tree().get_current_scene().call_deferred("add_child", drop)
 
-	drop.global_position = global_position + offset
-	get_tree().get_current_scene().call_deferred("add_child", drop)
+	#gold drop
+	if randf() <= gold_drop_chance:
+		var gold_values = [10, 15, 20, 25]
+		var gold_drop := drop_scene.instantiate()
+		gold_drop.is_gold = true
+		gold_drop.gold_amount = gold_values.pick_random()
+		gold_drop.global_position = global_position - offset
+		get_tree().get_current_scene().call_deferred("add_child", gold_drop)
+	
+	#potion drop
+	if randf() <= potion_drop_chance:
+		var potion_drop := drop_scene.instantiate()
+		potion_drop.is_potion = true
+		potion_drop.global_position = global_position + Vector2(0, drop_radius)
+		get_tree().get_current_scene().call_deferred("add_child", potion_drop)
 
 
 
