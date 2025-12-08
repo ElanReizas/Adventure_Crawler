@@ -1,8 +1,47 @@
 [gd_scene load_steps=9 format=3 uid="uid://bywwns87m51ml"]
 
-[ext_resource type="Script" uid="uid://bhf2vuwccino1" path="res://Assets/Scripts/bomb.gd" id="1_pwa3h"]
-[ext_resource type="Texture2D" uid="uid://bunmn2wl7nvnb" path="res://Assets/combat asset/Blast.png" id="2_13iwd"]
-[ext_resource type="Texture2D" uid="uid://cj0wfpiu6o38h" path="res://Assets/Images/apple bomb.png" id="2_ofauy"]
+[ext_resource type="Script" path="res://Assets/Scripts/bomb.gd" id="1_pwa3h"]
+[ext_resource type="Texture2D" uid="uid://bw27eq2vohlwr" path="res://Assets/combat asset/Blast.png" id="2_13iwd"]
+[ext_resource type="Texture2D" uid="uid://b7pq552f67nvw" path="res://Assets/Images/apple bomb.png" id="2_ofauy"]
+
+[sub_resource type="Animation" id="Animation_13iwd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explosion hitbox/explosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("explosion hitbox/explosion:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("activation hitbox/apple:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_pwa3h"]
 resource_name = "explosion"
@@ -44,56 +83,17 @@ tracks/2/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_13iwd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("explosion hitbox/explosion:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("explosion hitbox/explosion:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("activation hitbox/apple:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_13iwd"]
 _data = {
 &"RESET": SubResource("Animation_13iwd"),
 &"explosion": SubResource("Animation_pwa3h")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1yorp"]
-size = Vector2(4, 6)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_i5nsh"]
 radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1yorp"]
+size = Vector2(4, 6)
 
 [node name="Bomb" type="Area2D"]
 script = ExtResource("1_pwa3h")
@@ -102,14 +102,6 @@ script = ExtResource("1_pwa3h")
 libraries = {
 &"": SubResource("AnimationLibrary_13iwd")
 }
-
-[node name="activation hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -5)
-shape = SubResource("RectangleShape2D_1yorp")
-
-[node name="apple" type="Sprite2D" parent="activation hitbox"]
-scale = Vector2(1, 0.913)
-texture = ExtResource("2_ofauy")
 
 [node name="explosion hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5)
@@ -121,3 +113,11 @@ position = Vector2(0.5, 0)
 texture = ExtResource("2_13iwd")
 hframes = 3
 vframes = 3
+
+[node name="activation hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -5)
+shape = SubResource("RectangleShape2D_1yorp")
+
+[node name="apple" type="Sprite2D" parent="activation hitbox"]
+scale = Vector2(1, 0.913)
+texture = ExtResource("2_ofauy")

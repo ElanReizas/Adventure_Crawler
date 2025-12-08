@@ -81,6 +81,10 @@ func _ready():
 	equip_weapon(WEAPON_PATHS[weapon_type])
 	if enemy_sprite.texture == load("res://Assets/Images/apple.png"):
 		equipped_weapon.ranged_type = RangedWeapon.ProjectileType.BOMB
+	elif weapon_type == WeaponType.MELEE:
+		enemy_sprite.texture = load("res://Assets/Images/enemy.png")
+	else:
+		enemy_sprite.texture = load("res://Assets/Images/enemy_strapped.png")
 	#ranged enemies use detection radius as attack radius
 	update_ranged_attack_radius()
 	#wait for navmesh to sync before patrol
