@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvu6u2t62ux3k"]
+[gd_scene load_steps=11 format=3 uid="uid://da05decb46gyy"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_vkr6w"]
 [ext_resource type="Texture2D" uid="uid://bu85asefxd3qc" path="res://Assets/Images/tilesets/room1.png" id="2_ta4kn"]
@@ -27,11 +27,13 @@ vertices = PackedVector2Array(488.65625, 250.39063, 98, 353.9922, 98, 266.4297, 
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(88, 367, 499, 258, 496, 188, 88, 258)])
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_vkr6w"]
-a = Vector2(167, 623)
-b = Vector2(452, 355)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vkr6w"]
+size = Vector2(20, 354.2842)
 
-[node name="InheritedFloor" instance=ExtResource("1_vkr6w")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ta4kn"]
+size = Vector2(4.286682, 354.2842)
+
+[node name="InheritedFloor2" instance=ExtResource("1_vkr6w")]
 modulate = Color(0.8599081, 0.632505, 0.91362244, 1)
 
 [node name="Player" parent="." index="2"]
@@ -75,8 +77,15 @@ navigation_polygon = SubResource("NavigationPolygon_53nmr")
 [node name="NavigationRegion2D4" type="NavigationRegion2D" parent="." index="21"]
 navigation_polygon = SubResource("NavigationPolygon_byjgd")
 
-[node name="Area2D" type="Area2D" parent="." index="22"]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="22"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-shape = SubResource("SegmentShape2D_vkr6w")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2(317.99997, 484.99997)
+rotation = 0.9075712
+shape = SubResource("RectangleShape2D_vkr6w")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" index="1"]
+position = Vector2(266, 412.00003)
+rotation = 0.9075712
+shape = SubResource("RectangleShape2D_ta4kn")
 one_way_collision = true
