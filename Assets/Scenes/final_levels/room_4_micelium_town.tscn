@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://crir8vo6p8hw4"]
+[gd_scene load_steps=5 format=4 uid="uid://b7y4a3l4ck1hj"]
 
 [ext_resource type="PackedScene" uid="uid://drum2so61txqm" path="res://Assets/Scenes/inherited_floor.tscn" id="1_15ioy"]
 [ext_resource type="Texture2D" uid="uid://djof12cuji84" path="res://Assets/Images/tilesets/room4.png" id="2_nnlxy"]
@@ -28,3 +28,6 @@ position = Vector2(500, 629)
 visible = false
 position = Vector2(500, 360)
 shape = SubResource("RectangleShape2D_nnlxy")
+
+[node name="MultiplayerSpawnPoint" parent="." index="15"]
+position = Vector2(500, 629)
