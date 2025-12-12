@@ -3,4 +3,4 @@ This is a blend of a roguelike metroidvania and tower ascension. This brings tog
 Only problem is, you have 1 life, it must not be wasted.
 
 # How to run
-Navigate to releases and download the executable!
+Navigate to releases on the right side and download the executable!
